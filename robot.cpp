@@ -25,6 +25,14 @@ void robot_msg_callback(const std_msgs::String::ConstPtr& message);
 
 void js_callback(const sensor_msgs::JointState& joint);
 
+/**
+@file robot.cpp
+@brief robot class for ur5 manipulator
+*/
+
+/*! @brief robot class for ur5 manipulator
+*
+*/
 
 
 
@@ -57,7 +65,9 @@ class Robot{
             //Robot::js_pub = n.advertise < sensor_msgs::JointState > ("/ur5/joint_group_pos_controller/command", 1);
             Robot::js_pub = n.advertise < std_msgs::Float64MultiArray > ("/ur5/joint_group_pos_controller/command", 1);
         };
-
+/*! @brief base constructor
+*needs argc and argv to innitialize the joint publisher
+*/
         Robot(int argc, char ** argv){
             cout << "in robot" << endl;
 
@@ -83,7 +93,9 @@ class Robot{
         void spin(){
             ros::spinOnce();
         }
-
+/*! @brief subscribes and starts callbacks
+* subscribes to /ur5/joint_states and starts the callbash
+*/
         void start_callback(int argc, char ** argv){
             cout << "in robot" << endl;
             ros::init(argc, argv, "robot_cpp_callback");
@@ -101,6 +113,12 @@ class Robot{
             spinner.spin();
             cout << "done spinning robot" << endl;
         }
+/*! @brief publishes a joint configuration
+*
+* @param th joitn configuration to publish
+* @param fill for previous version debugging
+* @param gripper for previous version debugging
+*/
 
         int publish(Eigen::Vector < double, 6 > th, bool fill = true, double gripper = 0){
             
@@ -136,7 +154,10 @@ class Robot{
 
             return 0;
         }
-
+/*! @brief publishes grip joints
+* for simulation only
+* @param gripper gripper joint value
+*/
         int publish_grip(double gripper = 0){
             
             std_msgs::Float64MultiArray f64j;
@@ -170,7 +191,10 @@ class Robot{
 
             return 0;
         }
-
+/*! @brief rotates the end effector
+*
+* @param ang in radiants
+*/
         int rotate(double ang = 0){
             sensor_msgs::JointState j_now = joint;
             Eigen::Vector<double, 6> j_tmp = j_to_q(j_now);
@@ -178,7 +202,10 @@ class Robot{
             publish(j_tmp);
             return 0;
         }
-
+/*! @brief prints a float64 array
+*
+* @param f64j ros float 64 array
+*/
         void print_f64j(std_msgs::Float64MultiArray f64j){
             for(int i=0; i< f64j.data.size();i++){
                 cout << "\nf64j.data[" << i << "] " << f64j.data[i];
@@ -211,7 +238,10 @@ class Robot{
             return 0;
         }
         */
-
+/*! @brief moves only the shoulder joint for the robot \n 
+* used to reduce the chance of collision of the robot arm
+* @see float move_to(Eigen::Vector < double, 6 > pr_f, int steps = 3000, float k_coeff=0.01, int verbose=false)
+*/
         float move_to_shoulder(Eigen::Vector < double, 6 > pr_f, int steps = 3000, float k_coeff=0.01, int verbose=false){
             Kin kin;
             Eigen::Vector < double, 6 > q_i = j_to_q(joint);//q di adesso
@@ -223,8 +253,18 @@ class Robot{
             Eigen::Vector < double, 6 > pr_pan=kin.get_pr_now();
             move_to(pr_pan,steps,k_coeff,verbose);
         }
-
-        float move_to(Eigen::Vector < double, 6 > pr_f, int steps = 3000, float k_coeff=0.01, int verbose=false){
+/*! @brief moves the robot to a given position \n
+* calculates the path from the current position and \n 
+* the final one, publishes the joints for the manipulator
+* 
+* @see Kin::p2p()
+* @see js_callback(const sensor_msgs::JointState& j)
+* @param pr_f position and rotation of the final position
+* @param steps number of 1ms steps
+* @param k_coeff for debugging and compatibility
+* @param verbose verbose option
+*/
+        float move_to(Eigen::Vector < double, 6 > pr_f, int steps = 3000, float k_coeff=0.01, bool verbose=false){
             Helper help;
             Eigen::MatrixXd k = Eigen::MatrixXd::Identity(6,6) * k_coeff;
             sensor_msgs::JointState j_now = joint;
@@ -401,6 +441,10 @@ void robot_msg_callback(const std_msgs::String::ConstPtr& message){
     //m.data = message->data.c_str();
     //std_msgs::String Robot::msg = m;
 }
+/*! @brief callback for ur5/joint_states \n
+* detects the number of joints, saves the eventual gripper values, \n
+* reorders the joints values and saves them
+*/
 
 void js_callback(const sensor_msgs::JointState& j){
 

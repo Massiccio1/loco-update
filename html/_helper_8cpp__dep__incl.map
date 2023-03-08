@@ -1,0 +1,6 @@
+<map id="Helper.cpp" name="Helper.cpp">
+<area shape="rect" id="node1" title="helper function for different applications" alt="" coords="68,5,160,32"/>
+<area shape="rect" id="node2" href="$_kin_8cpp.html" title="kinematics class for the ur5 robot" alt="" coords="5,80,76,107"/>
+<area shape="rect" id="node3" href="$main_8cpp.html" title="main function for robot procedures" alt="" coords="59,229,142,256"/>
+<area shape="rect" id="node4" href="$robot_8cpp.html" title="robot class for ur5 manipulator" alt="" coords="59,155,142,181"/>
+</map>

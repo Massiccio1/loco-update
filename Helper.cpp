@@ -24,9 +24,18 @@
 
 //#include "robot.cpp"
 
+
+
 using namespace std;
 
+/**
+@file helper.cpp
+@brief helper function for different applications
+*/
 
+/*! @brief helper function for different applications
+*
+*/
 
 class Helper{
     public:
@@ -57,6 +66,7 @@ class Helper{
             return path;
         };
 
+
         int fill_pr_i_f(Eigen::Vector < double, 6 > & pr_i, Eigen::Vector < double, 6 > & pr_f){
 
             std::ifstream myfile ("src/locosim/test_cpp/src/master_positions.txt");
@@ -84,6 +94,13 @@ class Helper{
             myfile.close();
             return 0;
         }
+    /*! @brief debugging method to manually input positions for the robot \n 
+*
+* reads from src/locosim/test_cpp/src/pr_next.txt \n
+* only reads the first 6 lines
+*
+* @param pr_f reference to the vector to store what's read
+*/
 
         int fill_pr_next(Eigen::Vector < double, 6 > & pr_f){
 
@@ -124,11 +141,25 @@ class Helper{
         return k;
     }
 
-    
+/*! @brief calculates the distance between 2 positions in space \n 
+*
+* takes eigen vectors of 6
+*
+* @see dist(Eigen::Vector3d pr_i,Eigen::Vector3d pr_f)
+*
+* @return float distance in absolute value 
+*/
 
     float dist(Eigen::Vector < double, 6 >pr_i,Eigen::Vector < double, 6 > pr_f){
         return (    pow(pr_i[0],2) + pow(pr_i[1],2) + pow(pr_i[2],2)    ) - (    pow(pr_f[0],2) + pow(pr_f[1],2) + pow(pr_f[2],2)    );
     }
+/*! @brief calculates the distance between 2 positions in space \n
+*
+* takes eigen vectors of 3
+*
+* @see dist(Eigen::Vector < double, 6 >pr_i,Eigen::Vector < double, 6 > pr_f)
+* @return float distance in absolute value 
+*/
     float dist(Eigen::Vector3d pr_i,Eigen::Vector3d pr_f){
         return (    pow(pr_i[0],2) + pow(pr_i[1],2) + pow(pr_i[2],2)    ) - (    pow(pr_f[0],2) + pow(pr_f[1],2) + pow(pr_f[2],2)    );
     }
@@ -157,13 +188,17 @@ class Helper{
         return world;
 
     }
-
-    Eigen::Vector3d tavolo_to_robo(Eigen::Vector3d camera){
+/*! @brief converts world frame fo robot frame coordinates
+*
+* @param camera x,y,z coordinates of the world frame
+* @return float distance in absolute value 
+*/
+    Eigen::Vector3d tavolo_to_robo(Eigen::Vector3d world){
         //camera x y depth
         Eigen::Vector3d robo;
-        robo(0)=camera(0)-0.5;//x tavolo
-        robo(1)=-camera(1)+0.35;         //y tavolo
-        robo(2)=robo(2);           
+        robo(0)=world(0)-0.5;//x tavolo
+        robo(1)=-world(1)+0.35;         //y tavolo
+        robo(2)=world(2);
 
         return robo;
     }
@@ -176,14 +211,23 @@ class Helper{
         return x;
 
     }
-
+/*! @brief wrapps differences in angles
+* @fn dist_constrain(double x)
+* @see dist_constrain(Eigen::Vector<double, 6> q)
+* @param x angle
+* @return wrapped angle difference
+*/
     double dist_constrain(double x){
         
         if (x > M_PI)//wrapping
             return std::abs(M_PI*2-x);
         return x;
     }
-
+/*! @brief constrains angle to [-180,180]
+* @fn constrainAngle180(double x)
+*   @see constrainAngle180(Eigen::Vector<double, 6> q)
+* @param x angle
+*/
     double constrainAngle180(double x){//da -180 a 180
         x = fmod(x,M_PI*2);//normalizzo
         if (x < -M_PI)
@@ -191,7 +235,11 @@ class Helper{
         if (x > M_PI)
         return x - M_PI*2;
     }
-
+/*! @brief constrains angle to [-360,360]
+* @fn constrainAngle720(double x)
+*   @see constrainAngle720(Eigen::Vector<double, 6> q)
+* @param x angle
+*/
     double constrainAngle720(double x){//cambio da + a - e viceversa
         //x = fmod(x ,M_2_PI);
         if (x < 0)
@@ -206,6 +254,12 @@ class Helper{
         }
         return ret;
     }
+
+/*! @brief constrains angle vector to [-180,180]
+* @fn constrainAngle180(Eigen::Vector<double, 6> q)
+*   @see constrainAngle180(double x)
+* @param q vector of 6 angles
+*/
     Eigen::Vector<double, 6> constrainAngle180(Eigen::Vector<double, 6> q){
         Eigen::Vector<double, 6> ret;
         for(int i=0; i< 6; i++){
@@ -213,7 +267,11 @@ class Helper{
         }
         return ret;
     }
-
+/*! @brief constrains angle vector to [-360,360]
+* @fn constrainAngle720(Eigen::Vector<double, 6> q)
+*   @see constrainAngle720(double x)
+* @param q vector of 6 angles
+*/
     Eigen::Vector<double, 6> constrainAngle720(Eigen::Vector<double, 6> q){
         Eigen::Vector<double, 6> ret;
         for(int i=0; i< 6; i++){
@@ -221,6 +279,12 @@ class Helper{
         }
         return ret;
     }
+/*! @brief wrapps differences in angles
+* @fn dist_constrain(Eigen::Vector<double, 6> q)
+* @see dist_constrain(double x)
+* @param q vector of 6 angles 
+* @return wrapped angle difference vector
+*/
 
     Eigen::Vector<double, 6> dist_constrain(Eigen::Vector<double, 6> q){
         Eigen::Vector<double, 6> ret;

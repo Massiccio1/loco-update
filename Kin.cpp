@@ -18,6 +18,15 @@ using namespace std;
   #define MODEL_PATH "~/ros_ws/src/robo/ros/robot_urdf/generated_urdf/ur5.urdf"
 #endif
 
+/**
+@file kin.cpp
+@brief kinematics class for the ur5 robot
+*/
+
+/*! @brief kinematics class for the ur5 robot
+*
+*/
+
 class Kin {
    
 
@@ -56,7 +65,10 @@ class Kin {
             J = Eigen::MatrixXd(6,6);
         }
     
-
+/*! @brief returns the rotation matrix of the end effector relativo to the base frame
+*
+* @return Eigen::Matrix4d T0e end effector rotation matrix
+*/
     Eigen::Matrix4d get_T0e(){
         return T0e;
     }
@@ -69,6 +81,12 @@ class Kin {
         pos << T0e.coeff(0,3), T0e.coeff(1,3), T0e.coeff(2,3);
         return pos;
     }
+/*! @brief returns current position and euler rotation for the loaded \n
+*
+* must be used after @ref compute_fc(Eigen::Vector < double, 6 > , bool)
+*
+* @return Eigen::Vector < double, 6 > pr
+*/
 
     Eigen::Vector < double, 6 > get_pr_now(){
 
@@ -83,7 +101,10 @@ class Kin {
 
         return pr_i;
     }
-
+/*! @brief returns the position of the end effector
+*
+* @return Eigen::Vector3d position in x,y,z
+*/
 
     Eigen::Vector3d get_ee_p(){ //get end effector position(x,y,z)
 
@@ -93,6 +114,14 @@ class Kin {
         pos << T0e.coeff(0,3), T0e.coeff(1,3), T0e.coeff(2,3);
         return pos;
     }
+
+/*! @brief computes forward kinematic and loads the inner varables of the class for future uses
+*
+*
+* @param Eigen::Vector < double, 6 > the joint configuration of the robot 
+* @param print verbose mode, default = flase
+* @return 0 if everything worked, does not return a position, that must be accessed with get_pr_now()
+*/
 
     int  compute_fc(Eigen::Vector < double, 6 > Th, bool print_ = false) {
         this->Th=Th;
@@ -124,6 +153,14 @@ class Kin {
         }
         return 0;
     }
+/*! @brief the Jacobian of a given joint configuration
+*
+*
+* @param Eigen::Vector < double, 6 > q the joint configuration
+* @param print verbose mode, default = flase
+* @return Eigen::MatrixXd J full jacobian matrix
+*/
+
 
     Eigen::MatrixXd compute_J(Eigen::Vector < double, 6 > q, bool print_ = false){
 
@@ -207,6 +244,15 @@ class Kin {
 
         return J;
     }
+
+/*! @brief evaluates the pose of a given joint configuration \n 
+*
+* the pose is used as an index for compute_ik(Eigen::Vector < double, 6 > ) \n 
+* use this function to obtain consistent pose for different joint configuration
+* 
+* @param Eigen::Vector < double, 6 > the joint configuration
+* @return index of the inverse kinematics configuration
+*/
 
     int eval_ik_index(Eigen::Vector < double, 6 > j_now){
         Helper h;
@@ -358,6 +404,22 @@ class Kin {
 
     }
 
+/*! @brief creates a joint path between 2 points in space \n
+*
+* uses path and trajectory cubical interpolation in the joint space \n 
+* extract the joint position with compute_ik(Eigen::Vector < double, 6 > ) \n 
+* and interpolates with a cubical, and calculates the joint position of each step \n 
+* coses the shortest path on rotations and constrains the final angle with \n 
+* constrainAngle180(Eigen::Vector<double, 6>). \n 
+* returns a standard vector of joint positions \n \n 
+* @see Helper::constrainAngle180(Eigen::Vector<double, 6>) \n 
+* @fn p2p()
+* @param pr_i initial position and rotation of the end effector
+* @param pr_f final position and rotation of the end effector
+* @param steps number of 1ms steps
+* @return standard vector of joint positions
+*/
+
     std::vector<Eigen::Vector < double, 6 >> p2p(Eigen::Vector < double, 6 > pr_i, Eigen::Vector < double, 6 > pr_f, int steps = 3000, double minT = 0){
         
         Eigen::Vector < double, 6 > q_i = compute_ik(pr_i)[Kin::ik_index];
@@ -461,7 +523,17 @@ class Kin {
         
 
         return path;
+
     }
+
+
+/*! @brief computes inverse kinematics
+*
+* @see safe_acos() \n 
+*
+* @param pr_f position and rotation of the end effector
+* @return standard vector of joints positions
+*/
 
     vector<Eigen::Vector < double, 6 >> compute_ik(Eigen::Vector < double, 6 > pr_f){
         Eigen::Vector < double, 6 > th_ik;
@@ -644,18 +716,39 @@ class Kin {
     double hypot(double a, double b){
         return sqrt(pow(a,2)+pow(b,2));
     }
-
+/*! @brief extracts euler angles from position and rotation vector
+*
+* @see pr_to_p() \n 
+*
+* @param pr position and rotation of the end effector
+* @return vector of euler angles
+*/
     Eigen::Vector3d pr_to_r(Eigen::Vector < double, 6 > pr){
         Eigen::Vector3d r;
         r<< pr(3),pr(4),pr(5);
         return r;
     }
+
+/*! @brief extracts x,y,z coordinates from position and rotation vector
+*
+* @see pr_to_r() \n 
+*
+* @param pr position and rotation of the end effector
+* @return vector of x,y,z coordinates
+*/
     
     Eigen::Vector3d pr_to_p(Eigen::Vector < double, 6 > pr){
         Eigen::Vector3d p;
         p<< pr(0),pr(1),pr(2);
         return p;
     }
+/*! @brief conversion function from euler angles XYZ to rotation matrix
+*
+* @see eul2rotZYX() \n 
+*
+* @param rpy roll pitch yaw
+* @return rotation matrix
+*/
 
     Eigen::Matrix3d eul2rotXYZ(Eigen::Vector3d rpy){
         double c_roll =  cos(rpy[0]);
@@ -681,6 +774,13 @@ class Kin {
 
         return (Rx*(Ry*Rz)); //xyz
     }
+/*! @brief conversion function from euler angles ZYX to rotation matrix
+*
+* @see eul2rotXYZ() \n 
+*
+* @param rpy roll pitch yaw
+* @return rotation matrix
+*/
 
     Eigen::Matrix3d eul2rotZYX(Eigen::Vector3d rpy){
         double c_roll =  cos(rpy[0]);
@@ -795,7 +895,12 @@ class Kin {
     Eigen::Vector3d lin_rot(Eigen::Vector3d rpy_i, Eigen::Vector3d rpy_f, int steps = 5000){//5 secondi default
         return (rpy_f - rpy_i) / steps;
     }
-
+/*! @brief conversion function from rotation matrix to euler angles in ZYX
+*
+*
+* @param rpy rotation martix
+* @return euler angles
+*/
     Eigen::Vector3d rotm2eul(Eigen::Matrix4d R){//da matrice a rpy zyx
         Eigen::Vector3d eul;
         /*
@@ -838,7 +943,15 @@ class Kin {
             return 0;
         return d;
     }
-
+/*! @brief safe real acos for c++ \n
+*
+* returns real value for acos, even with inputs outside of [-1,1]
+*
+* @see safe_asin()
+*
+* @param value cos value
+* @return real value for acos, even with inputs outside of [-1,1]
+*/
 
     double safe_acos(const double& value) {
         if (value<=-1) {
@@ -849,7 +962,15 @@ class Kin {
             return acos(value);
         }
     }
-
+/*! @brief safe real asin for c++
+*
+* returns real value for asin, even with inputs outside of [-1,1]
+*
+* @see safe_acos()
+*
+* @param value cos value
+* @return real value for asin, even with inputs outside of [-1,1]
+*/
     double safe_asin(const double& value) {
         if (value<=-1) {
             return M_PI/2;
