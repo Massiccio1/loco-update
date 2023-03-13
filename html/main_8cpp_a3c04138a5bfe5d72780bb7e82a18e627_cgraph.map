@@ -1,29 +1,29 @@
 <map id="main" name="main">
 <area shape="rect" id="node1" title=" " alt="" coords="5,335,60,361"/>
 <area shape="rect" id="node2" href="$main_8cpp.html#a3e78fe12770e80c5c5eb11595fc6735b" title=" " alt="" coords="143,69,230,96"/>
-<area shape="rect" id="node6" href="$class_kin.html#ab585d8cc2566972b027d8ad98461c464" title=" " alt="" coords="330,107,471,133"/>
+<area shape="rect" id="node6" href="$class_kin.html#ab585d8cc2566972b027d8ad98461c464" title="evaluates the pose of a given joint configuration" alt="" coords="330,107,471,133"/>
 <area shape="rect" id="node10" href="$class_robot.html#aad276a136acf286c4edadace34dcb099" title=" " alt="" coords="347,512,454,539"/>
 <area shape="rect" id="node11" href="$class_robot.html#a30dd8e3a083b38ba834d28344a9d695d" title=" " alt="" coords="108,411,265,437"/>
-<area shape="rect" id="node12" href="$main_8cpp.html#acf283b153750629e8e4eb748c6644826" title=" " alt="" coords="143,309,230,336"/>
+<area shape="rect" id="node12" href="$main_8cpp.html#a1c74e98f2b582e43765f30a56f0205ee" title="starts the procedure onche a blocklist message has been provided" alt="" coords="143,309,230,336"/>
 <area shape="rect" id="node26" href="$main_8cpp.html#a34329d356aeca4c8595fd2eca4586dc0" title=" " alt="" coords="109,512,264,539"/>
-<area shape="rect" id="node3" href="$class_robot.html#a61ea0357fc3262d28f0d6083566b3114" title=" " alt="" coords="321,31,480,57"/>
-<area shape="rect" id="node4" href="$robot_8cpp.html#a3816c602ee5ada5e6ca57c5e155b0e6a" title=" " alt="" coords="583,5,677,32"/>
+<area shape="rect" id="node3" href="$class_robot.html#a61ea0357fc3262d28f0d6083566b3114" title="subscribes and starts callbacks subscribes to /ur5/joint_states and starts the callbash" alt="" coords="321,31,480,57"/>
+<area shape="rect" id="node4" href="$robot_8cpp.html#ab1be1cea6e2c9af0a79e9a647f06b2a6" title="callback for ur5/joint_states &#160;detects the number of joints, saves the eventual gripper values,..." alt="" coords="583,5,677,32"/>
 <area shape="rect" id="node5" href="$robot_8cpp.html#a4cab0c44f9d4d7aa879d74bde977a848" title=" " alt="" coords="807,5,863,32"/>
 <area shape="rect" id="node7" href="$class_helper.html#adced4bf5f26bdc4c66dd2fe3b741c426" title=" " alt="" coords="545,107,715,133"/>
-<area shape="rect" id="node8" href="$class_helper.html#aaabaa4c346a5fff43ab6b36f57162c2c" title=" " alt="" coords="947,183,1141,209"/>
-<area shape="rect" id="node9" href="$class_helper.html#aa80d83af97d72b5566f9897520eb9d65" title=" " alt="" coords="548,56,712,83"/>
-<area shape="rect" id="node13" href="$class_kin.html#aec6ac8ffafd4f63335e21fa088d962e1" title=" " alt="" coords="772,411,899,437"/>
+<area shape="rect" id="node8" href="$class_helper.html#aa96fe6e318ec1f65fb03ec39c4d537a8" title="constrains angle to [&#45;180,180]" alt="" coords="947,183,1141,209"/>
+<area shape="rect" id="node9" href="$class_helper.html#aa9318ee5d55c5da8518055f447234b4b" title="wrapps differences in angles" alt="" coords="548,56,712,83"/>
+<area shape="rect" id="node13" href="$class_kin.html#aec6ac8ffafd4f63335e21fa088d962e1" title="computes forward kinematic and loads the inner varables of the class for future uses" alt="" coords="772,411,899,437"/>
 <area shape="rect" id="node14" href="$main_8cpp.html#a5568ac7e2cf6c6b7cb0753d56ed607cb" title=" " alt="" coords="375,259,426,285"/>
-<area shape="rect" id="node15" href="$class_robot.html#a32da0e43b4fb9c7dfd78a12b5531cc7f" title=" " alt="" coords="567,309,693,336"/>
-<area shape="rect" id="node21" href="$class_robot.html#afad827990c0d664a10983e4f51b46847" title=" " alt="" coords="557,259,703,285"/>
-<area shape="rect" id="node22" href="$class_robot.html#a83e0c6af9460cd6aa16d4ff7e86a526b" title=" " alt="" coords="536,461,724,488"/>
-<area shape="rect" id="node24" href="$class_kin.html#a98b9cab755916ef411b8325a40e86389" title=" " alt="" coords="351,157,450,184"/>
+<area shape="rect" id="node15" href="$class_robot.html#a84ae13c01a86fa3b3c020de0ee59cbca" title="moves the robot to a given position &#160;calculates the path from the current position and &#160;&#160;the final on..." alt="" coords="567,309,693,336"/>
+<area shape="rect" id="node21" href="$class_robot.html#afad827990c0d664a10983e4f51b46847" title="publishes grip joints for simulation only" alt="" coords="557,259,703,285"/>
+<area shape="rect" id="node22" href="$class_robot.html#a83e0c6af9460cd6aa16d4ff7e86a526b" title="moves only the shoulder joint for the robot &#160;&#160;used to reduce the chance of collision of the robot arm" alt="" coords="536,461,724,488"/>
+<area shape="rect" id="node24" href="$class_kin.html#a98b9cab755916ef411b8325a40e86389" title="extracts x,y,z coordinates from position and rotation vector" alt="" coords="351,157,450,184"/>
 <area shape="rect" id="node25" href="$main_8cpp.html#aab4903ec3ca87c3f850c77a66c6945aa" title=" " alt="" coords="367,309,434,336"/>
-<area shape="rect" id="node16" href="$class_helper.html#a89480516cc72b2ed60cb0596c24aa316" title=" " alt="" coords="787,309,884,336"/>
-<area shape="rect" id="node17" href="$class_kin.html#af75d397faf214d72adda456a1bb9084f" title=" " alt="" coords="780,208,891,235"/>
-<area shape="rect" id="node18" href="$class_kin.html#a992d4e39f8ff9556682a02c370dad160" title=" " alt="" coords="772,360,899,387"/>
-<area shape="rect" id="node19" href="$class_kin.html#ab9490e04fe5cbb4663310deee066b77c" title=" " alt="" coords="798,259,873,285"/>
-<area shape="rect" id="node20" href="$class_helper.html#a57b6f2b1fab576bdb00f781ade91250d" title=" " alt="" coords="947,259,1141,285"/>
-<area shape="rect" id="node23" href="$class_kin.html#a77551fd793139d26aee773c2663d9ab3" title=" " alt="" coords="772,461,899,488"/>
+<area shape="rect" id="node16" href="$class_helper.html#a89480516cc72b2ed60cb0596c24aa316" title="calculates the distance between 2 positions in space" alt="" coords="787,309,884,336"/>
+<area shape="rect" id="node17" href="$class_kin.html#af75d397faf214d72adda456a1bb9084f" title="returns the position of the end effector" alt="" coords="780,208,891,235"/>
+<area shape="rect" id="node18" href="$class_kin.html#a992d4e39f8ff9556682a02c370dad160" title="returns current position and euler rotation for the loaded" alt="" coords="772,360,899,387"/>
+<area shape="rect" id="node19" href="$class_kin.html#aa74db6fac5aff0dd04e18d93ce7a8777" title="creates a joint path between 2 points in space" alt="" coords="798,259,873,285"/>
+<area shape="rect" id="node20" href="$class_helper.html#acf4f94818785ede725e4568f045f72ac" title="constrains angle to [&#45;360,360]" alt="" coords="947,259,1141,285"/>
+<area shape="rect" id="node23" href="$class_kin.html#a77551fd793139d26aee773c2663d9ab3" title="computes inverse kinematics" alt="" coords="772,461,899,488"/>
 <area shape="rect" id="node27" href="$main_8cpp.html#abf8013f8eed427b85848b33d932dd142" title=" " alt="" coords="313,563,488,589"/>
 </map>

@@ -1,8 +1,8 @@
 <map id="swap" name="swap">
 <area shape="rect" id="node1" title=" " alt="" coords="620,31,676,57"/>
-<area shape="rect" id="node2" href="$class_kin.html#aae0ed2ab0afb0a6eabb7af207744cc8a" title=" " alt="" coords="449,5,572,32"/>
-<area shape="rect" id="node3" href="$robot_8cpp.html#a3816c602ee5ada5e6ca57c5e155b0e6a" title=" " alt="" coords="463,56,558,83"/>
-<area shape="rect" id="node4" href="$class_robot.html#a61ea0357fc3262d28f0d6083566b3114" title=" " alt="" coords="243,56,401,83"/>
+<area shape="rect" id="node2" href="$class_kin.html#aae0ed2ab0afb0a6eabb7af207744cc8a" title="conversion function from euler angles ZYX to rotation matrix" alt="" coords="449,5,572,32"/>
+<area shape="rect" id="node3" href="$robot_8cpp.html#ab1be1cea6e2c9af0a79e9a647f06b2a6" title="callback for ur5/joint_states &#160;detects the number of joints, saves the eventual gripper values,..." alt="" coords="463,56,558,83"/>
+<area shape="rect" id="node4" href="$class_robot.html#a61ea0357fc3262d28f0d6083566b3114" title="subscribes and starts callbacks subscribes to /ur5/joint_states and starts the callbash" alt="" coords="243,56,401,83"/>
 <area shape="rect" id="node5" href="$main_8cpp.html#a3e78fe12770e80c5c5eb11595fc6735b" title=" " alt="" coords="108,56,195,83"/>
 <area shape="rect" id="node6" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,56,60,83"/>
 </map>

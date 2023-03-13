@@ -1,4 +1,4 @@
 <map id="Kin::eul2rotZYX" name="Kin::eul2rotZYX">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,128,32"/>
+<area shape="rect" id="node1" title="conversion function from euler angles ZYX to rotation matrix" alt="" coords="5,5,128,32"/>
 <area shape="rect" id="node2" href="$robot_8cpp.html#a4cab0c44f9d4d7aa879d74bde977a848" title=" " alt="" coords="176,5,232,32"/>
 </map>

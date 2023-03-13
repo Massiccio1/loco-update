@@ -111,379 +111,372 @@ $(document).ready(function(){initNavTree('_helper_8cpp_source.html',''); initRes
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">//#include &quot;robot.cpp&quot;</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">using namespace </span>std;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">using namespace </span>std;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="class_helper.html">   31</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_helper.html">Helper</a>{</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_helper.html#a59924530b7cfbc3d32134a1cf5de2a56">   33</a></span>&#160;        <a class="code" href="class_helper.html#a59924530b7cfbc3d32134a1cf5de2a56">Helper</a>(){</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="class_helper.html#ad23c4544557811ba8d0077520d89a688">   37</a></span>&#160;        <span class="keywordtype">float</span>** <a class="code" href="class_helper.html#ad23c4544557811ba8d0077520d89a688">sin_square</a>(<span class="keywordtype">float</span> start[], <span class="keywordtype">float</span> end[], <span class="keywordtype">int</span> steps){</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="keywordtype">float</span>** path =0;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            path   = <span class="keyword">new</span> <span class="keywordtype">float</span>*[steps];<span class="comment">//altezza = steps</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i =0;i &lt; steps ; i++){</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                path[i]= <span class="keyword">new</span> <span class="keywordtype">float</span>[6]; <span class="comment">//larghezza = 6 per le coordinate</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <span class="comment">//cout &lt;&lt; &quot;created: &quot; &lt;&lt; i &lt;&lt; endl;</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 6; j++){</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                    <span class="comment">// q_i+ (math.sin((math.pi/2)*i/steps)**2)*diff</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                    <span class="comment">//cout &lt;&lt; &quot;created: &quot; &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; j &lt;&lt; endl;</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                    path[i][j]=start[j]+pow(sin((M_PI/2*i/steps)),2)*(end[j]-start[j]);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                    </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                    <span class="comment">//cout &lt;&lt; &quot;inserito: &quot; &lt;&lt; path[i][j] &lt;&lt; endl;</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                }</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            cout &lt;&lt; <span class="stringliteral">&quot;creato&quot;</span> &lt;&lt; endl &lt;&lt; endl;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">return</span> path;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        };</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="class_helper.html#aadb0b05fe9496c7eda93135323e5682a">   60</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_helper.html#aadb0b05fe9496c7eda93135323e5682a">fill_pr_i_f</a>(Eigen::Vector &lt; double, 6 &gt; &amp; pr_i, Eigen::Vector &lt; double, 6 &gt; &amp; pr_f){</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_helper.html">   40</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_helper.html">Helper</a>{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="class_helper.html#a59924530b7cfbc3d32134a1cf5de2a56">   42</a></span>&#160;        <a class="code" href="class_helper.html#a59924530b7cfbc3d32134a1cf5de2a56">Helper</a>(){</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="class_helper.html#ad23c4544557811ba8d0077520d89a688">   46</a></span>&#160;        <span class="keywordtype">float</span>** <a class="code" href="class_helper.html#ad23c4544557811ba8d0077520d89a688">sin_square</a>(<span class="keywordtype">float</span> start[], <span class="keywordtype">float</span> end[], <span class="keywordtype">int</span> steps){</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keywordtype">float</span>** path =0;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            path   = <span class="keyword">new</span> <span class="keywordtype">float</span>*[steps];<span class="comment">//altezza = steps</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i =0;i &lt; steps ; i++){</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                path[i]= <span class="keyword">new</span> <span class="keywordtype">float</span>[6]; <span class="comment">//larghezza = 6 per le coordinate</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="comment">//cout &lt;&lt; &quot;created: &quot; &lt;&lt; i &lt;&lt; endl;</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 6; j++){</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                    <span class="comment">// q_i+ (math.sin((math.pi/2)*i/steps)**2)*diff</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                    <span class="comment">//cout &lt;&lt; &quot;created: &quot; &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; j &lt;&lt; endl;</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                    path[i][j]=start[j]+pow(sin((M_PI/2*i/steps)),2)*(end[j]-start[j]);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                    </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                    <span class="comment">//cout &lt;&lt; &quot;inserito: &quot; &lt;&lt; path[i][j] &lt;&lt; endl;</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                }</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            std::ifstream myfile (<span class="stringliteral">&quot;src/locosim/test_cpp/src/master_positions.txt&quot;</span>);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            }</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">if</span>(!myfile){</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                cout &lt;&lt; <span class="stringliteral">&quot;\nmanca master_positions.txt\n&quot;</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                exit(-1);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            cout &lt;&lt; <span class="stringliteral">&quot;creato&quot;</span> &lt;&lt; endl &lt;&lt; endl;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keywordflow">return</span> path;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        };</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordtype">float</span> f[6];</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i &lt; 6; i++){</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                myfile &gt;&gt; f[i];</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                cout &lt;&lt; f[i] &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            pr_i &lt;&lt; f[0],f[1],f[2],f[3],f[4],f[5];</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i &lt; 6; i++){</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                myfile &gt;&gt; f[i];</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                cout &lt;&lt; f[i] &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            pr_f &lt;&lt; f[0],f[1],f[2],f[3],f[4],f[5];</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            cout &lt;&lt; <span class="stringliteral">&quot;iniziale: &quot;</span> &lt;&lt; pr_i &lt;&lt; endl &lt;&lt; endl;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            cout &lt;&lt; <span class="stringliteral">&quot;finale: &quot;</span> &lt;&lt; pr_f &lt;&lt; endl &lt;&lt; endl;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            myfile.close();</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="class_helper.html#a49d922f1a905aa775c56a707c5ab6609">   88</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_helper.html#a49d922f1a905aa775c56a707c5ab6609">fill_pr_next</a>(Eigen::Vector &lt; double, 6 &gt; &amp; pr_f){</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            std::ifstream myfile (<span class="stringliteral">&quot;src/locosim/test_cpp/src/pr_next.txt&quot;</span>);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">if</span>(!myfile){</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                cout &lt;&lt; <span class="stringliteral">&quot;\nmanca pr_next.txt\n&quot;</span>;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                exit(-1);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <span class="keywordtype">float</span> f[6];</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i &lt; 6; i++){</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                myfile &gt;&gt; f[i];</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                <span class="comment">//cout &lt;&lt; f[i] &lt;&lt; &quot;, &quot;;</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            }</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            pr_f &lt;&lt; f[0],f[1],f[2],f[3],f[4],f[5];</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            cout &lt;&lt; <span class="stringliteral">&quot;finale: &quot;</span> &lt;&lt; pr_f &lt;&lt; endl &lt;&lt; endl;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            myfile.close();</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="class_helper.html#aadb0b05fe9496c7eda93135323e5682a">   70</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_helper.html#aadb0b05fe9496c7eda93135323e5682a">fill_pr_i_f</a>(Eigen::Vector &lt; double, 6 &gt; &amp; pr_i, Eigen::Vector &lt; double, 6 &gt; &amp; pr_f){</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            std::ifstream myfile (<span class="stringliteral">&quot;src/locosim/test_cpp/src/master_positions.txt&quot;</span>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">if</span>(!myfile){</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                cout &lt;&lt; <span class="stringliteral">&quot;\nmanca master_positions.txt\n&quot;</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                exit(-1);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordtype">float</span> f[6];</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i &lt; 6; i++){</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                myfile &gt;&gt; f[i];</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                cout &lt;&lt; f[i] &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            pr_i &lt;&lt; f[0],f[1],f[2],f[3],f[4],f[5];</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i &lt; 6; i++){</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                myfile &gt;&gt; f[i];</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                cout &lt;&lt; f[i] &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            pr_f &lt;&lt; f[0],f[1],f[2],f[3],f[4],f[5];</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            cout &lt;&lt; <span class="stringliteral">&quot;iniziale: &quot;</span> &lt;&lt; pr_i &lt;&lt; endl &lt;&lt; endl;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            cout &lt;&lt; <span class="stringliteral">&quot;finale: &quot;</span> &lt;&lt; pr_f &lt;&lt; endl &lt;&lt; endl;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            myfile.close();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        }</div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="class_helper.html#a49d922f1a905aa775c56a707c5ab6609">  105</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_helper.html#a49d922f1a905aa775c56a707c5ab6609">fill_pr_next</a>(Eigen::Vector &lt; double, 6 &gt; &amp; pr_f){</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            std::ifstream myfile (<span class="stringliteral">&quot;src/locosim/test_cpp/src/pr_next.txt&quot;</span>);</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="class_helper.html#a5b0325a62161b59e0efa30444dbc2a2c">  109</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_helper.html#a5b0325a62161b59e0efa30444dbc2a2c">print_pr</a>(Eigen::Vector &lt; double, 6 &gt; &amp; pr_i){</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            cout &lt;&lt; <span class="stringliteral">&quot;todo&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="class_helper.html#a9fd2e9cfc5face67fdcbd561c9230400">  113</a></span>&#160;        Eigen::MatrixXd <a class="code" href="class_helper.html#a9fd2e9cfc5face67fdcbd561c9230400">fillK</a>(<span class="keywordtype">int</span> param = 1){</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            Eigen::MatrixXd k = Eigen::MatrixXd(6,6);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            k&lt;&lt; 1,  0,  0,  0,  0,  0,</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                0,  1,  0,  0,  0,  0,</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                0,  0,  1,  0,  0,  0,</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                0,  0,  0,  1,  0,  0,</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                0,  0,  0,  0,  1,  0,</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                0,  0,  0,  0,  0,  1;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            k=k*param;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="keywordflow">return</span> k;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    }</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="class_helper.html#a89480516cc72b2ed60cb0596c24aa316">  129</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_helper.html#a89480516cc72b2ed60cb0596c24aa316">dist</a>(Eigen::Vector &lt; double, 6 &gt;pr_i,Eigen::Vector &lt; double, 6 &gt; pr_f){</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">return</span> (    pow(pr_i[0],2) + pow(pr_i[1],2) + pow(pr_i[2],2)    ) - (    pow(pr_f[0],2) + pow(pr_f[1],2) + pow(pr_f[2],2)    );</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    }</div>
-<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="class_helper.html#a0c2efa716337b78921d5d339f2e12336">  132</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_helper.html#a0c2efa716337b78921d5d339f2e12336">dist</a>(Eigen::Vector3d pr_i,Eigen::Vector3d pr_f){</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keywordflow">return</span> (    pow(pr_i[0],2) + pow(pr_i[1],2) + pow(pr_i[2],2)    ) - (    pow(pr_f[0],2) + pow(pr_f[1],2) + pow(pr_f[2],2)    );</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    }</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="class_helper.html#af7ad6beaaf4e7bd22056208289b007ed">  136</a></span>&#160;    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code" href="class_helper.html#af7ad6beaaf4e7bd22056208289b007ed">abs</a>(Eigen::Vector &lt; double, 6 &gt;pr_i){</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordflow">return</span> std::abs(    pow(pr_i[0],2) + pow(pr_i[1],2) + pow(pr_i[2],2)    );</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <span class="keywordflow">if</span>(!myfile){</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                cout &lt;&lt; <span class="stringliteral">&quot;\nmanca pr_next.txt\n&quot;</span>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                exit(-1);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <span class="keywordtype">float</span> f[6];</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i &lt; 6; i++){</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                myfile &gt;&gt; f[i];</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <span class="comment">//cout &lt;&lt; f[i] &lt;&lt; &quot;, &quot;;</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            pr_f &lt;&lt; f[0],f[1],f[2],f[3],f[4],f[5];</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            cout &lt;&lt; <span class="stringliteral">&quot;finale: &quot;</span> &lt;&lt; pr_f &lt;&lt; endl &lt;&lt; endl;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            myfile.close();</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        }</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="class_helper.html#a5b0325a62161b59e0efa30444dbc2a2c">  126</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_helper.html#a5b0325a62161b59e0efa30444dbc2a2c">print_pr</a>(Eigen::Vector &lt; double, 6 &gt; &amp; pr_i){</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            cout &lt;&lt; <span class="stringliteral">&quot;todo&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        }</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="class_helper.html#a9fd2e9cfc5face67fdcbd561c9230400">  130</a></span>&#160;        Eigen::MatrixXd <a class="code" href="class_helper.html#a9fd2e9cfc5face67fdcbd561c9230400">fillK</a>(<span class="keywordtype">int</span> param = 1){</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            Eigen::MatrixXd k = Eigen::MatrixXd(6,6);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            k&lt;&lt; 1,  0,  0,  0,  0,  0,</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                0,  1,  0,  0,  0,  0,</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                0,  0,  1,  0,  0,  0,</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                0,  0,  0,  1,  0,  0,</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                0,  0,  0,  0,  1,  0,</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                0,  0,  0,  0,  0,  1;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            k=k*param;</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    </div>
-<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="class_helper.html#a884ca18415a355d1839327e8982006e9">  142</a></span>&#160;    Eigen::Vector3d <a class="code" href="class_helper.html#a884ca18415a355d1839327e8982006e9">cam_to_world</a>(Eigen::Vector3d camera){</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="comment">//camera x y depth</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        Eigen::Vector3d world;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        Eigen::Matrix3d wrc;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        Eigen::Vector3d base_offset;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        Eigen::Vector3d xc;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        wrc &lt;&lt;   0,      -0.49948,  0.86632,</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                -1,         0,          0,</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                -0,     -0.86632, -0.49948;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        base_offset &lt;&lt; 0.5,  0.35, 1.75;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        xc &lt;&lt; -0.9,0.24,-0.35;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        world = wrc*camera + xc + base_offset;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keywordflow">return</span> world;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    }</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="class_helper.html#a06bf9f8b2ea1453e9cbaf8780bdfd7a7">  161</a></span>&#160;    Eigen::Vector3d <a class="code" href="class_helper.html#a06bf9f8b2ea1453e9cbaf8780bdfd7a7">tavolo_to_robo</a>(Eigen::Vector3d camera){</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <span class="comment">//camera x y depth</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        Eigen::Vector3d robo;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        robo(0)=camera(0)-0.5;<span class="comment">//x tavolo</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        robo(1)=-camera(1)+0.35;         <span class="comment">//y tavolo</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        robo(2)=robo(2);           </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <span class="keywordflow">return</span> robo;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    }</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    </div>
-<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="class_helper.html#adced4bf5f26bdc4c66dd2fe3b741c426">  172</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="class_helper.html#adced4bf5f26bdc4c66dd2fe3b741c426">constrainAngle</a>(<span class="keywordtype">double</span> x){</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        x = fmod(x,M_PI*2);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        <span class="keywordflow">if</span> (x &lt; 0)</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            x += M_PI*2;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        <span class="keywordflow">return</span> x;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    }</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
-<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="class_helper.html#aa80d83af97d72b5566f9897520eb9d65">  180</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="class_helper.html#aa80d83af97d72b5566f9897520eb9d65">dist_constrain</a>(<span class="keywordtype">double</span> x){</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        </div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="keywordflow">if</span> (x &gt; M_PI)<span class="comment">//wrapping</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            <span class="keywordflow">return</span> std::abs(M_PI*2-x);</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">return</span> x;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    }</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
-<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="class_helper.html#aaabaa4c346a5fff43ab6b36f57162c2c">  187</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="class_helper.html#aaabaa4c346a5fff43ab6b36f57162c2c">constrainAngle180</a>(<span class="keywordtype">double</span> x){<span class="comment">//da -180 a 180</span></div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        x = fmod(x,M_PI*2);<span class="comment">//normalizzo</span></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keywordflow">if</span> (x &lt; -M_PI)</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            <span class="keywordflow">return</span> x+ M_PI*2;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <span class="keywordflow">if</span> (x &gt; M_PI)</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordflow">return</span> x - M_PI*2;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    }</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
-<div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="class_helper.html#a57b6f2b1fab576bdb00f781ade91250d">  195</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="class_helper.html#a57b6f2b1fab576bdb00f781ade91250d">constrainAngle720</a>(<span class="keywordtype">double</span> x){<span class="comment">//cambio da + a - e viceversa</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <span class="comment">//x = fmod(x ,M_2_PI);</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="keywordflow">if</span> (x &lt; 0)</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="keywordflow">return</span> x + M_PI*2;<span class="comment">//se - diventa +</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        <span class="keywordflow">return</span> x - M_PI*2;<span class="comment">//se + diventa -</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    }</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
-<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="class_helper.html#a105e041a2c59a360697c27dc7ccf6ebe">  202</a></span>&#160;    Eigen::Vector&lt;double, 6&gt; <a class="code" href="class_helper.html#a105e041a2c59a360697c27dc7ccf6ebe">constrainAngle</a>(Eigen::Vector&lt;double, 6&gt; q){</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        Eigen::Vector&lt;double, 6&gt; ret;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt; 6; i++){</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            ret(i)=constrainAngle(q(i));</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        }</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    }</div>
-<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="class_helper.html#aec83fd93336f9f173a288f451286f932">  209</a></span>&#160;    Eigen::Vector&lt;double, 6&gt; <a class="code" href="class_helper.html#aec83fd93336f9f173a288f451286f932">constrainAngle180</a>(Eigen::Vector&lt;double, 6&gt; q){</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        Eigen::Vector&lt;double, 6&gt; ret;</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt; 6; i++){</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            ret(i)=constrainAngle180(q(i));</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        }</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    }</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
-<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="class_helper.html#a9e59ec85221642c01e7a1fa7391b44e8">  217</a></span>&#160;    Eigen::Vector&lt;double, 6&gt; <a class="code" href="class_helper.html#a9e59ec85221642c01e7a1fa7391b44e8">constrainAngle720</a>(Eigen::Vector&lt;double, 6&gt; q){</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        Eigen::Vector&lt;double, 6&gt; ret;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt; 6; i++){</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            ret(i)=constrainAngle720(q(i));</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        }</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    }</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
-<div class="line"><a name="l00225"></a><span class="lineno"><a class="line" href="class_helper.html#a72c0fa2fa02d3ec08cf76949c53f7c2c">  225</a></span>&#160;    Eigen::Vector&lt;double, 6&gt; <a class="code" href="class_helper.html#a72c0fa2fa02d3ec08cf76949c53f7c2c">dist_constrain</a>(Eigen::Vector&lt;double, 6&gt; q){</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        Eigen::Vector&lt;double, 6&gt; ret;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt; 6; i++){</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            ret(i)=dist_constrain(q(i));</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        }</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    }</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160; </div>
-<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="class_helper.html#a3130742ef47ddb770ecf232f53e37f4e">  233</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_helper.html#a3130742ef47ddb770ecf232f53e37f4e">print_BlockList</a>(my_vision_messages::BlockList&amp; bl){</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        cout &lt;&lt; bl;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    }</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160; </div>
-<div class="line"><a name="l00237"></a><span class="lineno"><a class="line" href="class_helper.html#a2034bddaa2295ca2009e5fb8f9997b39">  237</a></span>&#160;    Eigen::Vector&lt;double, 6&gt; <a class="code" href="class_helper.html#a2034bddaa2295ca2009e5fb8f9997b39">decode_final_pos</a>(<span class="keywordtype">string</span> s){</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <span class="keywordtype">float</span> cls = stof(s);</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        cout &lt;&lt; <span class="stringliteral">&quot;\nclass:&quot;</span> &lt;&lt; cls;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        Eigen::Vector3d pos;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        <span class="keywordflow">switch</span>((<span class="keywordtype">int</span>)cls){</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="keywordflow">case</span> 0:</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                pos &lt;&lt; 0.92, 0.28, 0.9;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;            <span class="keywordflow">case</span> 1:</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                pos &lt;&lt; 0.92, 0.41, 0.9;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            <span class="keywordflow">case</span> 2:</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                pos &lt;&lt; 0.92, 0.54, 0.9;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;            <span class="keywordflow">case</span> 3:</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                pos &lt;&lt; 0.92 , 0.67, 0.9;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;            <span class="keywordflow">case</span> 4:</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                pos &lt;&lt; 0.81, 0.28 , 0.9;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;            <span class="keywordflow">case</span> 5:</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                pos &lt;&lt; 0.81, 0.41, 0.9;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            <span class="keywordflow">case</span> 6:</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                pos &lt;&lt; 0.81, 0.54, 0.9;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            <span class="keywordflow">case</span> 7:</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                pos &lt;&lt; 0.81, 0.67, 0.9;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            <span class="keywordflow">case</span> 8:</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                pos &lt;&lt; 0.70, 0.28, 0.9;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            <span class="keywordflow">case</span> 9:</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                pos &lt;&lt; 0.70, 0.41, 0.9;</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;            <span class="keywordflow">case</span> 10:</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                pos &lt;&lt; 0.70, 0.54, 0.9;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                pos &lt;&lt; 0.7 , 0.67, 0.9;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        }</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160; </div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        Eigen::Vector3d tmp = tavolo_to_robo(pos);</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        Eigen::Vector&lt;double,6&gt; ret;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;        ret &lt;&lt; tmp(0),tmp(1),tmp(2),0,0,0;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160; </div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    }</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160; </div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    </div>
-<div class="line"><a name="l00288"></a><span class="lineno"><a class="line" href="class_helper.html#afb5391df653686a37ddc285195b2ce1a">  288</a></span>&#160;    Eigen::Vector3d <a class="code" href="class_helper.html#afb5391df653686a37ddc285195b2ce1a">get_extra_correction</a>(<span class="keywordtype">string</span> s){</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        <span class="keywordtype">float</span> cls = stof(s);</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        <span class="comment">//cout &lt;&lt; &quot;\nclass:&quot; &lt;&lt; cls;</span></div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        Eigen::Vector3d extra;</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        extra &lt;&lt; 0,0,0;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        <span class="keywordflow">switch</span>((<span class="keywordtype">int</span>)cls){</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            <span class="keywordflow">case</span> 1:</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                extra(0)=-0.008;</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            <span class="keywordflow">case</span> 9:</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            <span class="keywordflow">case</span> 10:</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                extra(0)=0.008;</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        }</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160; </div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        <span class="keywordflow">return</span> extra;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    }</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160; </div>
-<div class="line"><a name="l00308"></a><span class="lineno"><a class="line" href="class_helper.html#a8767317213b3dcd1630728140eb499e4">  308</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_helper.html#a8767317213b3dcd1630728140eb499e4">get_extra_h</a>(<span class="keywordtype">string</span> s){</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <span class="keywordtype">float</span> cls = stof(s);</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        <span class="comment">//cout &lt;&lt; &quot;\nclass:&quot; &lt;&lt; cls;</span></div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        <span class="keywordtype">float</span> extra=0;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        <span class="keywordflow">switch</span>((<span class="keywordtype">int</span>)cls){</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            <span class="keywordflow">case</span> 2:</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            <span class="keywordflow">case</span> 7:</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                extra=0.03;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        }</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160; </div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        <span class="keywordflow">return</span> extra;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    }</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160; </div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160; </div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;};</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160; </div>
-<div class="line"><a name="l00327"></a><span class="lineno"><a class="line" href="_helper_8cpp.html#a2ed08e96eebcbba31741ed8917851f1e">  327</a></span>&#160;ostream&amp; <a class="code" href="_helper_8cpp.html#a2ed08e96eebcbba31741ed8917851f1e">operator&lt;&lt;</a>(ostream&amp; os, <span class="keyword">const</span> my_vision_messages::Pointxyz&amp; <a class="code" href="namespacemy__test.html#a0790e2ff326fe50adfe9d2bdbb6042ec">p</a>){</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        os &lt;&lt; <span class="stringliteral">&quot;x: &quot;</span> &lt;&lt; <a class="code" href="namespacemy__test.html#a0790e2ff326fe50adfe9d2bdbb6042ec">p</a>.x &lt;&lt; <span class="stringliteral">&quot;\ty: &quot;</span> &lt;&lt; <a class="code" href="namespacemy__test.html#a0790e2ff326fe50adfe9d2bdbb6042ec">p</a>.y &lt;&lt; <span class="stringliteral">&quot;\tz: &quot;</span> &lt;&lt; <a class="code" href="namespacemy__test.html#a0790e2ff326fe50adfe9d2bdbb6042ec">p</a>.z;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;        <span class="keywordflow">return</span> os;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;}</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160; </div>
-<div class="line"><a name="l00332"></a><span class="lineno"><a class="line" href="_helper_8cpp.html#a1b082348ccd144408ff2600cb8384f68">  332</a></span>&#160;ostream&amp; <a class="code" href="_helper_8cpp.html#a2ed08e96eebcbba31741ed8917851f1e">operator&lt;&lt;</a>(ostream&amp; os, <span class="keyword">const</span> my_vision_messages::BlockList&amp; bl){</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    <span class="keywordflow">if</span>(bl.blocks.size()&lt;1){</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        os&lt;&lt; <span class="stringliteral">&quot;BlockList vuota&quot;</span>;</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;        <span class="keywordflow">return</span> os;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    }</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i= 0; i&lt; bl.blocks.size(); i++){</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;        os &lt;&lt; <span class="stringliteral">&quot;class number: &quot;</span> &lt;&lt; bl.blocks[i].class_number &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        os &lt;&lt; <span class="stringliteral">&quot;point camera: &quot;</span> &lt;&lt; bl.blocks[i].point &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        os &lt;&lt; <span class="stringliteral">&quot;rotation angle: &quot;</span> &lt;&lt; bl.blocks[i].rot_angle &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=0; j&lt; bl.blocks[i].top_btm_l_r.size(); j++){</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;            os &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span> &lt;&lt; bl.blocks[i].top_btm_l_r[j] &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        }</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            os &lt;&lt; <span class="stringliteral">&quot;up_dw_stand_lean: &quot;</span> &lt;&lt; bl.blocks[i].up_dw_stand_lean &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            os &lt;&lt; <span class="stringliteral">&quot;confidance: &quot;</span> &lt;&lt; bl.blocks[i].confidence &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;            os &lt;&lt; <span class="stringliteral">&quot;world frame point: &quot;</span> &lt;&lt; bl.blocks[i].world_point &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    }</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    <span class="keywordflow">return</span> os;</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;}</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">return</span> k;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    }</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="class_helper.html#a89480516cc72b2ed60cb0596c24aa316">  153</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_helper.html#a89480516cc72b2ed60cb0596c24aa316">dist</a>(Eigen::Vector &lt; double, 6 &gt;pr_i,Eigen::Vector &lt; double, 6 &gt; pr_f){</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="keywordflow">return</span> (    pow(pr_i[0],2) + pow(pr_i[1],2) + pow(pr_i[2],2)    ) - (    pow(pr_f[0],2) + pow(pr_f[1],2) + pow(pr_f[2],2)    );</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    }</div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="class_helper.html#a0c2efa716337b78921d5d339f2e12336">  163</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_helper.html#a0c2efa716337b78921d5d339f2e12336">dist</a>(Eigen::Vector3d pr_i,Eigen::Vector3d pr_f){</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="keywordflow">return</span> (    pow(pr_i[0],2) + pow(pr_i[1],2) + pow(pr_i[2],2)    ) - (    pow(pr_f[0],2) + pow(pr_f[1],2) + pow(pr_f[2],2)    );</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="class_helper.html#af7ad6beaaf4e7bd22056208289b007ed">  167</a></span>&#160;    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code" href="class_helper.html#af7ad6beaaf4e7bd22056208289b007ed">abs</a>(Eigen::Vector &lt; double, 6 &gt;pr_i){</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <span class="keywordflow">return</span> std::abs(    pow(pr_i[0],2) + pow(pr_i[1],2) + pow(pr_i[2],2)    );</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    }</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    </div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="class_helper.html#a884ca18415a355d1839327e8982006e9">  173</a></span>&#160;    Eigen::Vector3d <a class="code" href="class_helper.html#a884ca18415a355d1839327e8982006e9">cam_to_world</a>(Eigen::Vector3d camera){</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        <span class="comment">//camera x y depth</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        Eigen::Vector3d world;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        Eigen::Matrix3d wrc;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        Eigen::Vector3d base_offset;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        Eigen::Vector3d xc;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        wrc &lt;&lt;   0,      -0.49948,  0.86632,</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                -1,         0,          0,</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                -0,     -0.86632, -0.49948;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        base_offset &lt;&lt; 0.5,  0.35, 1.75;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        xc &lt;&lt; -0.9,0.24,-0.35;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        world = wrc*camera + xc + base_offset;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <span class="keywordflow">return</span> world;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    }</div>
+<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="class_helper.html#ad875bccb862fc047776e8a28d0f03ae0">  196</a></span>&#160;    Eigen::Vector3d <a class="code" href="class_helper.html#ad875bccb862fc047776e8a28d0f03ae0">tavolo_to_robo</a>(Eigen::Vector3d world){</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="comment">//camera x y depth</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        Eigen::Vector3d robo;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        robo(0)=world(0)-0.5;<span class="comment">//x tavolo</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        robo(1)=-world(1)+0.35;         <span class="comment">//y tavolo</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        robo(2)=world(2);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        <span class="keywordflow">return</span> robo;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    }</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    </div>
+<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="class_helper.html#adced4bf5f26bdc4c66dd2fe3b741c426">  207</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="class_helper.html#adced4bf5f26bdc4c66dd2fe3b741c426">constrainAngle</a>(<span class="keywordtype">double</span> x){</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        x = fmod(x,M_PI*2);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        <span class="keywordflow">if</span> (x &lt; 0)</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            x += M_PI*2;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        <span class="keywordflow">return</span> x;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    }</div>
+<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="class_helper.html#aa9318ee5d55c5da8518055f447234b4b">  220</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="class_helper.html#aa9318ee5d55c5da8518055f447234b4b">dist_constrain</a>(<span class="keywordtype">double</span> x){</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        </div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        <span class="keywordflow">if</span> (x &gt; M_PI)<span class="comment">//wrapping</span></div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            <span class="keywordflow">return</span> std::abs(M_PI*2-x);</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        <span class="keywordflow">return</span> x;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    }</div>
+<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="class_helper.html#aa96fe6e318ec1f65fb03ec39c4d537a8">  231</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="class_helper.html#aa96fe6e318ec1f65fb03ec39c4d537a8">constrainAngle180</a>(<span class="keywordtype">double</span> x){<span class="comment">//da -180 a 180</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        x = fmod(x,M_PI*2);<span class="comment">//normalizzo</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        <span class="keywordflow">if</span> (x &lt; -M_PI)</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            <span class="keywordflow">return</span> x+ M_PI*2;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <span class="keywordflow">if</span> (x &gt; M_PI)</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        <span class="keywordflow">return</span> x - M_PI*2;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    }</div>
+<div class="line"><a name="l00243"></a><span class="lineno"><a class="line" href="class_helper.html#acf4f94818785ede725e4568f045f72ac">  243</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="class_helper.html#acf4f94818785ede725e4568f045f72ac">constrainAngle720</a>(<span class="keywordtype">double</span> x){<span class="comment">//cambio da + a - e viceversa</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        <span class="comment">//x = fmod(x ,M_2_PI);</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        <span class="keywordflow">if</span> (x &lt; 0)</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            <span class="keywordflow">return</span> x + M_PI*2;<span class="comment">//se - diventa +</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        <span class="keywordflow">return</span> x - M_PI*2;<span class="comment">//se + diventa -</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    }</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160; </div>
+<div class="line"><a name="l00250"></a><span class="lineno"><a class="line" href="class_helper.html#a105e041a2c59a360697c27dc7ccf6ebe">  250</a></span>&#160;    Eigen::Vector&lt;double, 6&gt; <a class="code" href="class_helper.html#a105e041a2c59a360697c27dc7ccf6ebe">constrainAngle</a>(Eigen::Vector&lt;double, 6&gt; q){</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        Eigen::Vector&lt;double, 6&gt; ret;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt; 6; i++){</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;            ret(i)=constrainAngle(q(i));</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        }</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    }</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160; </div>
+<div class="line"><a name="l00263"></a><span class="lineno"><a class="line" href="class_helper.html#aa620286dee1299db068e4832db950446">  263</a></span>&#160;    Eigen::Vector&lt;double, 6&gt; <a class="code" href="class_helper.html#aa620286dee1299db068e4832db950446">constrainAngle180</a>(Eigen::Vector&lt;double, 6&gt; q){</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        Eigen::Vector&lt;double, 6&gt; ret;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt; 6; i++){</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            ret(i)=constrainAngle180(q(i));</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        }</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    }</div>
+<div class="line"><a name="l00275"></a><span class="lineno"><a class="line" href="class_helper.html#aeb99521d2a8271c9db820dc936a6f56d">  275</a></span>&#160;    Eigen::Vector&lt;double, 6&gt; <a class="code" href="class_helper.html#aeb99521d2a8271c9db820dc936a6f56d">constrainAngle720</a>(Eigen::Vector&lt;double, 6&gt; q){</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        Eigen::Vector&lt;double, 6&gt; ret;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt; 6; i++){</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            ret(i)=constrainAngle720(q(i));</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        }</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    }</div>
+<div class="line"><a name="l00289"></a><span class="lineno"><a class="line" href="class_helper.html#a2280d529217b1460f64713bf7f52a761">  289</a></span>&#160;    Eigen::Vector&lt;double, 6&gt; <a class="code" href="class_helper.html#a2280d529217b1460f64713bf7f52a761">dist_constrain</a>(Eigen::Vector&lt;double, 6&gt; q){</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        Eigen::Vector&lt;double, 6&gt; ret;</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt; 6; i++){</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            ret(i)=dist_constrain(q(i));</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        }</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    }</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
+<div class="line"><a name="l00297"></a><span class="lineno"><a class="line" href="class_helper.html#a3130742ef47ddb770ecf232f53e37f4e">  297</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_helper.html#a3130742ef47ddb770ecf232f53e37f4e">print_BlockList</a>(my_vision_messages::BlockList&amp; bl){</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        cout &lt;&lt; bl;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    }</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
+<div class="line"><a name="l00301"></a><span class="lineno"><a class="line" href="class_helper.html#a2034bddaa2295ca2009e5fb8f9997b39">  301</a></span>&#160;    Eigen::Vector&lt;double, 6&gt; <a class="code" href="class_helper.html#a2034bddaa2295ca2009e5fb8f9997b39">decode_final_pos</a>(<span class="keywordtype">string</span> s){</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <span class="keywordtype">float</span> cls = stof(s);</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        cout &lt;&lt; <span class="stringliteral">&quot;\nclass:&quot;</span> &lt;&lt; cls;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        Eigen::Vector3d pos;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        <span class="keywordflow">switch</span>((<span class="keywordtype">int</span>)cls){</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;            <span class="keywordflow">case</span> 0:</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                pos &lt;&lt; 0.92, 0.28, 0.9;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;            <span class="keywordflow">case</span> 1:</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                pos &lt;&lt; 0.92, 0.41, 0.9;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            <span class="keywordflow">case</span> 2:</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                pos &lt;&lt; 0.92, 0.54, 0.9;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;            <span class="keywordflow">case</span> 3:</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                pos &lt;&lt; 0.92 , 0.67, 0.9;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            <span class="keywordflow">case</span> 4:</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                pos &lt;&lt; 0.81, 0.28 , 0.9;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;            <span class="keywordflow">case</span> 5:</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                pos &lt;&lt; 0.81, 0.41, 0.9;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            <span class="keywordflow">case</span> 6:</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                pos &lt;&lt; 0.81, 0.54, 0.9;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;            <span class="keywordflow">case</span> 7:</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                pos &lt;&lt; 0.81, 0.67, 0.9;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            <span class="keywordflow">case</span> 8:</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                pos &lt;&lt; 0.70, 0.28, 0.9;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;            <span class="keywordflow">case</span> 9:</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                pos &lt;&lt; 0.70, 0.41, 0.9;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            <span class="keywordflow">case</span> 10:</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                pos &lt;&lt; 0.70, 0.54, 0.9;</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                pos &lt;&lt; 0.7 , 0.67, 0.9;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;        }</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160; </div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        Eigen::Vector3d tmp = tavolo_to_robo(pos);</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        Eigen::Vector&lt;double,6&gt; ret;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;        ret &lt;&lt; tmp(0),tmp(1),tmp(2),0,0,0;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160; </div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    }</div>
 <div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160; </div>
-<div class="line"><a name="l00351"></a><span class="lineno"><a class="line" href="_helper_8cpp.html#a0d97b3cb44cef381feaa83568cc476d7">  351</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="_helper_8cpp.html#a0d97b3cb44cef381feaa83568cc476d7">operator==</a>( <span class="keyword">const</span> my_vision_messages::BlockList&amp; bl1, <span class="keyword">const</span> my_vision_messages::BlockList&amp; bl2 ){</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    <span class="keywordflow">if</span>(bl1.blocks.size()!=bl2.blocks.size() || bl1.blocks.size()==0 || bl2.blocks.size()==0)</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt; bl1.blocks.size(); i++){</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;        <span class="keywordflow">if</span>(bl1.blocks[i].class_number == bl2.blocks[i].class_number</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        &amp;&amp; bl1.blocks[i].world_point.x - bl2.blocks[i].world_point.x &lt; <a class="code" href="_helper_8cpp.html#af9ce837a5558d07579d5cc4272626988">BL_DIFF_RANGE</a></div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        &amp;&amp; bl1.blocks[i].world_point.y - bl2.blocks[i].world_point.y &lt; <a class="code" href="_helper_8cpp.html#af9ce837a5558d07579d5cc4272626988">BL_DIFF_RANGE</a></div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        &amp;&amp; bl1.blocks[i].world_point.z - bl2.blocks[i].world_point.z &lt; <a class="code" href="_helper_8cpp.html#af9ce837a5558d07579d5cc4272626988">BL_DIFF_RANGE</a></div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;        &amp;&amp; bl1.blocks[i].confidence - bl2.blocks[i].confidence &lt; <a class="code" href="_helper_8cpp.html#af2b7e2fe2519c53eeabfe548c9429443">BL_DIFF_CONFIDANCE</a>)</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;        <span class="comment">//ok</span></div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;            <span class="keywordtype">int</span> a=0;</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    }</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    </div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;}</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160; </div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    </div>
+<div class="line"><a name="l00352"></a><span class="lineno"><a class="line" href="class_helper.html#afb5391df653686a37ddc285195b2ce1a">  352</a></span>&#160;    Eigen::Vector3d <a class="code" href="class_helper.html#afb5391df653686a37ddc285195b2ce1a">get_extra_correction</a>(<span class="keywordtype">string</span> s){</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        <span class="keywordtype">float</span> cls = stof(s);</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;        <span class="comment">//cout &lt;&lt; &quot;\nclass:&quot; &lt;&lt; cls;</span></div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;        Eigen::Vector3d extra;</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        extra &lt;&lt; 0,0,0;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        <span class="keywordflow">switch</span>((<span class="keywordtype">int</span>)cls){</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;            <span class="keywordflow">case</span> 1:</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;                extra(0)=-0.008;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;            <span class="keywordflow">case</span> 9:</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;            <span class="keywordflow">case</span> 10:</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                extra(0)=0.008;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;        }</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160; </div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        <span class="keywordflow">return</span> extra;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    }</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160; </div>
+<div class="line"><a name="l00372"></a><span class="lineno"><a class="line" href="class_helper.html#a8767317213b3dcd1630728140eb499e4">  372</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_helper.html#a8767317213b3dcd1630728140eb499e4">get_extra_h</a>(<span class="keywordtype">string</span> s){</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        <span class="keywordtype">float</span> cls = stof(s);</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        <span class="comment">//cout &lt;&lt; &quot;\nclass:&quot; &lt;&lt; cls;</span></div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        <span class="keywordtype">float</span> extra=0;</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        <span class="keywordflow">switch</span>((<span class="keywordtype">int</span>)cls){</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;            <span class="keywordflow">case</span> 2:</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;            <span class="keywordflow">case</span> 7:</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                extra=0.03;</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        }</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160; </div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;        <span class="keywordflow">return</span> extra;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    }</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160; </div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160; </div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;};</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160; </div>
+<div class="line"><a name="l00391"></a><span class="lineno"><a class="line" href="_helper_8cpp.html#a2ed08e96eebcbba31741ed8917851f1e">  391</a></span>&#160;ostream&amp; <a class="code" href="_helper_8cpp.html#a2ed08e96eebcbba31741ed8917851f1e">operator&lt;&lt;</a>(ostream&amp; os, <span class="keyword">const</span> my_vision_messages::Pointxyz&amp; <a class="code" href="namespacemy__test.html#a0790e2ff326fe50adfe9d2bdbb6042ec">p</a>){</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;        os &lt;&lt; <span class="stringliteral">&quot;x: &quot;</span> &lt;&lt; <a class="code" href="namespacemy__test.html#a0790e2ff326fe50adfe9d2bdbb6042ec">p</a>.x &lt;&lt; <span class="stringliteral">&quot;\ty: &quot;</span> &lt;&lt; <a class="code" href="namespacemy__test.html#a0790e2ff326fe50adfe9d2bdbb6042ec">p</a>.y &lt;&lt; <span class="stringliteral">&quot;\tz: &quot;</span> &lt;&lt; <a class="code" href="namespacemy__test.html#a0790e2ff326fe50adfe9d2bdbb6042ec">p</a>.z;</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;        <span class="keywordflow">return</span> os;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;}</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160; </div>
+<div class="line"><a name="l00396"></a><span class="lineno"><a class="line" href="_helper_8cpp.html#a1b082348ccd144408ff2600cb8384f68">  396</a></span>&#160;ostream&amp; <a class="code" href="_helper_8cpp.html#a2ed08e96eebcbba31741ed8917851f1e">operator&lt;&lt;</a>(ostream&amp; os, <span class="keyword">const</span> my_vision_messages::BlockList&amp; bl){</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="keywordflow">if</span>(bl.blocks.size()&lt;1){</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;        os&lt;&lt; <span class="stringliteral">&quot;BlockList vuota&quot;</span>;</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;        <span class="keywordflow">return</span> os;</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    }</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i= 0; i&lt; bl.blocks.size(); i++){</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;        os &lt;&lt; <span class="stringliteral">&quot;class number: &quot;</span> &lt;&lt; bl.blocks[i].class_number &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;        os &lt;&lt; <span class="stringliteral">&quot;point camera: &quot;</span> &lt;&lt; bl.blocks[i].point &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;        os &lt;&lt; <span class="stringliteral">&quot;rotation angle: &quot;</span> &lt;&lt; bl.blocks[i].rot_angle &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=0; j&lt; bl.blocks[i].top_btm_l_r.size(); j++){</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;            os &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span> &lt;&lt; bl.blocks[i].top_btm_l_r[j] &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;        }</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;            os &lt;&lt; <span class="stringliteral">&quot;up_dw_stand_lean: &quot;</span> &lt;&lt; bl.blocks[i].up_dw_stand_lean &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;            os &lt;&lt; <span class="stringliteral">&quot;confidance: &quot;</span> &lt;&lt; bl.blocks[i].confidence &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;            os &lt;&lt; <span class="stringliteral">&quot;world frame point: &quot;</span> &lt;&lt; bl.blocks[i].world_point &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    }</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    <span class="keywordflow">return</span> os;</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;}</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160; </div>
+<div class="line"><a name="l00415"></a><span class="lineno"><a class="line" href="_helper_8cpp.html#a0d97b3cb44cef381feaa83568cc476d7">  415</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="_helper_8cpp.html#a0d97b3cb44cef381feaa83568cc476d7">operator==</a>( <span class="keyword">const</span> my_vision_messages::BlockList&amp; bl1, <span class="keyword">const</span> my_vision_messages::BlockList&amp; bl2 ){</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <span class="keywordflow">if</span>(bl1.blocks.size()!=bl2.blocks.size() || bl1.blocks.size()==0 || bl2.blocks.size()==0)</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt; bl1.blocks.size(); i++){</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;        <span class="keywordflow">if</span>(bl1.blocks[i].class_number == bl2.blocks[i].class_number</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;        &amp;&amp; bl1.blocks[i].world_point.x - bl2.blocks[i].world_point.x &lt; <a class="code" href="_helper_8cpp.html#af9ce837a5558d07579d5cc4272626988">BL_DIFF_RANGE</a></div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;        &amp;&amp; bl1.blocks[i].world_point.y - bl2.blocks[i].world_point.y &lt; <a class="code" href="_helper_8cpp.html#af9ce837a5558d07579d5cc4272626988">BL_DIFF_RANGE</a></div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;        &amp;&amp; bl1.blocks[i].world_point.z - bl2.blocks[i].world_point.z &lt; <a class="code" href="_helper_8cpp.html#af9ce837a5558d07579d5cc4272626988">BL_DIFF_RANGE</a></div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;        &amp;&amp; bl1.blocks[i].confidence - bl2.blocks[i].confidence &lt; <a class="code" href="_helper_8cpp.html#af2b7e2fe2519c53eeabfe548c9429443">BL_DIFF_CONFIDANCE</a>)</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;        <span class="comment">//ok</span></div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;            <span class="keywordtype">int</span> a=0;</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    }</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    </div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;}</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160; </div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_helper_html_aaabaa4c346a5fff43ab6b36f57162c2c"><div class="ttname"><a href="class_helper.html#aaabaa4c346a5fff43ab6b36f57162c2c">Helper::constrainAngle180</a></div><div class="ttdeci">double constrainAngle180(double x)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00187">Helper.cpp:187</a></div></div>
-<div class="ttc" id="aclass_helper_html"><div class="ttname"><a href="class_helper.html">Helper</a></div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00031">Helper.cpp:31</a></div></div>
-<div class="ttc" id="aclass_helper_html_aa80d83af97d72b5566f9897520eb9d65"><div class="ttname"><a href="class_helper.html#aa80d83af97d72b5566f9897520eb9d65">Helper::dist_constrain</a></div><div class="ttdeci">double dist_constrain(double x)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00180">Helper.cpp:180</a></div></div>
-<div class="ttc" id="aclass_helper_html_aec83fd93336f9f173a288f451286f932"><div class="ttname"><a href="class_helper.html#aec83fd93336f9f173a288f451286f932">Helper::constrainAngle180</a></div><div class="ttdeci">Eigen::Vector&lt; double, 6 &gt; constrainAngle180(Eigen::Vector&lt; double, 6 &gt; q)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00209">Helper.cpp:209</a></div></div>
-<div class="ttc" id="aclass_helper_html_a72c0fa2fa02d3ec08cf76949c53f7c2c"><div class="ttname"><a href="class_helper.html#a72c0fa2fa02d3ec08cf76949c53f7c2c">Helper::dist_constrain</a></div><div class="ttdeci">Eigen::Vector&lt; double, 6 &gt; dist_constrain(Eigen::Vector&lt; double, 6 &gt; q)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00225">Helper.cpp:225</a></div></div>
-<div class="ttc" id="aclass_helper_html_a9e59ec85221642c01e7a1fa7391b44e8"><div class="ttname"><a href="class_helper.html#a9e59ec85221642c01e7a1fa7391b44e8">Helper::constrainAngle720</a></div><div class="ttdeci">Eigen::Vector&lt; double, 6 &gt; constrainAngle720(Eigen::Vector&lt; double, 6 &gt; q)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00217">Helper.cpp:217</a></div></div>
-<div class="ttc" id="aclass_helper_html_ad23c4544557811ba8d0077520d89a688"><div class="ttname"><a href="class_helper.html#ad23c4544557811ba8d0077520d89a688">Helper::sin_square</a></div><div class="ttdeci">float ** sin_square(float start[], float end[], int steps)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00037">Helper.cpp:37</a></div></div>
-<div class="ttc" id="aclass_helper_html_a49d922f1a905aa775c56a707c5ab6609"><div class="ttname"><a href="class_helper.html#a49d922f1a905aa775c56a707c5ab6609">Helper::fill_pr_next</a></div><div class="ttdeci">int fill_pr_next(Eigen::Vector&lt; double, 6 &gt; &amp;pr_f)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00088">Helper.cpp:88</a></div></div>
-<div class="ttc" id="aclass_helper_html_a3130742ef47ddb770ecf232f53e37f4e"><div class="ttname"><a href="class_helper.html#a3130742ef47ddb770ecf232f53e37f4e">Helper::print_BlockList</a></div><div class="ttdeci">void print_BlockList(my_vision_messages::BlockList &amp;bl)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00233">Helper.cpp:233</a></div></div>
-<div class="ttc" id="aclass_helper_html_a9fd2e9cfc5face67fdcbd561c9230400"><div class="ttname"><a href="class_helper.html#a9fd2e9cfc5face67fdcbd561c9230400">Helper::fillK</a></div><div class="ttdeci">Eigen::MatrixXd fillK(int param=1)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00113">Helper.cpp:113</a></div></div>
-<div class="ttc" id="aclass_helper_html_af7ad6beaaf4e7bd22056208289b007ed"><div class="ttname"><a href="class_helper.html#af7ad6beaaf4e7bd22056208289b007ed">Helper::abs</a></div><div class="ttdeci">static float abs(Eigen::Vector&lt; double, 6 &gt;pr_i)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00136">Helper.cpp:136</a></div></div>
-<div class="ttc" id="aclass_helper_html_a57b6f2b1fab576bdb00f781ade91250d"><div class="ttname"><a href="class_helper.html#a57b6f2b1fab576bdb00f781ade91250d">Helper::constrainAngle720</a></div><div class="ttdeci">double constrainAngle720(double x)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00195">Helper.cpp:195</a></div></div>
-<div class="ttc" id="aclass_helper_html_afb5391df653686a37ddc285195b2ce1a"><div class="ttname"><a href="class_helper.html#afb5391df653686a37ddc285195b2ce1a">Helper::get_extra_correction</a></div><div class="ttdeci">Eigen::Vector3d get_extra_correction(string s)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00288">Helper.cpp:288</a></div></div>
-<div class="ttc" id="aclass_helper_html_a884ca18415a355d1839327e8982006e9"><div class="ttname"><a href="class_helper.html#a884ca18415a355d1839327e8982006e9">Helper::cam_to_world</a></div><div class="ttdeci">Eigen::Vector3d cam_to_world(Eigen::Vector3d camera)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00142">Helper.cpp:142</a></div></div>
-<div class="ttc" id="aclass_helper_html_a89480516cc72b2ed60cb0596c24aa316"><div class="ttname"><a href="class_helper.html#a89480516cc72b2ed60cb0596c24aa316">Helper::dist</a></div><div class="ttdeci">float dist(Eigen::Vector&lt; double, 6 &gt;pr_i, Eigen::Vector&lt; double, 6 &gt; pr_f)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00129">Helper.cpp:129</a></div></div>
-<div class="ttc" id="aclass_helper_html_adced4bf5f26bdc4c66dd2fe3b741c426"><div class="ttname"><a href="class_helper.html#adced4bf5f26bdc4c66dd2fe3b741c426">Helper::constrainAngle</a></div><div class="ttdeci">double constrainAngle(double x)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00172">Helper.cpp:172</a></div></div>
-<div class="ttc" id="aclass_helper_html_a5b0325a62161b59e0efa30444dbc2a2c"><div class="ttname"><a href="class_helper.html#a5b0325a62161b59e0efa30444dbc2a2c">Helper::print_pr</a></div><div class="ttdeci">void print_pr(Eigen::Vector&lt; double, 6 &gt; &amp;pr_i)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00109">Helper.cpp:109</a></div></div>
-<div class="ttc" id="aclass_helper_html_a0c2efa716337b78921d5d339f2e12336"><div class="ttname"><a href="class_helper.html#a0c2efa716337b78921d5d339f2e12336">Helper::dist</a></div><div class="ttdeci">float dist(Eigen::Vector3d pr_i, Eigen::Vector3d pr_f)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00132">Helper.cpp:132</a></div></div>
-<div class="ttc" id="aclass_helper_html_a105e041a2c59a360697c27dc7ccf6ebe"><div class="ttname"><a href="class_helper.html#a105e041a2c59a360697c27dc7ccf6ebe">Helper::constrainAngle</a></div><div class="ttdeci">Eigen::Vector&lt; double, 6 &gt; constrainAngle(Eigen::Vector&lt; double, 6 &gt; q)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00202">Helper.cpp:202</a></div></div>
+<div class="ttc" id="aclass_helper_html"><div class="ttname"><a href="class_helper.html">Helper</a></div><div class="ttdoc">helper function for different applications</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00040">Helper.cpp:40</a></div></div>
+<div class="ttc" id="aclass_helper_html_ad23c4544557811ba8d0077520d89a688"><div class="ttname"><a href="class_helper.html#ad23c4544557811ba8d0077520d89a688">Helper::sin_square</a></div><div class="ttdeci">float ** sin_square(float start[], float end[], int steps)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00046">Helper.cpp:46</a></div></div>
+<div class="ttc" id="aclass_helper_html_aa96fe6e318ec1f65fb03ec39c4d537a8"><div class="ttname"><a href="class_helper.html#aa96fe6e318ec1f65fb03ec39c4d537a8">Helper::constrainAngle180</a></div><div class="ttdeci">double constrainAngle180(double x)</div><div class="ttdoc">constrains angle to [-180,180]</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00231">Helper.cpp:231</a></div></div>
+<div class="ttc" id="aclass_helper_html_a49d922f1a905aa775c56a707c5ab6609"><div class="ttname"><a href="class_helper.html#a49d922f1a905aa775c56a707c5ab6609">Helper::fill_pr_next</a></div><div class="ttdeci">int fill_pr_next(Eigen::Vector&lt; double, 6 &gt; &amp;pr_f)</div><div class="ttdoc">debugging method to manually input positions for the robot</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00105">Helper.cpp:105</a></div></div>
+<div class="ttc" id="aclass_helper_html_a3130742ef47ddb770ecf232f53e37f4e"><div class="ttname"><a href="class_helper.html#a3130742ef47ddb770ecf232f53e37f4e">Helper::print_BlockList</a></div><div class="ttdeci">void print_BlockList(my_vision_messages::BlockList &amp;bl)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00297">Helper.cpp:297</a></div></div>
+<div class="ttc" id="aclass_helper_html_a9fd2e9cfc5face67fdcbd561c9230400"><div class="ttname"><a href="class_helper.html#a9fd2e9cfc5face67fdcbd561c9230400">Helper::fillK</a></div><div class="ttdeci">Eigen::MatrixXd fillK(int param=1)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00130">Helper.cpp:130</a></div></div>
+<div class="ttc" id="aclass_helper_html_af7ad6beaaf4e7bd22056208289b007ed"><div class="ttname"><a href="class_helper.html#af7ad6beaaf4e7bd22056208289b007ed">Helper::abs</a></div><div class="ttdeci">static float abs(Eigen::Vector&lt; double, 6 &gt;pr_i)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00167">Helper.cpp:167</a></div></div>
+<div class="ttc" id="aclass_helper_html_afb5391df653686a37ddc285195b2ce1a"><div class="ttname"><a href="class_helper.html#afb5391df653686a37ddc285195b2ce1a">Helper::get_extra_correction</a></div><div class="ttdeci">Eigen::Vector3d get_extra_correction(string s)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00352">Helper.cpp:352</a></div></div>
+<div class="ttc" id="aclass_helper_html_a884ca18415a355d1839327e8982006e9"><div class="ttname"><a href="class_helper.html#a884ca18415a355d1839327e8982006e9">Helper::cam_to_world</a></div><div class="ttdeci">Eigen::Vector3d cam_to_world(Eigen::Vector3d camera)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00173">Helper.cpp:173</a></div></div>
+<div class="ttc" id="aclass_helper_html_ad875bccb862fc047776e8a28d0f03ae0"><div class="ttname"><a href="class_helper.html#ad875bccb862fc047776e8a28d0f03ae0">Helper::tavolo_to_robo</a></div><div class="ttdeci">Eigen::Vector3d tavolo_to_robo(Eigen::Vector3d world)</div><div class="ttdoc">converts world frame fo robot frame coordinates</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00196">Helper.cpp:196</a></div></div>
+<div class="ttc" id="aclass_helper_html_a89480516cc72b2ed60cb0596c24aa316"><div class="ttname"><a href="class_helper.html#a89480516cc72b2ed60cb0596c24aa316">Helper::dist</a></div><div class="ttdeci">float dist(Eigen::Vector&lt; double, 6 &gt;pr_i, Eigen::Vector&lt; double, 6 &gt; pr_f)</div><div class="ttdoc">calculates the distance between 2 positions in space</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00153">Helper.cpp:153</a></div></div>
+<div class="ttc" id="aclass_helper_html_adced4bf5f26bdc4c66dd2fe3b741c426"><div class="ttname"><a href="class_helper.html#adced4bf5f26bdc4c66dd2fe3b741c426">Helper::constrainAngle</a></div><div class="ttdeci">double constrainAngle(double x)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00207">Helper.cpp:207</a></div></div>
+<div class="ttc" id="aclass_helper_html_a5b0325a62161b59e0efa30444dbc2a2c"><div class="ttname"><a href="class_helper.html#a5b0325a62161b59e0efa30444dbc2a2c">Helper::print_pr</a></div><div class="ttdeci">void print_pr(Eigen::Vector&lt; double, 6 &gt; &amp;pr_i)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00126">Helper.cpp:126</a></div></div>
+<div class="ttc" id="aclass_helper_html_a0c2efa716337b78921d5d339f2e12336"><div class="ttname"><a href="class_helper.html#a0c2efa716337b78921d5d339f2e12336">Helper::dist</a></div><div class="ttdeci">float dist(Eigen::Vector3d pr_i, Eigen::Vector3d pr_f)</div><div class="ttdoc">calculates the distance between 2 positions in space</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00163">Helper.cpp:163</a></div></div>
+<div class="ttc" id="aclass_helper_html_a105e041a2c59a360697c27dc7ccf6ebe"><div class="ttname"><a href="class_helper.html#a105e041a2c59a360697c27dc7ccf6ebe">Helper::constrainAngle</a></div><div class="ttdeci">Eigen::Vector&lt; double, 6 &gt; constrainAngle(Eigen::Vector&lt; double, 6 &gt; q)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00250">Helper.cpp:250</a></div></div>
 <div class="ttc" id="a_helper_8cpp_html_af9ce837a5558d07579d5cc4272626988"><div class="ttname"><a href="_helper_8cpp.html#af9ce837a5558d07579d5cc4272626988">BL_DIFF_RANGE</a></div><div class="ttdeci">#define BL_DIFF_RANGE</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00022">Helper.cpp:22</a></div></div>
-<div class="ttc" id="aclass_helper_html_a2034bddaa2295ca2009e5fb8f9997b39"><div class="ttname"><a href="class_helper.html#a2034bddaa2295ca2009e5fb8f9997b39">Helper::decode_final_pos</a></div><div class="ttdeci">Eigen::Vector&lt; double, 6 &gt; decode_final_pos(string s)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00237">Helper.cpp:237</a></div></div>
+<div class="ttc" id="aclass_helper_html_a2034bddaa2295ca2009e5fb8f9997b39"><div class="ttname"><a href="class_helper.html#a2034bddaa2295ca2009e5fb8f9997b39">Helper::decode_final_pos</a></div><div class="ttdeci">Eigen::Vector&lt; double, 6 &gt; decode_final_pos(string s)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00301">Helper.cpp:301</a></div></div>
+<div class="ttc" id="aclass_helper_html_aa620286dee1299db068e4832db950446"><div class="ttname"><a href="class_helper.html#aa620286dee1299db068e4832db950446">Helper::constrainAngle180</a></div><div class="ttdeci">Eigen::Vector&lt; double, 6 &gt; constrainAngle180(Eigen::Vector&lt; double, 6 &gt; q)</div><div class="ttdoc">constrains angle vector to [-180,180]</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00263">Helper.cpp:263</a></div></div>
+<div class="ttc" id="aclass_helper_html_aeb99521d2a8271c9db820dc936a6f56d"><div class="ttname"><a href="class_helper.html#aeb99521d2a8271c9db820dc936a6f56d">Helper::constrainAngle720</a></div><div class="ttdeci">Eigen::Vector&lt; double, 6 &gt; constrainAngle720(Eigen::Vector&lt; double, 6 &gt; q)</div><div class="ttdoc">constrains angle vector to [-360,360]</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00275">Helper.cpp:275</a></div></div>
+<div class="ttc" id="aclass_helper_html_a2280d529217b1460f64713bf7f52a761"><div class="ttname"><a href="class_helper.html#a2280d529217b1460f64713bf7f52a761">Helper::dist_constrain</a></div><div class="ttdeci">Eigen::Vector&lt; double, 6 &gt; dist_constrain(Eigen::Vector&lt; double, 6 &gt; q)</div><div class="ttdoc">wrapps differences in angles</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00289">Helper.cpp:289</a></div></div>
+<div class="ttc" id="aclass_helper_html_acf4f94818785ede725e4568f045f72ac"><div class="ttname"><a href="class_helper.html#acf4f94818785ede725e4568f045f72ac">Helper::constrainAngle720</a></div><div class="ttdeci">double constrainAngle720(double x)</div><div class="ttdoc">constrains angle to [-360,360]</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00243">Helper.cpp:243</a></div></div>
 <div class="ttc" id="a_helper_8cpp_html_af2b7e2fe2519c53eeabfe548c9429443"><div class="ttname"><a href="_helper_8cpp.html#af2b7e2fe2519c53eeabfe548c9429443">BL_DIFF_CONFIDANCE</a></div><div class="ttdeci">#define BL_DIFF_CONFIDANCE</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00023">Helper.cpp:23</a></div></div>
-<div class="ttc" id="a_helper_8cpp_html_a2ed08e96eebcbba31741ed8917851f1e"><div class="ttname"><a href="_helper_8cpp.html#a2ed08e96eebcbba31741ed8917851f1e">operator&lt;&lt;</a></div><div class="ttdeci">ostream &amp; operator&lt;&lt;(ostream &amp;os, const my_vision_messages::Pointxyz &amp;p)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00327">Helper.cpp:327</a></div></div>
-<div class="ttc" id="a_helper_8cpp_html_a0d97b3cb44cef381feaa83568cc476d7"><div class="ttname"><a href="_helper_8cpp.html#a0d97b3cb44cef381feaa83568cc476d7">operator==</a></div><div class="ttdeci">bool operator==(const my_vision_messages::BlockList &amp;bl1, const my_vision_messages::BlockList &amp;bl2)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00351">Helper.cpp:351</a></div></div>
-<div class="ttc" id="aclass_helper_html_aadb0b05fe9496c7eda93135323e5682a"><div class="ttname"><a href="class_helper.html#aadb0b05fe9496c7eda93135323e5682a">Helper::fill_pr_i_f</a></div><div class="ttdeci">int fill_pr_i_f(Eigen::Vector&lt; double, 6 &gt; &amp;pr_i, Eigen::Vector&lt; double, 6 &gt; &amp;pr_f)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00060">Helper.cpp:60</a></div></div>
+<div class="ttc" id="a_helper_8cpp_html_a2ed08e96eebcbba31741ed8917851f1e"><div class="ttname"><a href="_helper_8cpp.html#a2ed08e96eebcbba31741ed8917851f1e">operator&lt;&lt;</a></div><div class="ttdeci">ostream &amp; operator&lt;&lt;(ostream &amp;os, const my_vision_messages::Pointxyz &amp;p)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00391">Helper.cpp:391</a></div></div>
+<div class="ttc" id="a_helper_8cpp_html_a0d97b3cb44cef381feaa83568cc476d7"><div class="ttname"><a href="_helper_8cpp.html#a0d97b3cb44cef381feaa83568cc476d7">operator==</a></div><div class="ttdeci">bool operator==(const my_vision_messages::BlockList &amp;bl1, const my_vision_messages::BlockList &amp;bl2)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00415">Helper.cpp:415</a></div></div>
+<div class="ttc" id="aclass_helper_html_aadb0b05fe9496c7eda93135323e5682a"><div class="ttname"><a href="class_helper.html#aadb0b05fe9496c7eda93135323e5682a">Helper::fill_pr_i_f</a></div><div class="ttdeci">int fill_pr_i_f(Eigen::Vector&lt; double, 6 &gt; &amp;pr_i, Eigen::Vector&lt; double, 6 &gt; &amp;pr_f)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00070">Helper.cpp:70</a></div></div>
+<div class="ttc" id="aclass_helper_html_aa9318ee5d55c5da8518055f447234b4b"><div class="ttname"><a href="class_helper.html#aa9318ee5d55c5da8518055f447234b4b">Helper::dist_constrain</a></div><div class="ttdeci">double dist_constrain(double x)</div><div class="ttdoc">wrapps differences in angles</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00220">Helper.cpp:220</a></div></div>
 <div class="ttc" id="anamespacemy__test_html_a0790e2ff326fe50adfe9d2bdbb6042ec"><div class="ttname"><a href="namespacemy__test.html#a0790e2ff326fe50adfe9d2bdbb6042ec">my_test.p</a></div><div class="ttdeci">p</div><div class="ttdef"><b>Definition:</b> <a href="my__test_8py_source.html#l00370">my_test.py:370</a></div></div>
-<div class="ttc" id="aclass_helper_html_a06bf9f8b2ea1453e9cbaf8780bdfd7a7"><div class="ttname"><a href="class_helper.html#a06bf9f8b2ea1453e9cbaf8780bdfd7a7">Helper::tavolo_to_robo</a></div><div class="ttdeci">Eigen::Vector3d tavolo_to_robo(Eigen::Vector3d camera)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00161">Helper.cpp:161</a></div></div>
-<div class="ttc" id="aclass_helper_html_a59924530b7cfbc3d32134a1cf5de2a56"><div class="ttname"><a href="class_helper.html#a59924530b7cfbc3d32134a1cf5de2a56">Helper::Helper</a></div><div class="ttdeci">Helper()</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00033">Helper.cpp:33</a></div></div>
-<div class="ttc" id="aclass_helper_html_a8767317213b3dcd1630728140eb499e4"><div class="ttname"><a href="class_helper.html#a8767317213b3dcd1630728140eb499e4">Helper::get_extra_h</a></div><div class="ttdeci">float get_extra_h(string s)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00308">Helper.cpp:308</a></div></div>
+<div class="ttc" id="aclass_helper_html_a59924530b7cfbc3d32134a1cf5de2a56"><div class="ttname"><a href="class_helper.html#a59924530b7cfbc3d32134a1cf5de2a56">Helper::Helper</a></div><div class="ttdeci">Helper()</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00042">Helper.cpp:42</a></div></div>
+<div class="ttc" id="aclass_helper_html_a8767317213b3dcd1630728140eb499e4"><div class="ttname"><a href="class_helper.html#a8767317213b3dcd1630728140eb499e4">Helper::get_extra_h</a></div><div class="ttdeci">float get_extra_h(string s)</div><div class="ttdef"><b>Definition:</b> <a href="_helper_8cpp_source.html#l00372">Helper.cpp:372</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

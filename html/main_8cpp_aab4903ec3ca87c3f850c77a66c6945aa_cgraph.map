@@ -1,12 +1,12 @@
 <map id="testing" name="testing">
 <area shape="rect" id="node1" title=" " alt="" coords="5,132,72,159"/>
-<area shape="rect" id="node2" href="$class_robot.html#a32da0e43b4fb9c7dfd78a12b5531cc7f" title=" " alt="" coords="131,107,256,133"/>
-<area shape="rect" id="node10" href="$class_robot.html#afad827990c0d664a10983e4f51b46847" title=" " alt="" coords="120,157,267,184"/>
-<area shape="rect" id="node3" href="$class_kin.html#aec6ac8ffafd4f63335e21fa088d962e1" title=" " alt="" coords="315,5,441,32"/>
-<area shape="rect" id="node4" href="$class_helper.html#a89480516cc72b2ed60cb0596c24aa316" title=" " alt="" coords="329,56,427,83"/>
-<area shape="rect" id="node5" href="$class_kin.html#af75d397faf214d72adda456a1bb9084f" title=" " alt="" coords="323,107,433,133"/>
-<area shape="rect" id="node6" href="$class_kin.html#a992d4e39f8ff9556682a02c370dad160" title=" " alt="" coords="315,157,441,184"/>
-<area shape="rect" id="node7" href="$class_kin.html#ab9490e04fe5cbb4663310deee066b77c" title=" " alt="" coords="341,208,415,235"/>
-<area shape="rect" id="node8" href="$class_helper.html#aaabaa4c346a5fff43ab6b36f57162c2c" title=" " alt="" coords="489,183,684,209"/>
-<area shape="rect" id="node9" href="$class_helper.html#a57b6f2b1fab576bdb00f781ade91250d" title=" " alt="" coords="489,233,684,260"/>
+<area shape="rect" id="node2" href="$class_robot.html#a84ae13c01a86fa3b3c020de0ee59cbca" title="moves the robot to a given position &#160;calculates the path from the current position and &#160;&#160;the final on..." alt="" coords="131,107,256,133"/>
+<area shape="rect" id="node10" href="$class_robot.html#afad827990c0d664a10983e4f51b46847" title="publishes grip joints for simulation only" alt="" coords="120,157,267,184"/>
+<area shape="rect" id="node3" href="$class_kin.html#aec6ac8ffafd4f63335e21fa088d962e1" title="computes forward kinematic and loads the inner varables of the class for future uses" alt="" coords="315,5,441,32"/>
+<area shape="rect" id="node4" href="$class_helper.html#a89480516cc72b2ed60cb0596c24aa316" title="calculates the distance between 2 positions in space" alt="" coords="329,56,427,83"/>
+<area shape="rect" id="node5" href="$class_kin.html#af75d397faf214d72adda456a1bb9084f" title="returns the position of the end effector" alt="" coords="323,107,433,133"/>
+<area shape="rect" id="node6" href="$class_kin.html#a992d4e39f8ff9556682a02c370dad160" title="returns current position and euler rotation for the loaded" alt="" coords="315,157,441,184"/>
+<area shape="rect" id="node7" href="$class_kin.html#aa74db6fac5aff0dd04e18d93ce7a8777" title="creates a joint path between 2 points in space" alt="" coords="341,208,415,235"/>
+<area shape="rect" id="node8" href="$class_helper.html#aa96fe6e318ec1f65fb03ec39c4d537a8" title="constrains angle to [&#45;180,180]" alt="" coords="489,183,684,209"/>
+<area shape="rect" id="node9" href="$class_helper.html#acf4f94818785ede725e4568f045f72ac" title="constrains angle to [&#45;360,360]" alt="" coords="489,233,684,260"/>
 </map>

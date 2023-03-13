@@ -1,6 +1,5 @@
 <map id="Kin::eval_ik_index" name="Kin::eval_ik_index">
-<area shape="rect" id="node1" title=" " alt="" coords="5,56,147,83"/>
-<area shape="rect" id="node2" href="$class_helper.html#adced4bf5f26bdc4c66dd2fe3b741c426" title=" " alt="" coords="207,5,377,32"/>
-<area shape="rect" id="node3" href="$class_helper.html#aaabaa4c346a5fff43ab6b36f57162c2c" title=" " alt="" coords="195,56,389,83"/>
-<area shape="rect" id="node4" href="$class_helper.html#aa80d83af97d72b5566f9897520eb9d65" title=" " alt="" coords="210,107,374,133"/>
+<area shape="rect" id="node1" title="evaluates the pose of a given joint configuration" alt="" coords="5,31,147,57"/>
+<area shape="rect" id="node2" href="$class_helper.html#aa96fe6e318ec1f65fb03ec39c4d537a8" title="constrains angle to [&#45;180,180]" alt="" coords="195,5,389,32"/>
+<area shape="rect" id="node3" href="$class_helper.html#aa9318ee5d55c5da8518055f447234b4b" title="wrapps differences in angles" alt="" coords="210,56,374,83"/>
 </map>
