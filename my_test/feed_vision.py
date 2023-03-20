@@ -6,8 +6,12 @@ from std_msgs.msg import Float64MultiArray
 from std_msgs.msg import String
 import math
 import helper
+import time
 
-from my_vision_messages.msg import *
+
+from my_vision_messages.msg import Pointxyz
+from my_vision_messages.msg import Block
+from my_vision_messages.msg import BlockList
 
 def talker():
     #pub = rospy.Publisher('command', JointState, queue_size=1)
@@ -34,7 +38,7 @@ def talker():
     b1_rot_angle=    0.44     *360/(math.pi*2)
     b1.top_btm_l_r = ["top_btm_l_r 1","top_btm_l_r 2"]
     b1.up_dw_stand_lean="up_dw_stand_lean 1"
-    b1_confidence=100
+    b1_confidence=99
     b1.world_point = p1
 #------------------------------------
     """
@@ -53,33 +57,36 @@ def talker():
 
     #msg = BlockList([b1,b2])
     msg = BlockList()
-    msg.blocks.append(b1)
+    #msg.blocks.append(b1)
+
+    p1_x=0.25078
+    p1_y=0.454027
+    p1_z = 0.871311
 
     point = Pointxyz(p1_x, p1_y, p1_z)
 
     block = Block()
     block.class_number = str(3)
     block.point = point
-    block.rot_angle = b1_rot_angle
-    block.confidence = b1_confidence
+    block.rot_angle = 0.44     *360/(math.pi*2)
+    block.top_btm_l_r = ["", ""]
+    block.up_dw_stand_lean = ""
+    block.confidence = 99
     block.world_point = point
 
     # this are not needed in this program
     block.top_btm_l_r = ["", ""]
     block.up_dw_stand_lean = ""
 
-    # sort block list based on fifth component (confidence)
-    block_list_confs.append(b1_confidence)
 
-    sorted_conf = sorted(enumerate(block_list_confs), key=lambda conf_num: conf_num[1])
-    new_block_index = [i[0] for i in sorted_conf if i[1] == b1_confidence]
+    msg.blocks.insert(0,block)
+    while True:
+      time.sleep(1)
+      #msg.data = q_des
+      pub.publish(msg)
+      print("pubblicato")
+      print(msg)
 
-    block_list.blocks.insert(new_block_index[0], block)
-
-    #msg.data = q_des
-    pub.publish(msg)
-    print("pubblicato")
-    print(msg)
 
 
 if __name__ == '__main__':

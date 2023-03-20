@@ -48,6 +48,7 @@ class Robot{
         //ros::init(argc, argv,"talker");
         static inline ros::Publisher js_pub;
         static inline int n_grip = 0;
+        ros::Publisher grip_pub;
     
         Robot(){
             //vuoto
@@ -64,6 +65,7 @@ class Robot{
             //Robot::js_pub = n.advertise < sensor_msgs::JointState > ("/command", 1);
             //Robot::js_pub = n.advertise < sensor_msgs::JointState > ("/ur5/joint_group_pos_controller/command", 1);
             Robot::js_pub = n.advertise < std_msgs::Float64MultiArray > ("/ur5/joint_group_pos_controller/command", 1);
+            grip_pub = n.advertise < std_msgs::Float64 > ("/gripper", 1);
         };
 /*! @brief base constructor
 *needs argc and argv to innitialize the joint publisher
@@ -154,14 +156,18 @@ class Robot{
 
             return 0;
         }
-/*! @brief publishes grip joints
-* for simulation only
-* @param gripper gripper joint value
+/*! @brief publishes grip joints in simulation \n
+* and publishes on /gripper the opening value
+* @param gripper gripper joint value/opening size
 */
         int publish_grip(double gripper = 0){
             
             std_msgs::Float64MultiArray f64j;
             sensor_msgs::JointState joint_tmp;
+            std_msgs::Float64 f64;
+
+            f64.data=gripper;
+            grip_pub.publish(f64);
 
             f64j.data.empty();
 
@@ -191,6 +197,7 @@ class Robot{
 
             return 0;
         }
+
 /*! @brief rotates the end effector
 *
 * @param ang in radiants

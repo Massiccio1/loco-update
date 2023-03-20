@@ -183,21 +183,10 @@ int main(int argc, char ** argv) {
         //help.fill_pr_next(pr_f);
         if(bl_index != block_call_index){
             //se ho nuovi messaggi
-            bl_list.push_back(BlockList_msg);
-            cout << "pushing back new messages\n";
-        }
-        if(bl_list.size() > 3)//se è troppo grande tolgo il primo
-            bl_list.erase(bl_list.begin());
-        else
-            continue;//salta se
-
-        if(bl_list[0]==bl_list[1] && bl_list[0]==bl_list[2]){
             cout << "foud match...\n";
-            procedure(robot,bl_list[2]);
-        }else
-            procedure(robot,bl_list[2]);
-            cout << "messaggi diversi\n";
-        
+            procedure(robot,BlockList_msg);
+            bl_index=block_call_index;
+        }        
         //cout << BlockList_msg << endl;
         //cout << "moving to" << pr_f << endl;
         //cout << "joint j_to_q:" << robot.j_to_q(Robot::joint) << endl;
@@ -243,7 +232,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
     double sleep_time=0.5;
 
     double h_safe = 0.65;
-    double h_active = 0.74;
+    double h_active = 0.70;
     Eigen::Vector < double, 6 > pr_safe;
     Eigen::Vector < double, 6 > q_safe;
     Eigen::Vector3d correction;
@@ -324,13 +313,13 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         //cout << "\nrotazione: " << bl.blocks[i_block].rot_angle*M_PI*2/360;
         pr_f(3)=bl.blocks[i_block].rot_angle*M_PI*2/360;//ruoto per ee
         //cout << "\nvado al  pezzo: " << pr_f;
-        cin >> f;
+        //cin >> f;
 
         robot.move_to_shoulder(pr_f,steps,f,false);
-        cin >> f;
+        //cin >> f;
         robot.move_to(pr_f,steps,f,false);//vado al pezzo 
         //robot.rotate(bl.blocks[i_block].rot_angle/360*M_PI);
-        cin >> f;
+        //cin >> f;
         sleep(sleep_time);
 
         //cout << "\npubblico il gripper: ";
@@ -340,7 +329,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         extra_h=helper.get_extra_h(bl.blocks[i_block].class_number);
         pr_f(2) =h_active+extra_h;
         robot.move_to(pr_f,steps,f,false);//abbasso
-        cin >> f;
+        //cin >> f;
         sleep(sleep_time*5);
 
         //cout << "\npubblico il gripper: ";
@@ -349,7 +338,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
 
         pr_f(2) =h_safe;
         robot.move_to(pr_f,steps,f,false);//alzo
-        cin >> f;
+        //cin >> f;
         sleep(sleep_time);
 
         //cout << "\nevito clipping: ";
@@ -360,9 +349,9 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         pr_f(2) =h_safe;
 
         robot.move_to_shoulder(pr_f,steps,f,false);
-        cin >> f;
+        //cin >> f;
         robot.move_to(pr_f,steps,f,false);//vado in base
-        cin >> f;
+        //cin >> f;
         sleep(sleep_time);
 
         pr_f(2) =h_active;

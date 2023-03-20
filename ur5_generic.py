@@ -33,6 +33,7 @@ robotName = "ur5"
 from controller_manager_msgs.srv import SwitchControllerRequest, SwitchController
 from controller_manager_msgs.srv import LoadControllerRequest, LoadController
 from std_msgs.msg import Float64MultiArray
+from std_msgs.msg import Float64
 from base_controllers.base_controller_fixed import BaseControllerFixed
 import tf
 from rospy import Time
@@ -138,6 +139,7 @@ class Ur5Generic(BaseControllerFixed):
         self.utils.putIntoGlobalParamServer("gripper_sim", self.gripper)
 
         self.sub_pointcloud = ros.Subscriber("/ur5/zed_node/point_cloud/cloud_registered", PointCloud2,   callback=self.receive_pointcloud, queue_size=1)
+        self.sub_gripper = ros.Subscriber("/gripper", Float64,   callback=self.recive_gripper, queue_size=1)
 
     def _receive_ftsensor(self, msg):
         contactForceTool0 = np.zeros(3)
@@ -266,6 +268,11 @@ class Ur5Generic(BaseControllerFixed):
         #print("Data Optical frame: ", points_list)
         pointW = self.w_R_c.dot(points_list[0]) + self.x_c + self.base_offset
         #print("Data World frame: ", pointW)
+    
+    def recive_gripper(self,msg):
+        print(f"sending {msg.data} to gripper")
+        self.controller_manager.gm.move_gripper(msg.data)
+        print(f"sent {msg.data} to gripper")
 
 def talker(p):
     p.start()
