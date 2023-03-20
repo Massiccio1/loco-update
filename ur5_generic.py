@@ -66,7 +66,7 @@ class Ur5Generic(BaseControllerFixed):
 
         self.controller_manager = ControllerManager(conf.robot_params[self.robot_name])
 
-        self.world_name = None # only the workbench
+        self.world_name = "mio_tavolo.world" # only the workbench
         #self.world_name = 'empty.world'
         #self.world_name = 'palopoli.world'
 

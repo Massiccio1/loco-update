@@ -18,7 +18,7 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <mesh>
-            <uri>/home/massiccio/ros_ws/src/locosim/models/X1-Y3-Z2-FILLET.stl</uri>
+            <uri>/home/massiccio/ros_ws/src/loco-update/models/X1-Y3-Z2-FILLET.stl</uri>
             <scale>1 1 1</scale>
           </mesh>
         </geometry>
@@ -39,7 +39,7 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <mesh>
-            <uri>/home/massiccio/ros_ws/src/locosim/models/X1-Y3-Z2-FILLET.stl</uri>
+            <uri>/home/massiccio/ros_ws/src/loco-update/models/X1-Y3-Z2-FILLET.stl</uri>
             <scale>1 1 1</scale>
           </mesh>
         </geometry>

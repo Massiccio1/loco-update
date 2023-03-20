@@ -66,9 +66,31 @@ def process_image(image):
     block_list = BlockList()
     block_list_depths = []
 
+        # --------------------------------------
+    dictionary = {
+        "X1-Y1-Z2": 0,
+        "X1-Y2-Z2-CHAMFER": 1,
+        "X1-Y2-Z2": 2,
+        "X1-Y3-Z2": 3,
+        "X1-Y4-Z2": 4,
+        "X2-Y2-Z2": 5,
+        "X1-Y2-Z1": 6,
+        "X1-Y2-Z2-TWINFILLET": 7,
+        "X1-Y3-Z2-FILLET": 8,
+        "X1-Y4-Z1": 9,
+        "X2-Y2-Z2-FILLET": 10,
+    }
+
+    # --------------------------------------
+
     # main function start for every piece
     for detected in result_dict:
-        cs = float(detected['name'])
+        #cs = float(detected['name'])
+        print(detected['name'])
+        if detected['name'] in dictionary:
+            cs = dictionary[detected['name']]
+        else:
+            cs = 12
         x1 = float(detected['xmin'])
         y1 = float(detected['ymin'])
         x2 = float(detected['xmax'])

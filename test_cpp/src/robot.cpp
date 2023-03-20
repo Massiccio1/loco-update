@@ -289,11 +289,11 @@ class Robot{
             */
             
 
-            //cout << "moving from: " << pr_i << endl << endl;
-            //cout << "moving to: " << pr_f << endl << endl;
+            cout << "moving from: " << pr_i << endl << endl;
+            cout << "moving to: " << pr_f << endl << endl;
 
-            //cout << "moving from q: " << q << endl << endl;
-            //cout << "moving to q: " << pr_f << endl << endl;
+            cout << "moving from q: " << q << endl << endl;
+            cout << "moving to q: " << pr_f << endl << endl;
 
             //vector<Eigen::Vector < double, 6 >> path_theory = kin.fillpath(q,pr_f, steps);
             //vector<Eigen::Vector < double, 6 >> path = kin.da_a(path_theory,q,k,steps);
