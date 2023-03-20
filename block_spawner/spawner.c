@@ -30,8 +30,8 @@ int write_at_line(int n_block, int line_number)
 
   int current_line = 1;
 
-  FILE *file = fopen("../ros_impedance_controller/worlds/mio_tavolo_temp.world", "r+");
-  FILE *file2 = fopen("../ros_impedance_controller/worlds/mio_tavolo.world", "w");
+  FILE *file = fopen("world/mio_tavolo_temp.world", "r+");
+  FILE *file2 = fopen("world/mio_tavolo.world", "w");
 
   if (file == NULL) {
     printf("Error opening file!\n");
