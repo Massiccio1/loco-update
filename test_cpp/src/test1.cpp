@@ -324,10 +324,13 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         //cout << "\nrotazione: " << bl.blocks[i_block].rot_angle*M_PI*2/360;
         pr_f(3)=bl.blocks[i_block].rot_angle*M_PI*2/360;//ruoto per ee
         //cout << "\nvado al  pezzo: " << pr_f;
+        cin >> f;
 
         robot.move_to_shoulder(pr_f,steps,f,false);
+        cin >> f;
         robot.move_to(pr_f,steps,f,false);//vado al pezzo 
         //robot.rotate(bl.blocks[i_block].rot_angle/360*M_PI);
+        cin >> f;
         sleep(sleep_time);
 
         //cout << "\npubblico il gripper: ";
@@ -337,6 +340,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         extra_h=helper.get_extra_h(bl.blocks[i_block].class_number);
         pr_f(2) =h_active+extra_h;
         robot.move_to(pr_f,steps,f,false);//abbasso
+        cin >> f;
         sleep(sleep_time*5);
 
         //cout << "\npubblico il gripper: ";
@@ -345,6 +349,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
 
         pr_f(2) =h_safe;
         robot.move_to(pr_f,steps,f,false);//alzo
+        cin >> f;
         sleep(sleep_time);
 
         //cout << "\nevito clipping: ";
@@ -355,7 +360,9 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         pr_f(2) =h_safe;
 
         robot.move_to_shoulder(pr_f,steps,f,false);
+        cin >> f;
         robot.move_to(pr_f,steps,f,false);//vado in base
+        cin >> f;
         sleep(sleep_time);
 
         pr_f(2) =h_active;

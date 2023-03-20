@@ -158,7 +158,7 @@ class Helper{
 * takes eigen vectors of 3
 *
 * @see dist(Eigen::Vector < double, 6 >pr_i,Eigen::Vector < double, 6 > pr_f)
-* @return float distance in absolute value 
+* @return float distance in absolute value
 */
     float dist(Eigen::Vector3d pr_i,Eigen::Vector3d pr_f){
         return (    pow(pr_i[0],2) + pow(pr_i[1],2) + pow(pr_i[2],2)    ) - (    pow(pr_f[0],2) + pow(pr_f[1],2) + pow(pr_f[2],2)    );

@@ -166,9 +166,29 @@ def process_image(image):
 
         # return to original image sizes (find real coordinates of found centre)
 
-        cv2.imwrite("final.jpg", with_center_image)
-
+        print("-----------------------------------")
         point = Pointxyz(real_coord_x, real_coord_y, center_depth[0][2])
+
+        w_R_c = np.matrix([[0., - 0.49948, 0.86632], [-1., 0., 0.], [-0., - 0.86632, - 0.49948]])
+        w_c = np.array([-0.9, 0.24, -0.35])
+        base_offset = np.array([0.5, 0.35, 1.75])
+
+        real_coord_x = real_coord_x
+        real_coord_y = real_coord_y
+
+        points_list = calculate_depth(real_coord_x, real_coord_y)
+
+
+        print("Data Optical frame: ", points_list)
+        pointW = np.dot(w_R_c, points_list[0]) + w_c + base_offset
+        print("Data World frame: ", pointW)
+        #print("-----------------------------------")
+        robo = np.array(
+            [np.squeeze(np.asarray(pointW))[0], np.squeeze(np.asarray(pointW))[1], np.squeeze(np.asarray(pointW))[2]])
+        #robo[0] = robo[0] - 0.5
+        #robo[1] = 0.35 - robo[1]
+        print("Data robot coord: ", robo)
+        print("-----------------------------------")
 
         block = Block()
         block.class_number = str(cs)
@@ -177,12 +197,14 @@ def process_image(image):
         block.top_btm_l_r = inclination
         block.up_dw_stand_lean = final_incl
         block.confidence = conf
+        block.world_point = Pointxyz(robo[0],robo[1],robo[2])
 
-        # sort block list based on z component (depth)
-        block_list_depths.append(center_depth[0][2])
+
+        # sort block list based on x component (depth)
+        block_list_depths.append(center_depth[0][0])
 
         block_list_depths.sort(reverse=True)
-        new_block_index = [i[0] for i in enumerate(block_list_depths) if i[1] == center_depth[0][2]]
+        new_block_index = [i[0] for i in enumerate(block_list_depths) if i[1] == center_depth[0][0]]
 
         block_list.blocks.insert(new_block_index[0], block)
 
