@@ -61,6 +61,7 @@ using namespace std;
                 cout << "\nmanca master_positions.txt\n";
                 exit(-1);
             }
+            
 
             float f[6];
             for(int i=0; i < 6; i++){
