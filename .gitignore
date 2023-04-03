@@ -3,3 +3,6 @@
 doxigen.bak
 doxigen
 latex/
+test_cpp/src/.Kin.o
+test_cpp/src/.Helper.o
+test_cpp/src/.robot.o
