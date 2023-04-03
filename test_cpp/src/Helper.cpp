@@ -190,7 +190,11 @@ using namespace std;
         return robo;
     }
 
-    
+    /*! @brief constrains angle to [0,360[
+* @fn constrainAngle(double x)
+*   @see constrainAngle(Eigen::Vector<double, 6> q)
+* @param x angle
+*/
     double Helper::constrainAngle(double x){
         x = fmod(x,M_PI*2);
         if (x < 0)
@@ -234,7 +238,11 @@ using namespace std;
             return x + M_PI*2;//se - diventa +
         return x - M_PI*2;//se + diventa -
     }
-
+    /*! @brief constrains angles to [0,360[
+* @fn constrainAngle(Eigen::Vector<double, 6> q)
+*   @see constrainAngle(double x)
+* @param q vector of 6 angles
+*/
     Eigen::Vector<double, 6> Helper::constrainAngle(Eigen::Vector<double, 6> q){
         Eigen::Vector<double, 6> ret;
         for(int i=0; i< 6; i++){

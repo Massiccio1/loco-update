@@ -399,36 +399,22 @@ using namespace std;
         //cout << "\n\t(kin p2p) a  joints: " << q_f << endl;
 
         Eigen::Vector < double, 6 > q_f_w;
+        Eigen::Vector < double, 6 > offset;
+        Eigen::Vector < double, 6 > zero = Eigen::Vector < double, 6 >::Zero() ; //array di 0 per l'inizio
 
         Helper help;
 
-        q_f_w=help.constrainAngle720(q_f);//q_f con angoli cmbiati
-
-        for(int i=0; i< 6;i++){//prendo la strada piu' corta
-
-            //cout << "\nstd::abs(q_i(i)-q_f_w(i)) - std::abs(q_i(i)-q_f_w(i)) -> " << std::abs(q_i(i)-q_f(i)) << " - "  << std::abs(q_i(i)-q_f_w(i)) << " = " << std::abs(q_i(i)-q_f(i)) - std::abs(q_i(i)-q_f_w(i)) << endl;
-
-            if(std::abs(q_i(i)-q_f(i)) > std::abs(q_i(i)-q_f_w(i))){
-                //se normale e' piu' grande del cambiato
-                //cout << "\nstd::abs(q_i(i)-q_f_w(i))>std::abs(q_i(i)-q_f_w(i)) -> " << std::abs(q_i(i)-q_f(i)) << " - "  << std::abs(q_i(i)-q_f_w(i)) << endl;
-                q_f(i)=q_f_w(i);//uso il wrapped
-                }
-            }
-
+        offset = help.constrainAngle(q_f) - help.constrainAngle(q_i);//offset f-i
+        offset = help.dist_constrain(offset);//wrapping per angoli > 180
 
         //cout << "\n\t(kin p2p) da joints: " << q_i << endl;
         //cout << "\n\t(kin p2p) a  joints wrapped: " << q_f << endl;
-        //cout << "\n\t(kin p2p) jopints finali wrapped720: " << q_f_w << endl;
-
-
-        //q_i=q_i_w;
-        //q_f=q_f_w;
-
+        //cout << "\n\t(kin p2p) offset: " << offset << endl;
 
         Eigen::Matrix4d M;
         std::vector<Eigen::Vector < double, 6 >> path;
         //double minT = 0;
-        double maxT = ((double)steps)/1000;
+        double maxT = ((double)steps)/1000;//step da 1ms
         //path.push_back(q_i);
         Eigen::Vector < double, 6 > qkdot;
         Eigen::Vector < double, 6 > qk1;
@@ -447,12 +433,14 @@ using namespace std;
                 1, maxT, pow(maxT,2), pow(maxT,3),
                 0 , 1   ,2*maxT,    3*pow(maxT,2);
 
+        //M per i coeff
         //std::cout << "maxT:" << maxT << std::endl;
         //std::cout << "M:" << M << std::endl;
 
         for(int i=0; i<6;i++){
-            b << q_i(i) , 0 , q_f(i), 0;
+            b << zero(i) , 0 , offset(i), 0;//b per i valori da moltiplicare con M
             a = M.inverse()*b;
+            //parto da zero per arrivare a offset
 
             //std::cout << "b:" << b << std::endl;
             //std::cout << "i: " << i  << "   num: " << a << std::endl;
@@ -469,8 +457,6 @@ using namespace std;
 
         tmp << 0,0,0,0,0,0;
 
-        
-
         for(int i=0;i<steps;i++){
             
             double dt=((double)i)/1000;
@@ -485,7 +471,8 @@ using namespace std;
             } 
             //cout << "\n";
             //path.push_back(tmp);
-            path.push_back(help.constrainAngle180(tmp));
+            //path.push_back(help.constrainAngle180(tmp));
+            path.push_back(tmp + q_i); //iniziale + delta = finale
             //cout << "\npushed: " << tmp;
         } 
         

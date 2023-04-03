@@ -81,7 +81,11 @@ class Helper{
 */
     Eigen::Vector3d tavolo_to_robo(Eigen::Vector3d world);
 
-    
+        /*! @brief constrains angle to [0,360[
+* @fn constrainAngle(double x)
+*   @see constrainAngle(Eigen::Vector<double, 6> q)
+* @param x angle
+*/
     double constrainAngle(double x);
 
 /*! @brief wrapps differences in angles
@@ -105,7 +109,12 @@ class Helper{
 * @param x angle
 */
     double constrainAngle720(double x);
-
+    
+    /*! @brief constrains angles to [0,360[
+* @fn constrainAngle(Eigen::Vector<double, 6> q)
+*   @see constrainAngle(double x)
+* @param q vector of 6 angles
+*/
     Eigen::Vector<double, 6> constrainAngle(Eigen::Vector<double, 6> q);
 
 /*! @brief constrains angle vector to [-180,180]
