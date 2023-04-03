@@ -1,14 +1,7 @@
 #ifndef KIN__CPP
 #define KIN__CPP
 
-#pragma once
-
-#include "Eigen/Eigen/Dense"
-#include <iostream>
-#include <vector>
-#include <cmath>
-#include "Helper.cpp"
-#include <fstream>
+#include "Kin.h"
 
 //using namespace pinocchio;
 using namespace std;
@@ -27,36 +20,11 @@ using namespace std;
 *
 */
 
-class Kin {
-   
-
-    public:
-
-        Eigen::Vector < double, 7 > arm_l; //lunghezza bracci
-        //Eigen::Vector<double, 6> joint_q; //rotazione joints
-        Eigen::Vector < double, 6 > Th;
-        Eigen::Vector < double, 6 > A;
-        Eigen::Vector < double, 6 > D;
-        Eigen::Vector <double , 6> alfa;
-        Eigen::Matrix4d T10m;
-        Eigen::Matrix4d T21m;
-        Eigen::Matrix4d T32m;
-        Eigen::Matrix4d T43m;
-        Eigen::Matrix4d T54m;
-        Eigen::Matrix4d T65m;
-        Eigen::Matrix4d T0e;
-        Eigen::Matrix4d T0;
-        //Eigen::Matrix4d T10m;
-        Eigen::Matrix4d T20m;
-        Eigen::Matrix4d T30m;
-        Eigen::Matrix4d T40m;
-        Eigen::Matrix4d T50m;
-        Eigen::Matrix4d T60m;
-        Eigen::MatrixXd J;
-        static inline int ik_index=7;
 
 
-        Kin() {
+
+        Kin::Kin() {
+            //cout << "fattoooooo";
             arm_l << 0.089159, 0.13585, 0.425, 0.1197, 0.39225, 0.094, 0.068;
             Th = Eigen::Vector < double, 6 > (0.089159, 0, 0, 0.10915, 0.09465, 0.0823);
             A = Eigen::Vector <double , 6> (0, -0.425, -0.3922, 0, 0, 0);//distanze su A
@@ -69,11 +37,11 @@ class Kin {
 *
 * @return Eigen::Matrix4d T0e end effector rotation matrix
 */
-    Eigen::Matrix4d get_T0e(){
+    Eigen::Matrix4d Kin::get_T0e(){
         return T0e;
     }
 
-    Eigen::Vector3d get_rot_p(){ //get end effector rotation(x,y,z)
+    Eigen::Vector3d Kin::get_rot_p(){ //get end effector rotation(x,y,z)
 
         Eigen::Vector3d pos;
 
@@ -88,7 +56,7 @@ class Kin {
 * @return Eigen::Vector < double, 6 > pr
 */
 
-    Eigen::Vector < double, 6 > get_pr_now(){
+    Eigen::Vector < double, 6 > Kin::get_pr_now(){
 
         Eigen::Vector < double, 6 > pr_i;
 
@@ -106,7 +74,7 @@ class Kin {
 * @return Eigen::Vector3d position in x,y,z
 */
 
-    Eigen::Vector3d get_ee_p(){ //get end effector position(x,y,z)
+    Eigen::Vector3d Kin::get_ee_p(){ //get end effector position(x,y,z)
 
         Eigen::Vector3d pos;
 
@@ -123,7 +91,7 @@ class Kin {
 * @return 0 if everything worked, does not return a position, that must be accessed with get_pr_now()
 */
 
-    int  compute_fc(Eigen::Vector < double, 6 > Th, bool print_ = false) {
+    int  Kin::compute_fc(Eigen::Vector < double, 6 > Th, bool print_) {
         this->Th=Th;
 
         //std::cout << "computing fc\n";
@@ -162,7 +130,7 @@ class Kin {
 */
 
 
-    Eigen::MatrixXd compute_J(Eigen::Vector < double, 6 > q, bool print_ = false){
+    Eigen::MatrixXd Kin::compute_J(Eigen::Vector < double, 6 > q, bool print_){
 
         //if(q == NULL)
         //    q = Th;//posso passare senza parametri
@@ -254,7 +222,7 @@ class Kin {
 * @return index of the inverse kinematics configuration
 */
 
-    int eval_ik_index(Eigen::Vector < double, 6 > j_now){
+    int Kin::eval_ik_index(Eigen::Vector < double, 6 > j_now){
         Helper h;
         
         j_now = h.constrainAngle180(j_now);
@@ -320,7 +288,7 @@ class Kin {
         return ik_index;
     }
 
-    std::vector<Eigen::Vector < double, 6 >> da_a(std::vector<Eigen::Vector < double, 6 >> path_pr,Eigen::Vector < double, 6 > th0, Eigen::MatrixXd k, int steps){
+    std::vector<Eigen::Vector < double, 6 >> Kin::da_a(std::vector<Eigen::Vector < double, 6 >> path_pr,Eigen::Vector < double, 6 > th0, Eigen::MatrixXd k, int steps){
         
         Eigen::Vector < double, 6 > q = th0;
         std::vector<Eigen::Vector < double, 6 >> path;
@@ -373,7 +341,7 @@ class Kin {
         return path;
     }
 
-    Eigen::Vector < double, 6 > invDiffKinematiControlComplete2(Eigen::Vector < double, 6 > q_temp,  Eigen::Vector < double, 6 > pr_now, Eigen::Vector < double, 6 > delta, Eigen::Vector < double, 6 > path_pr_i,    Eigen::MatrixXd k){
+    Eigen::Vector < double, 6 > Kin::invDiffKinematiControlComplete2(Eigen::Vector < double, 6 > q_temp,  Eigen::Vector < double, 6 > pr_now, Eigen::Vector < double, 6 > delta, Eigen::Vector < double, 6 > path_pr_i,    Eigen::MatrixXd k){
 
         Eigen::Vector < double, 6 > dotqk;
         compute_J(q_temp);
@@ -420,7 +388,7 @@ class Kin {
 * @return standard vector of joint positions
 */
 
-    std::vector<Eigen::Vector < double, 6 >> p2p(Eigen::Vector < double, 6 > pr_i, Eigen::Vector < double, 6 > pr_f, int steps = 3000, double minT = 0){
+    std::vector<Eigen::Vector < double, 6 >> Kin::p2p(Eigen::Vector < double, 6 > pr_i, Eigen::Vector < double, 6 > pr_f, int steps, double minT){
         
         Eigen::Vector < double, 6 > q_i = compute_ik(pr_i)[Kin::ik_index];
         Eigen::Vector < double, 6 > q_f = compute_ik(pr_f)[Kin::ik_index];
@@ -535,7 +503,7 @@ class Kin {
 * @return standard vector of joints positions
 */
 
-    vector<Eigen::Vector < double, 6 >> compute_ik(Eigen::Vector < double, 6 > pr_f){
+    vector<Eigen::Vector < double, 6 >> Kin::compute_ik(Eigen::Vector < double, 6 > pr_f){
         Eigen::Vector < double, 6 > th_ik;
         Eigen::Vector4d p50;
         Eigen::Matrix < double, 4, 1 > col4;
@@ -707,13 +675,13 @@ class Kin {
         return vac_th_inverse;
     }
 
-    Eigen::Vector3d get_col(Eigen::Matrix4d M, int i){
+    Eigen::Vector3d Kin::get_col(Eigen::Matrix4d M, int i){
         Eigen::Vector3d ret;
         ret<< M(0,i),M(1,i),M(2,i);
         return ret;
     }
 
-    double hypot(double a, double b){
+    double Kin::hypot(double a, double b){
         return sqrt(pow(a,2)+pow(b,2));
     }
 /*! @brief extracts euler angles from position and rotation vector
@@ -723,7 +691,7 @@ class Kin {
 * @param pr position and rotation of the end effector
 * @return vector of euler angles
 */
-    Eigen::Vector3d pr_to_r(Eigen::Vector < double, 6 > pr){
+    Eigen::Vector3d Kin::pr_to_r(Eigen::Vector < double, 6 > pr){
         Eigen::Vector3d r;
         r<< pr(3),pr(4),pr(5);
         return r;
@@ -737,7 +705,7 @@ class Kin {
 * @return vector of x,y,z coordinates
 */
     
-    Eigen::Vector3d pr_to_p(Eigen::Vector < double, 6 > pr){
+    Eigen::Vector3d Kin::pr_to_p(Eigen::Vector < double, 6 > pr){
         Eigen::Vector3d p;
         p<< pr(0),pr(1),pr(2);
         return p;
@@ -750,7 +718,7 @@ class Kin {
 * @return rotation matrix
 */
 
-    Eigen::Matrix3d eul2rotXYZ(Eigen::Vector3d rpy){
+    Eigen::Matrix3d Kin::eul2rotXYZ(Eigen::Vector3d rpy){
         double c_roll =  cos(rpy[0]);
         double s_roll = sin(rpy[0]);
         double c_pitch =   cos(rpy[1]) ;      
@@ -782,7 +750,7 @@ class Kin {
 * @return rotation matrix
 */
 
-    Eigen::Matrix3d eul2rotZYX(Eigen::Vector3d rpy){
+    Eigen::Matrix3d Kin::eul2rotZYX(Eigen::Vector3d rpy){
         double c_roll =  cos(rpy[0]);
         double s_roll = sin(rpy[0]);
         double c_pitch =   cos(rpy[1]) ;      
@@ -813,14 +781,14 @@ class Kin {
         return R;
     }
 
-    void swap(double& f1,double& f2){
+    void Kin::swap(double& f1,double& f2){
         double buff;
         buff=f1;
         f1=f2;
         f2=buff;
     }
 
-    std::vector<Eigen::Vector < double, 6 >> fillpath(Eigen::Vector < double, 6 > q, Eigen::Vector < double, 6 > pr_f, int steps){
+    std::vector<Eigen::Vector < double, 6 >> Kin::fillpath(Eigen::Vector < double, 6 > q, Eigen::Vector < double, 6 > pr_f, int steps){
         compute_fc(q);//carico le matrici
 
         std::vector<Eigen::Vector < double, 6 >> path;
@@ -855,7 +823,7 @@ class Kin {
         return path;
     }
     
-    Eigen::Vector < double, 6 > invDiffKinematiControlComplete(Eigen::Vector < double, 6 > q_temp,  Eigen::Vector3d p_now, Eigen::Vector3d rpy_now, Eigen::Vector3d p_f, Eigen::Vector3d pry_f,  Eigen::Vector3d vel,    Eigen::Vector3d rot,    Eigen::Matrix3d k,  Eigen::Matrix3d kphi){
+    Eigen::Vector < double, 6 > Kin::invDiffKinematiControlComplete(Eigen::Vector < double, 6 > q_temp,  Eigen::Vector3d p_now, Eigen::Vector3d rpy_now, Eigen::Vector3d p_f, Eigen::Vector3d pry_f,  Eigen::Vector3d vel,    Eigen::Vector3d rot,    Eigen::Matrix3d k,  Eigen::Matrix3d kphi){
         
         Eigen::Vector < double, 6 > dotqk;
 
@@ -888,11 +856,11 @@ class Kin {
         return dotqk;
     }
 
-    Eigen::Vector3d lin_vel(Eigen::Vector3d p_i, Eigen::Vector3d p_f, int steps = 5000){//5 secondi default
+    Eigen::Vector3d Kin::lin_vel(Eigen::Vector3d p_i, Eigen::Vector3d p_f, int steps){//5 secondi default
         return (p_f - p_i) / steps;
     }
 
-    Eigen::Vector3d lin_rot(Eigen::Vector3d rpy_i, Eigen::Vector3d rpy_f, int steps = 5000){//5 secondi default
+    Eigen::Vector3d Kin::lin_rot(Eigen::Vector3d rpy_i, Eigen::Vector3d rpy_f, int steps){//5 secondi default
         return (rpy_f - rpy_i) / steps;
     }
 /*! @brief conversion function from rotation matrix to euler angles in ZYX
@@ -901,7 +869,7 @@ class Kin {
 * @param rpy rotation martix
 * @return euler angles
 */
-    Eigen::Vector3d rotm2eul(Eigen::Matrix4d R){//da matrice a rpy zyx
+    Eigen::Vector3d Kin::rotm2eul(Eigen::Matrix4d R){//da matrice a rpy zyx
         Eigen::Vector3d eul;
         /*
         double phi = atan2(R.coeff(1,0), R.coeff(0,0));
@@ -920,7 +888,7 @@ class Kin {
 
     }
 
-    int test_tot2eul(){
+    int Kin::test_tot2eul(){
 
         Eigen::Matrix4d tmp;
                 tmp <<  0.9363,   -0.1684,    0.3082, 0,
@@ -934,11 +902,11 @@ class Kin {
         return 0;
     }
 
-    int isnan (double f) {
+    int Kin::isnan (double f) {
         return (f != f); 
     }
 
-    double r_nan(double& d){
+    double Kin::r_nan(double& d){
         if(d!=d)
             return 0;
         return d;
@@ -953,7 +921,7 @@ class Kin {
 * @return real value for acos, even with inputs outside of [-1,1]
 */
 
-    double safe_acos(const double& value) {
+    double Kin::safe_acos(const double& value) {
         if (value<=-1) {
             return M_PI;
         } else if (value>=1) {
@@ -971,7 +939,7 @@ class Kin {
 * @param value cos value
 * @return real value for asin, even with inputs outside of [-1,1]
 */
-    double safe_asin(const double& value) {
+    double Kin::safe_asin(const double& value) {
         if (value<=-1) {
             return M_PI/2;
         } else if (value>=1) {
@@ -981,7 +949,7 @@ class Kin {
         }
     }
 
-    Eigen::MatrixXd geo2anJ(Eigen::MatrixXd J, Eigen::MatrixXd T0e_){
+    Eigen::MatrixXd Kin::geo2anJ(Eigen::MatrixXd J, Eigen::MatrixXd T0e_){
 
         //std::cout << "geo2ana: \n" << std::endl;
 
@@ -1025,7 +993,7 @@ class Kin {
         
     }
 
-    void removeRow(Eigen::MatrixXd& matrix, unsigned int rowToRemove){
+    void Kin::removeRow(Eigen::MatrixXd& matrix, unsigned int rowToRemove){
         unsigned int numRows = matrix.rows()-1;
         unsigned int numCols = matrix.cols();
 
@@ -1034,7 +1002,7 @@ class Kin {
 
         matrix.conservativeResize(numRows,numCols);
     }
-    int wrap(Eigen::Vector3d& v){
+    int Kin::wrap(Eigen::Vector3d& v){
         for(int i=0; i<3;i++){
             if (v(i) > M_PI) 
                 v(i) = (2*M_PI - v(i));
@@ -1043,8 +1011,7 @@ class Kin {
     }
     
 
-    private:
-        Eigen::Matrix4d T10f(double th1) {
+        Eigen::Matrix4d Kin::T10f(double th1) {
             Eigen::Matrix4d tmp;
 
             tmp <<  cos(th1), -sin(th1), 0, 0,
@@ -1054,7 +1021,7 @@ class Kin {
             return tmp;
             //rotazione e traslazione
         }
-        Eigen::Matrix4d T21f(double th2) {
+        Eigen::Matrix4d Kin::T21f(double th2) {
             Eigen::Matrix4d tmp;
             tmp <<  cos(th2), -sin(th2), 0, 0,
                     0, 0, -1, 0,
@@ -1062,7 +1029,7 @@ class Kin {
                     0, 0, 0, 1;
             return tmp;
         }
-        Eigen::Matrix4d T32f(double th3) {
+        Eigen::Matrix4d Kin::T32f(double th3) {
 
             Eigen::Matrix4d tmp;
             tmp <<  cos(th3), -sin(th3), 0, A(1),
@@ -1072,7 +1039,7 @@ class Kin {
 
             return tmp;
         }
-        Eigen::Matrix4d T43f(double th4) {
+        Eigen::Matrix4d Kin::T43f(double th4) {
             Eigen::Matrix4d tmp;
             tmp << cos(th4), -sin(th4), 0, A(2),
                     sin(th4), cos(th4), 0, 0,
@@ -1082,7 +1049,7 @@ class Kin {
 
             return tmp;
         }
-        Eigen::Matrix4d T54f(double th5) {
+        Eigen::Matrix4d Kin::T54f(double th5) {
             Eigen::Matrix4d tmp;
             tmp << cos(th5), -sin(th5), 0, 0,
                     0, 0, -1, -D(4),
@@ -1091,7 +1058,7 @@ class Kin {
 
             return tmp; 
         }
-        Eigen::Matrix4d T65f(double th6) {
+        Eigen::Matrix4d Kin::T65f(double th6) {
             Eigen::Matrix4d tmp;
             tmp << cos(th6), -sin(th6), 0, 0,
                     0, 0, 1, D(5),
@@ -1100,7 +1067,5 @@ class Kin {
 
             return tmp; 
         }
-};
-
 
 #endif

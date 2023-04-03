@@ -11,7 +11,6 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-  message_generation
   my_vision_messages
 )
 find_package(Eigen3 REQUIRED)
@@ -69,10 +68,10 @@ find_package(Eigen3 REQUIRED)
 # )
 
 ## Generate added messages and services with any dependencies listed here
-generate_messages(
-  DEPENDENCIES
-  std_msgs
-)
+# generate_messages(
+#   DEPENDENCIES
+#   std_msgs
+# )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -104,7 +103,7 @@ generate_messages(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
+  INCLUDE_DIRS include
 #  LIBRARIES test_cpp
   CATKIN_DEPENDS roscpp rospy std_msgs my_vision_messages
 #  DEPENDS system_lib
@@ -123,19 +122,24 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/test_cpp.cpp
-# )
 
-## Add cmake target dependencies of the library
+#SET(KIN "../include/tl/x1.h" "../include/tl/x2.h")
+
+# add_library(
+#     ${PROJECT_NAME} ${HELP}
+#     ${CMAKE_CURRENT_SOURCE_DIR}/include/Helper.o
+#     ${CMAKE_CURRENT_SOURCE_DIR}/include/Kin.o
+#  )
+
+ ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-#add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_executable(${PROJECT_NAME}_node ${CMAKE_CURRENT_SOURCE_DIR}/src/test1.cpp)
 
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(${PROJECT_NAME}_node src/test1.cpp)
+#set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -145,14 +149,88 @@ add_executable(${PROJECT_NAME}_node src/test1.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+#add_dependencies(${PROJECT_NAME}_node ${CMAKE_CURRENT_SOURCE_DIR}/include/Helper.o ${CMAKE_CURRENT_SOURCE_DIR}/include/Kin.o)
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(${PROJECT_NAME}_node
+
+# add_custom_command(
+
+#     OUTPUT  ${CMAKE_CURRENT_SOURCE_DIR}/include/Helper.o
+#     SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/Helper.cpp 
+#     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/Helper.h ${CMAKE_CURRENT_SOURCE_DIR}/src/Helper.cpp
+#     COMMAND g++ -c ${CMAKE_CURRENT_SOURCE_DIR}/src/Helper.cpp -o ${CMAKE_CURRENT_SOURCE_DIR}/include/Helper.o
+#     COMMAND echo costruito ${CMAKE_CURRENT_SOURCE_DIR}/include/Helper.o
+#     COMMAND echo ${CMAKE_CURRENT_SOURCE_DIR}
+# )
+
+# add_custom_command(
+#     OUTPUT  ${CMAKE_CURRENT_SOURCE_DIR}/include/Kin.o
+#     SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/Kin.cpp
+#     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/Kin.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/Kin.h
+#     COMMAND  g++ -c ${CMAKE_CURRENT_SOURCE_DIR}/src/Kin.cpp -o ${CMAKE_CURRENT_SOURCE_DIR}/include/Kin.o
+#     COMMAND echo costruito ${CMAKE_CURRENT_SOURCE_DIR}/include/Kin.o
+# )
+
+
+# add_custom_command(
+#     OUTPUT 
+#        # This is the file your custom command will create
+#        ${CMAKE_CURRENT_SOURCE_DIR}/include/Helper.o
+
+#     DEPENDS
+#        # These are all the files you need to run your custom command
+#        ${ch}
+
+#     COMMAND echo "from command">>${CMAKE_CURRENT_SOURCE_DIR}/out.txt
+#     COMMENT "output foobar, depends on fooout"
+# )
+  
+# add_custom_target(
+#     dummy ALL
+#     # DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/test1.cpp
+#     COMMAND make
+#     COMMENT "in target"
+# )
+
+# execute_process(
+#   COMMAND "make -f Makefile"
+# )
+
+add_custom_target(
+    myCustomTarget
+    #COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR}
+    COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR}/src && make -f ${CMAKE_CURRENT_SOURCE_DIR}/Makefile.make FROM_PATH=${CMAKE_CURRENT_SOURCE_DIR}/src CPATH=~/ros_ws/install/include
+    #COMMAND make -f ${CMAKE_CURRENT_SOURCE_DIR}/Makefile2.make FROM_PATH=${CMAKE_CURRENT_SOURCE_DIR}/include
+    #COMMAND make -f ${CMAKE_CURRENT_SOURCE_DIR}/Makefile.make
+    #COMMAND make -f ${CMAKE_CURRENT_SOURCE_DIR}/Makefile.make test
+    COMMENT "building with make"
+)
+
+
+# add_custom_target(
+#     my_test
+#     OUTPUT  ${CMAKE_CURRENT_SOURCE_DIR}/out.txt
+#     SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/in.txt
+#     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/in.txt
+#     COMMAND  echo "from cmake" > ${CMAKE_CURRENT_SOURCE_DIR}/out.txt
+#     COMMAND cat ${CMAKE_CURRENT_SOURCE_DIR}/out.txt
+# )
+
+#add_library(Helper_o ${CMAKE_CURRENT_SOURCE_DIR}/include/Helper.o)
+#set_target_properties(Helper_o PROPERTIES LINKER_LANGUAGE CXX)
+
+add_dependencies(${PROJECT_NAME}_node myCustomTarget)
+
+target_link_libraries(
+  ${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
   ${cEigen_LIBRARIES}
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/Helper.o
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/Kin.o
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/robot.o
   #${CMAKE_CURRENT_SOURCE_DIR}/include/obj.o
 )
+
 
 #############
 ## Install ##

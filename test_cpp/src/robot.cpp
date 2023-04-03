@@ -1,60 +1,17 @@
-#include "ros/ros.h"
-#include "std_msgs/String.h"
-#include "std_msgs/Float64.h"
-#include <sensor_msgs/JointState.h>
-#include <std_msgs/Float64MultiArray.h>
-//#include <std_msgs/msg/float64_multi_array.hpp>
-#include "Eigen/Eigen/Dense"
+#ifndef ROBOT__CPP
+#define ROBOT__CPP
 
-#include <sstream>
-#include <iostream>
-#include <string>
-#include <thread>
-#include "Helper.cpp"
-#include "Kin.cpp"
-
-
-#define N_GRIP 2
-#pragma once
+#include "robot.h"
 
 using namespace std;
 
 
-void robot_msg_callback(const std_msgs::String::ConstPtr& message);
-
-
-void js_callback(const sensor_msgs::JointState& joint);
-
-/**
-@file robot.cpp
-@brief robot class for ur5 manipulator
-*/
-
-/*! @brief robot class for ur5 manipulator
-*
-*/
-
-
-
-class Robot{
-    public: 
-
-        static inline sensor_msgs::JointState joint;
-        static inline std::vector<double> gripper_j;
-        static inline std_msgs::String msg;
-        static inline int stat=0;
-        static inline bool started = false;
-        static inline bool moving = false;
-        //ros::init(argc, argv,"talker");
-        static inline ros::Publisher js_pub;
-        static inline int n_grip = 0;
-        ros::Publisher grip_pub;
     
-        Robot(){
+        Robot::Robot(){
             //vuoto
         };
 
-        Robot(bool init,int argc, char ** argv){//da chiamare una volta per non avere errori
+        Robot::Robot(bool init,int argc, char ** argv){//da chiamare una volta per non avere errori
             if(init){
                 joint.position={0.0,0.0,0.0,0.0,0.0,0.0};
             }
@@ -64,13 +21,13 @@ class Robot{
             //ros::Publisher js_pub = n.advertise < sensor_msgs::JointState > ("/command", 1);
             //Robot::js_pub = n.advertise < sensor_msgs::JointState > ("/command", 1);
             //Robot::js_pub = n.advertise < sensor_msgs::JointState > ("/ur5/joint_group_pos_controller/command", 1);
-            Robot::js_pub = n.advertise < std_msgs::Float64MultiArray > ("/ur5/joint_group_pos_controller/command", 1);
+            js_pub = n.advertise < std_msgs::Float64MultiArray > ("/ur5/joint_group_pos_controller/command", 1);
             grip_pub = n.advertise < std_msgs::Float64 > ("/gripper", 1);
         };
 /*! @brief base constructor
 *needs argc and argv to innitialize the joint publisher
 */
-        Robot(int argc, char ** argv){
+        Robot::Robot(int argc, char ** argv){
             cout << "in robot" << endl;
 
             std::stringstream ss;
@@ -92,13 +49,13 @@ class Robot{
             cout << "done constructor" << endl;
         };
 
-        void spin(){
+        void Robot::spin(){
             ros::spinOnce();
         }
 /*! @brief subscribes and starts callbacks
 * subscribes to /ur5/joint_states and starts the callbash
 */
-        void start_callback(int argc, char ** argv){
+        void Robot::start_callback(int argc, char ** argv){
             cout << "in robot" << endl;
             ros::init(argc, argv, "robot_cpp_callback");
             ros::NodeHandle n;
@@ -122,14 +79,14 @@ class Robot{
 * @param gripper for previous version debugging
 */
 
-        int publish(Eigen::Vector < double, 6 > th, bool fill = true, double gripper = 0){
+        int Robot::publish(Eigen::Vector < double, 6 > th, bool fill, double gripper){
             
             std_msgs::Float64MultiArray f64j;
             sensor_msgs::JointState joint_tmp;
 
             //std::cout << "\npublishing...\n" << std::endl;
 
-             f64j.data.empty();
+            //f64j.data.empty();
 
             for(int i=0; i<6;i++){
                 //joint.position[i] = th[i];
@@ -160,7 +117,7 @@ class Robot{
 * and publishes on /gripper the opening value
 * @param gripper gripper joint value/opening size
 */
-        int publish_grip(double gripper = 0){
+        int Robot::publish_grip(double gripper){
             
             std_msgs::Float64MultiArray f64j;
             sensor_msgs::JointState joint_tmp;
@@ -169,7 +126,7 @@ class Robot{
             f64.data=gripper;
             grip_pub.publish(f64);
 
-            f64j.data.empty();
+            //f64j.data.empty();
 
             for(int i=0; i<6;i++){
                 f64j.data.push_back(Robot::joint.position[i]);//pubblico la stessa posizione
@@ -202,7 +159,7 @@ class Robot{
 *
 * @param ang in radiants
 */
-        int rotate(double ang = 0){
+        int Robot::rotate(double ang){
             sensor_msgs::JointState j_now = joint;
             Eigen::Vector<double, 6> j_tmp = j_to_q(j_now);
             j_tmp(5)=ang;
@@ -213,7 +170,7 @@ class Robot{
 *
 * @param f64j ros float 64 array
 */
-        void print_f64j(std_msgs::Float64MultiArray f64j){
+        void Robot::print_f64j(std_msgs::Float64MultiArray f64j){
             for(int i=0; i< f64j.data.size();i++){
                 cout << "\nf64j.data[" << i << "] " << f64j.data[i];
             }
@@ -249,7 +206,7 @@ class Robot{
 * used to reduce the chance of collision of the robot arm
 * @see float move_to(Eigen::Vector < double, 6 > pr_f, int steps = 3000, float k_coeff=0.01, int verbose=false)
 */
-        float move_to_shoulder(Eigen::Vector < double, 6 > pr_f, int steps = 3000, float k_coeff=0.01, int verbose=false){
+        float Robot::move_to_shoulder(Eigen::Vector < double, 6 > pr_f, int steps, float k_coeff, int verbose){
             Kin kin;
             Eigen::Vector < double, 6 > q_i = j_to_q(joint);//q di adesso
             Eigen::Vector < double, 6 > tmp = kin.compute_ik(pr_f)[Kin::ik_index];//q di dove voglio andare
@@ -259,6 +216,8 @@ class Robot{
             kin.compute_fc(q_f);
             Eigen::Vector < double, 6 > pr_pan=kin.get_pr_now();
             move_to(pr_pan,steps,k_coeff,verbose);
+
+            return 0;
         }
 /*! @brief moves the robot to a given position \n
 * calculates the path from the current position and \n 
@@ -271,7 +230,7 @@ class Robot{
 * @param k_coeff for debugging and compatibility
 * @param verbose verbose option
 */
-        float move_to(Eigen::Vector < double, 6 > pr_f, int steps = 3000, float k_coeff=0.01, bool verbose=false){
+        float Robot::move_to(Eigen::Vector < double, 6 > pr_f, int steps, float k_coeff, bool verbose){
             Helper help;
             Eigen::MatrixXd k = Eigen::MatrixXd::Identity(6,6) * k_coeff;
             sensor_msgs::JointState j_now = joint;
@@ -382,23 +341,23 @@ class Robot{
             return 0;
         }
 
-        Eigen::Vector < double, 6 > j_to_q(sensor_msgs::JointState j_tmp){
+        Eigen::Vector < double, 6 > Robot::j_to_q(sensor_msgs::JointState j_tmp){
             Eigen::Vector < double, 6 > q_tmp;
             for(int i=0; i< 6; i++)
                 q_tmp[i]=j_tmp.position[i];
             return q_tmp;
         }
 
-        void test(){
+        void Robot::test(){
             cout << "robot tested" << endl;
         }
-        void set_msg(string s){
+        void Robot::set_msg(string s){
             //msg.data = s;
         }
-        string get_msg(){
+        string Robot::get_msg(){
             return msg.data;
         }
-        static int print_position(sensor_msgs::JointState j){
+        int Robot::print_position(sensor_msgs::JointState j){
             
             //Robot r;
             //cout << j << endl;
@@ -417,17 +376,11 @@ class Robot{
             cout << "--------------------------------------------------" << endl << endl;
             return 1;
         };
-        static int print_position(){
+        int Robot::print_position(){
             return print_position(joint);
         };
 
-};
-
 //std_msgs::String Robot::msg = new std_msgs::String();
-
-
-
-
 void robot_msg_callback(const std_msgs::String::ConstPtr& message){
     //cout << "in msg_callback" << endl;
     //ROS_INFO("I heard: [%f]", js->velocity.c_str());
@@ -485,9 +438,57 @@ void js_callback(const sensor_msgs::JointState& j){
     //print_position();
 }
 
+ostream& operator<<(ostream& os, const my_vision_messages::Pointxyz& p){
+        os << "x: " << p.x << "\ty: " << p.y << "\tz: " << p.z;
+        return os;
+}
+
+ostream& operator<<(ostream& os, const my_vision_messages::BlockList& bl){
+    if(bl.blocks.size()<1){
+        os<< "BlockList vuota";
+        return os;
+    }
+    for(int i= 0; i< bl.blocks.size(); i++){
+        os << "class number: " << bl.blocks[i].class_number << "\n";
+        os << "point camera: " << bl.blocks[i].point << "\n";
+        os << "rotation angle: " << bl.blocks[i].rot_angle << "\n";
+        for(int j=0; j< bl.blocks[i].top_btm_l_r.size(); j++){
+            os << "\t" << bl.blocks[i].top_btm_l_r[j] << "\n";
+        }
+            os << "up_dw_stand_lean: " << bl.blocks[i].up_dw_stand_lean << "\n";
+            os << "confidance: " << bl.blocks[i].confidence << "\n";
+            os << "world frame point: " << bl.blocks[i].world_point << "\n";
+    }
+    return os;
+}
+
+bool operator==( const my_vision_messages::BlockList& bl1, const my_vision_messages::BlockList& bl2 ){
+    if(bl1.blocks.size()!=bl2.blocks.size() || bl1.blocks.size()==0 || bl2.blocks.size()==0)
+        return false;
+    for(int i=0; i< bl1.blocks.size(); i++){
+        if(bl1.blocks[i].class_number == bl2.blocks[i].class_number
+        && bl1.blocks[i].world_point.x - bl2.blocks[i].world_point.x < BL_DIFF_RANGE
+        && bl1.blocks[i].world_point.y - bl2.blocks[i].world_point.y < BL_DIFF_RANGE
+        && bl1.blocks[i].world_point.z - bl2.blocks[i].world_point.z < BL_DIFF_RANGE
+        && bl1.blocks[i].confidence - bl2.blocks[i].confidence < BL_DIFF_CONFIDANCE)
+        //ok
+            int a=0;
+        else return false;
+    }
+    return true;
+    
+}
+
+void print_BlockList(my_vision_messages::BlockList& bl){
+    cout << bl;
+}
+
 void swap(double& f1,double& f2){
     float buff;
     buff=f1;
     f1=f2;
     f2=buff;
 }
+
+
+#endif

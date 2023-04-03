@@ -15,9 +15,12 @@
 #include "Eigen/Eigen/Dense"
 //#include <eigen3/Eigen/Eigen>
 #include <sstream>
-#include "Helper.cpp"
-#include "Kin.cpp"
-#include "robot.cpp"
+//#include "Helper.cpp"
+#include "Helper.h"
+//#include "Kin.cpp"
+#include "Kin.h"
+//#include "robot.cpp"    
+#include "robot.h"    
 //#include "../msg/Block.msg"
 //#include "../msg/Pointxyz.msg"
 //#include "../msg/BlockList.msg"
@@ -421,6 +424,8 @@ int testing(Robot robot){
     robot.move_to(pr_f,1000,0,false);
     sleep(3);
     */
+
+   return 0;
 }
 
 int feed(Robot robot){

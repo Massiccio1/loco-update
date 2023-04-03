@@ -2,22 +2,9 @@
 #ifndef HELPER__CPP
 #define HELPER__CPP
 
-#pragma once
+//#pragma once
 
-#include "std_msgs/String.h"
-#include <unistd.h> 
-#include <stdio.h> 
-#include <fcntl.h>
-#include <sensor_msgs/JointState.h>
-#include <sstream>
-#include <iostream>
-#include <fstream>
-#include <string>
-#include "Eigen/Eigen/Dense"
-#include <cmath>
-#include "my_vision_messages/Pointxyz.h"
-#include "my_vision_messages/Block.h"
-#include "my_vision_messages/BlockList.h"
+#include "Helper.h"
 
 #define BL_DIFF_RANGE 0.03
 #define BL_DIFF_CONFIDANCE 0.05
@@ -37,13 +24,12 @@ using namespace std;
 *
 */
 
-class Helper{
-    public:
-        Helper(){
+
+        Helper::Helper(){
 
         }
 
-        float** sin_square(float start[], float end[], int steps){
+        float** Helper::sin_square(float start[], float end[], int steps){
 
             float** path =0;
             path   = new float*[steps];//altezza = steps
@@ -67,7 +53,7 @@ class Helper{
         };
 
 
-        int fill_pr_i_f(Eigen::Vector < double, 6 > & pr_i, Eigen::Vector < double, 6 > & pr_f){
+        int Helper::fill_pr_i_f(Eigen::Vector < double, 6 > & pr_i, Eigen::Vector < double, 6 > & pr_f){
 
             std::ifstream myfile ("src/loco-update/test_cpp/src/master_positions.txt");
 
@@ -102,7 +88,7 @@ class Helper{
 * @param pr_f reference to the vector to store what's read
 */
 
-        int fill_pr_next(Eigen::Vector < double, 6 > & pr_f){
+        int Helper::fill_pr_next(Eigen::Vector < double, 6 > & pr_f){
 
             std::ifstream myfile ("src/loco-update/test_cpp/src/pr_next.txt");
 
@@ -123,7 +109,7 @@ class Helper{
             return 0;
         }
 
-        void print_pr(Eigen::Vector < double, 6 > & pr_i){
+        void Helper::print_pr(Eigen::Vector < double, 6 > & pr_i){
             cout << "todo" << endl;
         }
 
@@ -150,7 +136,7 @@ class Helper{
 * @return float distance in absolute value 
 */
 
-    float dist(Eigen::Vector < double, 6 >pr_i,Eigen::Vector < double, 6 > pr_f){
+    float Helper::dist(Eigen::Vector < double, 6 >pr_i,Eigen::Vector < double, 6 > pr_f){
         return (    pow(pr_i[0],2) + pow(pr_i[1],2) + pow(pr_i[2],2)    ) - (    pow(pr_f[0],2) + pow(pr_f[1],2) + pow(pr_f[2],2)    );
     }
 /*! @brief calculates the distance between 2 positions in space \n
@@ -160,17 +146,17 @@ class Helper{
 * @see dist(Eigen::Vector < double, 6 >pr_i,Eigen::Vector < double, 6 > pr_f)
 * @return float distance in absolute value
 */
-    float dist(Eigen::Vector3d pr_i,Eigen::Vector3d pr_f){
+    float Helper::dist(Eigen::Vector3d pr_i,Eigen::Vector3d pr_f){
         return (    pow(pr_i[0],2) + pow(pr_i[1],2) + pow(pr_i[2],2)    ) - (    pow(pr_f[0],2) + pow(pr_f[1],2) + pow(pr_f[2],2)    );
     }
 
-    static float abs(Eigen::Vector < double, 6 >pr_i){
+    float Helper::abs(Eigen::Vector < double, 6 >pr_i){
 
         return std::abs(    pow(pr_i[0],2) + pow(pr_i[1],2) + pow(pr_i[2],2)    );
     }
 
     
-    Eigen::Vector3d cam_to_world(Eigen::Vector3d camera){
+    Eigen::Vector3d Helper::cam_to_world(Eigen::Vector3d camera){
         //camera x y depth
         Eigen::Vector3d world;
 
@@ -193,7 +179,7 @@ class Helper{
 * @param camera x,y,z coordinates of the world frame
 * @return float distance in absolute value 
 */
-    Eigen::Vector3d tavolo_to_robo(Eigen::Vector3d world){
+    Eigen::Vector3d Helper::tavolo_to_robo(Eigen::Vector3d world){
         //camera x y depth
         Eigen::Vector3d robo;
         robo(0)=world(0)-0.5;//x tavolo
@@ -204,7 +190,7 @@ class Helper{
     }
 
     
-    double constrainAngle(double x){
+    double Helper::constrainAngle(double x){
         x = fmod(x,M_PI*2);
         if (x < 0)
             x += M_PI*2;
@@ -217,7 +203,7 @@ class Helper{
 * @param x angle
 * @return wrapped angle difference
 */
-    double dist_constrain(double x){
+    double Helper::dist_constrain(double x){
         
         if (x > M_PI)//wrapping
             return std::abs(M_PI*2-x);
@@ -228,26 +214,27 @@ class Helper{
 *   @see constrainAngle180(Eigen::Vector<double, 6> q)
 * @param x angle
 */
-    double constrainAngle180(double x){//da -180 a 180
+    double Helper::constrainAngle180(double x){//da -180 a 180
         x = fmod(x,M_PI*2);//normalizzo
         if (x < -M_PI)
             return x+ M_PI*2;
         if (x > M_PI)
-        return x - M_PI*2;
+            return x - M_PI*2;
+        return x;
     }
 /*! @brief constrains angle to [-360,360]
 * @fn constrainAngle720(double x)
 *   @see constrainAngle720(Eigen::Vector<double, 6> q)
 * @param x angle
 */
-    double constrainAngle720(double x){//cambio da + a - e viceversa
+    double Helper::constrainAngle720(double x){//cambio da + a - e viceversa
         //x = fmod(x ,M_2_PI);
         if (x < 0)
             return x + M_PI*2;//se - diventa +
         return x - M_PI*2;//se + diventa -
     }
 
-    Eigen::Vector<double, 6> constrainAngle(Eigen::Vector<double, 6> q){
+    Eigen::Vector<double, 6> Helper::constrainAngle(Eigen::Vector<double, 6> q){
         Eigen::Vector<double, 6> ret;
         for(int i=0; i< 6; i++){
             ret(i)=constrainAngle(q(i));
@@ -260,7 +247,7 @@ class Helper{
 *   @see constrainAngle180(double x)
 * @param q vector of 6 angles
 */
-    Eigen::Vector<double, 6> constrainAngle180(Eigen::Vector<double, 6> q){
+    Eigen::Vector<double, 6> Helper::constrainAngle180(Eigen::Vector<double, 6> q){
         Eigen::Vector<double, 6> ret;
         for(int i=0; i< 6; i++){
             ret(i)=constrainAngle180(q(i));
@@ -272,7 +259,7 @@ class Helper{
 *   @see constrainAngle720(double x)
 * @param q vector of 6 angles
 */
-    Eigen::Vector<double, 6> constrainAngle720(Eigen::Vector<double, 6> q){
+    Eigen::Vector<double, 6> Helper::constrainAngle720(Eigen::Vector<double, 6> q){
         Eigen::Vector<double, 6> ret;
         for(int i=0; i< 6; i++){
             ret(i)=constrainAngle720(q(i));
@@ -286,7 +273,7 @@ class Helper{
 * @return wrapped angle difference vector
 */
 
-    Eigen::Vector<double, 6> dist_constrain(Eigen::Vector<double, 6> q){
+    Eigen::Vector<double, 6> Helper::dist_constrain(Eigen::Vector<double, 6> q){
         Eigen::Vector<double, 6> ret;
         for(int i=0; i< 6; i++){
             ret(i)=dist_constrain(q(i));
@@ -294,11 +281,7 @@ class Helper{
         return ret;
     }
 
-    void print_BlockList(my_vision_messages::BlockList& bl){
-        cout << bl;
-    }
-
-    Eigen::Vector<double, 6> decode_final_pos(string s){
+    Eigen::Vector<double, 6> Helper::decode_final_pos(string s){
         float cls = stof(s);
         cout << "\nclass:" << cls;
         Eigen::Vector3d pos;
@@ -349,16 +332,18 @@ class Helper{
     }
 
     
-    Eigen::Vector3d get_extra_correction(string s){
+    Eigen::Vector3d Helper::get_extra_correction(string s){
         float cls = stof(s);
         //cout << "\nclass:" << cls;
         Eigen::Vector3d extra;
         extra << 0,0,0;
+        int i=0;
         switch((int)cls){
             case 1:
                 extra(0)=-0.008;
                 break;
             case 9:
+
             case 10:
                 extra(0)=0.008;
                 break;
@@ -366,10 +351,11 @@ class Helper{
                 break;
         }
 
+
         return extra;
     }
 
-    float get_extra_h(string s){
+    float Helper::get_extra_h(string s){
         float cls = stof(s);
         //cout << "\nclass:" << cls;
         float extra=0;
@@ -385,48 +371,5 @@ class Helper{
         return extra;
     }
 
-
-};
-
-ostream& operator<<(ostream& os, const my_vision_messages::Pointxyz& p){
-        os << "x: " << p.x << "\ty: " << p.y << "\tz: " << p.z;
-        return os;
-}
-
-ostream& operator<<(ostream& os, const my_vision_messages::BlockList& bl){
-    if(bl.blocks.size()<1){
-        os<< "BlockList vuota";
-        return os;
-    }
-    for(int i= 0; i< bl.blocks.size(); i++){
-        os << "class number: " << bl.blocks[i].class_number << "\n";
-        os << "point camera: " << bl.blocks[i].point << "\n";
-        os << "rotation angle: " << bl.blocks[i].rot_angle << "\n";
-        for(int j=0; j< bl.blocks[i].top_btm_l_r.size(); j++){
-            os << "\t" << bl.blocks[i].top_btm_l_r[j] << "\n";
-        }
-            os << "up_dw_stand_lean: " << bl.blocks[i].up_dw_stand_lean << "\n";
-            os << "confidance: " << bl.blocks[i].confidence << "\n";
-            os << "world frame point: " << bl.blocks[i].world_point << "\n";
-    }
-    return os;
-}
-
-bool operator==( const my_vision_messages::BlockList& bl1, const my_vision_messages::BlockList& bl2 ){
-    if(bl1.blocks.size()!=bl2.blocks.size() || bl1.blocks.size()==0 || bl2.blocks.size()==0)
-        return false;
-    for(int i=0; i< bl1.blocks.size(); i++){
-        if(bl1.blocks[i].class_number == bl2.blocks[i].class_number
-        && bl1.blocks[i].world_point.x - bl2.blocks[i].world_point.x < BL_DIFF_RANGE
-        && bl1.blocks[i].world_point.y - bl2.blocks[i].world_point.y < BL_DIFF_RANGE
-        && bl1.blocks[i].world_point.z - bl2.blocks[i].world_point.z < BL_DIFF_RANGE
-        && bl1.blocks[i].confidence - bl2.blocks[i].confidence < BL_DIFF_CONFIDANCE)
-        //ok
-            int a=0;
-        else return false;
-    }
-    return true;
-    
-}
 
 #endif
