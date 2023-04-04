@@ -139,7 +139,12 @@ class Robot{
 * @param verbose verbose option
 */
         float move_to(Eigen::Vector < double, 6 > pr_f, int steps = 3000, float k_coeff=0.01, bool verbose=false);
-
+    
+/*! @brief converts joint state message to Eigen vector of 6 joints
+* 
+* @param  j_tmp Joint state message from ros
+* @return Eigen vector of angles for each of the 6 joints
+*/
         Eigen::Vector < double, 6 > j_to_q(sensor_msgs::JointState j_tmp);
         void test();
         void set_msg(string s);
