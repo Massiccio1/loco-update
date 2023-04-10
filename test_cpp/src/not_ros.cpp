@@ -1,7 +1,11 @@
 #include "Helper.h"
 
+using namespace std;
+
 int main(){
     Helper h;
-    double x = h.get_extra_h("20");
-    return x;
+    float i = 4.4;
+    float o = h.dist_constrain(i);
+    cout << "pre dist: " << i << "\t after: " << o << endl;
+    return 0;
 }

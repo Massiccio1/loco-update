@@ -388,7 +388,7 @@ using namespace std;
 * @return standard vector of joint positions
 */
 
-    std::vector<Eigen::Vector < double, 6 >> Kin::p2p(Eigen::Vector < double, 6 > pr_i, Eigen::Vector < double, 6 > pr_f, int steps, double minT){
+    std::vector<Eigen::Vector < double, 6 >> Kin::p2p(Eigen::Vector < double, 6 > pr_i, Eigen::Vector < double, 6 > pr_f, Eigen::Vector < double, 6 > real_q, int steps, double minT){
         
         Eigen::Vector < double, 6 > q_i = compute_ik(pr_i)[Kin::ik_index];
         Eigen::Vector < double, 6 > q_f = compute_ik(pr_f)[Kin::ik_index];
@@ -401,15 +401,19 @@ using namespace std;
         Eigen::Vector < double, 6 > q_f_w;
         Eigen::Vector < double, 6 > offset;
         Eigen::Vector < double, 6 > zero = Eigen::Vector < double, 6 >::Zero() ; //array di 0 per l'inizio
-
+        Eigen::Vector < double, 6 > offset_from_real = real_q-q_i;
         Helper help;
 
         offset = help.constrainAngle(q_f) - help.constrainAngle(q_i);//offset f-i
         offset = help.dist_constrain(offset);//wrapping per angoli > 180
 
-        //cout << "\n\t(kin p2p) da joints: " << q_i << endl;
-        //cout << "\n\t(kin p2p) a  joints wrapped: " << q_f << endl;
-        //cout << "\n\t(kin p2p) offset: " << offset << endl;
+        cout << "\n\t(kin p2p) da joints: " << q_i << endl;
+        cout << "\n\t(kin p2p) a  joints: " << q_f << endl;
+        cout << "\n\t(kin p2p) offset base : " << help.constrainAngle(q_f) - help.constrainAngle(q_i) << endl;
+        //cout << "\n\t(kin p2p) offset dist : " << offset << endl;
+        cout << "\n\t(kin p2p) offset + qi : " << offset + q_i<< endl;
+        cout << "\n\t(kin p2p) offset from real : " << offset_from_real << endl;
+
 
         Eigen::Matrix4d M;
         std::vector<Eigen::Vector < double, 6 >> path;
@@ -472,7 +476,7 @@ using namespace std;
             //cout << "\n";
             //path.push_back(tmp);
             //path.push_back(help.constrainAngle180(tmp));
-            path.push_back(tmp + q_i); //iniziale + delta = finale
+            path.push_back(tmp + q_i + offset_from_real); //iniziale + delta = finale
             //cout << "\npushed: " << tmp;
         } 
         

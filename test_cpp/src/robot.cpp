@@ -263,7 +263,7 @@ using namespace std;
 
             //vector<Eigen::Vector < double, 6 >> path_theory = kin.fillpath(q,pr_f, steps);
             //vector<Eigen::Vector < double, 6 >> path = kin.da_a(path_theory,q,k,steps);
-            vector<Eigen::Vector < double, 6 >> path = kin.p2p(pr_i,pr_f,steps);
+            vector<Eigen::Vector < double, 6 >> path = kin.p2p(pr_i,pr_f,q,steps);
             /*
             cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n";
             path[0]=j_to_q(joint);
