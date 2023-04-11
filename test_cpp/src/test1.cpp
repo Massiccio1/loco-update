@@ -232,7 +232,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
     if(f==1)
         feed(robot);
 
-    double steps = 1500;
+    double steps = 5000;
     double sleep_time=0.5;
 
     double h_safe = 0.65;
@@ -321,7 +321,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
 
         robot.move_to_shoulder(pr_f,steps,f,false);
         //cin >> f;
-        robot.move_to(pr_f,steps,f,false);//vado al pezzo 
+        robot.move_to(pr_f,steps,f,true);//vado al pezzo 
         //robot.rotate(bl.blocks[i_block].rot_angle/360*M_PI);
         //cin >> f;
         sleep(sleep_time);
@@ -379,6 +379,8 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
     }
 
     cout << "\nfinito tutto\n";
+    cout << "\n------------------------------------------------------------\ninizio... waiting for vision\n" ;
+
     return 0;
 
 }

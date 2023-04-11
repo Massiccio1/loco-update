@@ -317,12 +317,12 @@ using namespace std;
                 float delta;
                 Eigen::Vector3d p_theo;
                 Eigen::Vector3d p_real;
-
+                Eigen::Vector < double, 6 > q_verbose;
                 //kin.compute_fc(pr_f);//finale teorica
             
                 p_theo << pr_f[0],pr_f[1],pr_f[2];//finale teorico
-                q = j_to_q(Robot::joint);//prendo la posizione reale
-                kin.compute_fc(q);//pos reale
+                q_verbose = j_to_q(Robot::joint);//prendo la posizione reale
+                kin.compute_fc(q_verbose);//pos reale
                 p_real= kin.get_ee_p();
 
                 delta = help.dist(p_theo,p_real);

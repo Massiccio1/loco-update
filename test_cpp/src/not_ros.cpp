@@ -10,15 +10,13 @@ using namespace std;
 
 int main(){
     Helper h;
-<<<<<<< HEAD
     Kin k;
-    for (float i=-50; i<50; i+=0.1){
+    for (float i=-5; i<5; i+=0.1){
         cout << "i: " << i << "\tsafe acos: " << k.safe_acos(i) << endl;
     }
-=======
-    float i = 4.4;
-    float o = h.dist_constrain(i);
-    cout << "pre dist: " << i << "\t after: " << o << endl;
->>>>>>> f9c8a124153bbf17f34aebb5657493be95dba06e
+    cout << "-----------------------------------";
+    for (float i=-5; i<5; i+=0.1){
+        cout << "i: " << i << "\tsafe asin: " << k.safe_asin(i) << endl;
+    }
     return 0;
 }

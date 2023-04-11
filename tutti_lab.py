@@ -4,7 +4,6 @@ import math
 import struct
 # for locks
 import threading
-import time
 
 import cv2
 import numpy as np
@@ -24,16 +23,10 @@ from my_vision_messages.msg import BlockList
 
 # esegue yolo detect.py su immagine specificata nel path e da in output immagini trovate e ritagliate
 def process_image(image):
-    #model = torch.hub.load("yolov5/", 'custom', path="yolov5/pesi yolo/GazebobestNoResizeGray.pt", source='local')
-
-    model = torch.hub.load("yolov5/", 'custom', path="yolov5/pesi yolo/Realbest.pt", source='local')
+    model = torch.hub.load("yolov5/", 'custom', path="yolov5/pesi yolo/GazebobestNoResizeGray.pt", source='local')
 
     # resize image for yolo detection (from 1280x720 to 640x360)
     image_resized = cv2.resize(image, (640, 360), interpolation=cv2.INTER_AREA)
-
-    cv2.imwrite("res.jpg", image_resized)
-    cv2.imwrite("img.jpg", image)
-
 
     model.conf = 0.6
     results = model(image_resized)
@@ -105,32 +98,22 @@ def process_image(image):
         conf = float(detected['confidence'])
 
         # check if bounding box is inside table, else discard label
-        #table_corners=[340//1.5,900//1.5,200//1.5,500//1.5]
-        table_corners=[340,900,200,500]
+        if x1 < 280 or x2 > 514 or y1 < 140 or y2 > 305:
+            continue  # not inside table
 
         # per template matching uso immagine 1280per 720 -> trasformo da 640 360
-        # nel lab da 960*540 a 640*360
-        x1 = 1.5 * x1
-        x2 = 1.5 * x2
-        y1 = 1.5 * y1
-        y2 = 1.5 * y2
-
-        if x1 < table_corners[0] or x2 > table_corners[1] or y1 < table_corners[2] or y2 > table_corners[3]:
-            print("saltato")
-            print(x1, x2, y1, y2)
-            continue  # not inside table
+        x1 = 3 * x1
+        x2 = 3 * x2
+        y1 = 3 * y1
+        y2 = 3 * y2
 
         # TODO occhio che potrebbe eseguire due volte cannied e experimental detect solo perche ci sono due
         # risultati vicini (magari anche della stessa classe)
 
         eps = 10
         crop_img = image[int(y1) - eps:int(y2) + eps, int(x1) - eps:int(x2) + eps]
-        if crop_img.shape[0]==0 or crop_img.shape[1]==0:
-            continue
-        cv2.imwrite('image.jpg', image)
-        cv2.imwrite('crop.jpg', crop_img)
-        # new part, read cropped image, find contours (draw rectangle) and draw center point
 
+        # new part, read cropped image, find contours (draw rectangle) and draw center point
         cannied_img = canny_img(crop_img, 3, str(int(cs)))
 
         global rect_angle
@@ -163,17 +146,9 @@ def process_image(image):
         for y in range(int(x1) + value_to_crop, int(x2) - value_to_crop + 1):
             for x in range(int(y1) + value_to_crop, int(y2) - value_to_crop + 1):
                 to_crop_depth.append([y, x])
-                #print(y,x)
-        """
-        for y in range(0,540):
-            for x in range(0,960):
-                to_crop_depth.append([y, x])
                 # print(y,x)
-        todo: valori depth negativi
-        """
 
-        #final_incl = pca(to_crop_depth)
-        final_incl=100
+        final_incl = pca(to_crop_depth)
 
         print("")
         print(final_incl)
@@ -187,20 +162,12 @@ def process_image(image):
 
         # print circle on image centre
         with_center_image = cv2.circle(image, (real_coord_x, real_coord_y), radius=1, color=(255, 255, 255),
-                                       thickness=2)
-        with_center_image = cv2.circle(with_center_image, (table_corners[0], table_corners[2]), radius=1, color=(255, 180, 120),
-                                       thickness=2)
-        with_center_image = cv2.circle(with_center_image, (table_corners[1], table_corners[3]), radius=1,
-                                       color=(255, 180, 120),
-                                       thickness=2)
+                                       thickness=5)
+
         # return to original image sizes (find real coordinates of found centre)
-
-        cv2.imwrite("final.jpg", with_center_image)
-
 
         print("-----------------------------------")
         point = Pointxyz(real_coord_x, real_coord_y, center_depth[0][2])
-        print(f"x:{real_coord_x},\ty:{real_coord_y}, \tdepth denter: {center_depth[0][2]}")
 
         w_R_c = np.matrix([[0., - 0.49948, 0.86632], [-1., 0., 0.], [-0., - 0.86632, - 0.49948]])
         w_c = np.array([-0.9, 0.24, -0.35])
@@ -239,7 +206,7 @@ def process_image(image):
         block_list_depths.sort(reverse=True)
         new_block_index = [i[0] for i in enumerate(block_list_depths) if i[1] == center_depth[0][0]]
 
-        #block_list.blocks.insert(new_block_index[0], block)
+        block_list.blocks.insert(new_block_index[0], block)
 
     # when finished publish result but before sort BlockList by depth
     global res_pub
@@ -247,7 +214,6 @@ def process_image(image):
     res_pub.publish(block_list.blocks)
 
     print("finito")
-    exit(0)
 
 
 # crea bounding box rettangolare NON ruotata attorno a contorno del blocco (usa canny per trovare edges) e trova
@@ -255,16 +221,11 @@ def process_image(image):
 # tutto in edge.jpg
 def canny_img(img, aperture_size, name):
     # img = cv2.imread("untitled2.jpg", cv2.IMREAD_GRAYSCALE)
-
-    print(img.shape)
-    cv2.imwrite('pre-canny.jpg', img)
-    print("\nfatto")
-    #time.sleep(1000)
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     cannied_img = cv2.Canny(img_gray, 50, 150, apertureSize=aperture_size, L2gradient=True)
 
-    cv2.imwrite('post-canny.jpg', cannied_img)
+    # cv2.imwrite(f'aa.jpg', cannied_img)
 
     return cannied_img
 
@@ -308,7 +269,7 @@ def min_area_rect(img, name):
     # print(box)
 
     cv2.drawContours(img, [box], 0, (255, 255, 255), 2)
-    cv2.imwrite(f'{name}_minRect.jpg', img)
+    # cv2.imwrite(f'{name}_minRect.jpg', img)
 
     # print(min_area_rectangle)
 
@@ -323,7 +284,7 @@ def min_area_rect(img, name):
     else:
         min_area_rect_angle = min_area_rect_angle + 180
 
-    print(name, " : ", min_area_rect_angle, min_area_rect_width, min_area_rect_height)
+    # print(name, " : ", min_area_rect_angle, min_area_rect_width, min_area_rect_height)
 
     return min_area_rectangle[0], min_area_rectangle[1], min_area_rect_angle
 
@@ -352,7 +313,6 @@ def experimental_detect(original_img, img_centre, name, no_blur=False, redone_ca
             param2=15 if redone_canny is False else 10,   # the less it is the more false positives circles
             minRadius=0,
             maxRadius=max_rad_circle,
-
         )
 
         circles = np.uint16(np.around(circles))
@@ -372,10 +332,9 @@ def experimental_detect(original_img, img_centre, name, no_blur=False, redone_ca
 
         # display that image
         # cv2.imshow('GFG', cimg)
-        import random
 
-        #cv2.imwrite(f'{random.randint(1,500)}bb.jpg', cimg)
-        cv2.imwrite(f'bb.jpg', cimg)
+        # cv2.imwrite(f'bb.jpg', cimg)
+
     except Exception as e:
         if redone_canny:
             # significa che anche con gli improvements non riconosce i cerchi, quindi è probabile
@@ -506,11 +465,6 @@ def pca(to_crop):
     global raw_depth
     import pcl
 
-    #print(f"len pca: {len(to_crop)}")
-    #print("to crop")
-    #print(to_crop)
-
-    #cv2.imwrite('to_crop.jpg', to_crop)
     points_list = []
 
     min_pca = 2
@@ -524,7 +478,6 @@ def pca(to_crop):
                 min_pca = data[2]
             if data[2] > max_pca:
                 max_pca = data[2]
-
 
             if prev == 0:
                 prev = data[2]
@@ -541,12 +494,10 @@ def pca(to_crop):
     #     if point[2] >= max - (max - min) * 0.2:
     #         points_list.remove(point)
     #
-    print(len(points_list))
-    if len(points_list) <=1:
-        return "boh"
+    # print(len(points_list))
 
-    print("MIN MAX")
-    print(min_pca, max_pca)
+    # print("MIN MAX")
+    # print(min, max)
     pcl_data = pcl.PointCloud_PointXYZRGB()
     pcl_data.from_list(points_list)
 
@@ -554,16 +505,11 @@ def pca(to_crop):
 
     # Perform PCA
     pca_conv = PCA(n_components=2)
-
-    try:
-        pca_conv.fit(pcl_data)
-    except:
-        print(to_crop)
-        print(points_list)
+    pca_conv.fit(pcl_data)
 
     # Print the explained variance ratio for each principal component
-    #print(pca_conv.explained_variance_ratio_)
-    #print(pca_conv.components_)
+    print(pca_conv.explained_variance_ratio_)
+    print(pca_conv.components_)
 
     # get index of most important feature for main component
     max_val = -1
@@ -603,7 +549,7 @@ def pca(to_crop):
         else:
             # print("up_or_own")
             incl = "up_or_down"
-    print(f"inclinazione: {incl}")
+
     return incl
 
     # first_comp_max = max(pca.components_[0])
@@ -624,21 +570,15 @@ depth_lock = threading.Lock()
 def from_raw_to_jpg_compliant():
     global raw_image
 
-    #cv2.imwrite("raw.jpg", raw_image)
-
-
     tot_data = len(raw_image.data)
     i = 0
 
-    x=960
-    y=540
-
     image_arr = []
-    while i < tot_data / (x * 4 ):
+    while i < tot_data / (1920 * 3):
         riga = []
         j = 0
-        while j < tot_data / (y * 4):
-            riga.append(struct.unpack_from('3B', raw_image.data, int(j * 4 + i * tot_data / y )))
+        while j < tot_data / (1080 * 3):
+            riga.append(struct.unpack_from('3B', raw_image.data, int(j * 3 + i * tot_data / 1080)))
             j += 1
 
         image_arr.append(riga)
@@ -647,7 +587,6 @@ def from_raw_to_jpg_compliant():
 
     arr = np.asarray(image_arr, dtype='uint8')
 
-    cv2.imwrite("raw.jpg", arr)
     # img = pilimage.fromarray(arr)
 
     # img.save('nt.png')
@@ -713,8 +652,7 @@ def listener():
     rospy.init_node('vision_node', anonymous=True)
 
     # registering to image raw (left)
-    #rospy.Subscriber("/ur5/zed_node/left/image_rect_color", Image, callback=receive_image, queue_size=1)
-    rospy.Subscriber("/ur5/zed_node/left_raw/image_raw_color", Image, callback=receive_image, queue_size=1)
+    rospy.Subscriber("/ur5/zed_node/left/image_rect_color", Image, callback=receive_image, queue_size=1)
 
     # registering to depth raw
     rospy.Subscriber("/ur5/zed_node/point_cloud/cloud_registered", PointCloud2,
