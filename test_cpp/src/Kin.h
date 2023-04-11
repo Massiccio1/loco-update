@@ -128,7 +128,7 @@ class Kin {
 * @return standard vector of joint positions
 */
 
-    std::vector<Eigen::Vector < double, 6 >> p2p(Eigen::Vector < double, 6 > pr_i, Eigen::Vector < double, 6 > pr_f, int steps = 3000, double minT = 0);
+    std::vector<Eigen::Vector < double, 6 >> p2p(Eigen::Vector < double, 6 > pr_i, Eigen::Vector < double, 6 > pr_f, Eigen::Vector < double, 6 > real_q, int steps = 3000, double minT = 0);
 /*! @brief computes inverse kinematics
 *
 * @see safe_acos() \n 
