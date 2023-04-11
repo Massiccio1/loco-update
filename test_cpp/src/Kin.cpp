@@ -377,10 +377,11 @@ using namespace std;
 * uses path and trajectory cubical interpolation in the joint space \n 
 * extract the joint position with compute_ik(Eigen::Vector < double, 6 > ) \n 
 * and interpolates with a cubical, and calculates the joint position of each step \n 
-* coses the shortest path on rotations and constrains the final angle with \n 
+* choses the shortest path on rotations and constrains the final angle with \n 
 * constrainAngle180(Eigen::Vector<double, 6>). \n 
 * returns a standard vector of joint positions \n \n 
 * @see Helper::constrainAngle180(Eigen::Vector<double, 6>) \n 
+* @see compute_ik(Eigen::Vector < double, 6 > )
 * @fn p2p()
 * @param pr_i initial position and rotation of the end effector
 * @param pr_f final position and rotation of the end effector
@@ -462,7 +463,7 @@ using namespace std;
             double dt=((double)i)/1000;
 
             for(int j=0;j<6;j++){
-                double q = A[j](0) + A[j](1)*dt + A[j](2)*dt*dt + A[j](3)*dt*dt*dt;
+                double q = A[j](0) + A[j](1)*dt + A[j](2)*dt*dt + A[j](3)*dt*dt*dt;//interpolazione con polinomio di terzo grado completo
                 tmp(j)=q;
                 //cout << "i: " << i << "  j: " << j << std::endl;
                 //std::cout << "A[j](1)*dt:" << A[j](1)*dt << std::endl;
@@ -475,7 +476,6 @@ using namespace std;
             path.push_back(tmp + q_i); //iniziale + delta = finale
             //cout << "\npushed: " << tmp;
         } 
-        
 
         return path;
 
@@ -484,8 +484,8 @@ using namespace std;
 
 /*! @brief computes inverse kinematics
 *
+* @fn compute_ik()
 * @see safe_acos() \n 
-*
 * @param pr_f position and rotation of the end effector
 * @return standard vector of joints positions
 */
@@ -900,8 +900,9 @@ using namespace std;
     }
 /*! @brief safe real acos for c++ \n
 *
-* returns real value for acos, even with inputs outside of [-1,1]
-*
+* custom real c++ function around math.acos(), accepts double values \n
+* in any range, if inside [-1,1] is a normal acos, <-1 returns pi \n
+* >=1 returns 0
 * @see safe_asin()
 *
 * @param value cos value
@@ -919,18 +920,22 @@ using namespace std;
     }
 /*! @brief safe real asin for c++
 *
-* returns real value for asin, even with inputs outside of [-1,1]
+* custom real c++ function around math.asin(), accepts double values \n
+* in any range, if inside [-1,1] is a normal asin, <-1 returns -pi/2 \n
+* >=1 returns pi/2
 *
 * @see safe_acos()
 *
 * @param value cos value
 * @return real value for asin, even with inputs outside of [-1,1]
 */
-    double Kin::safe_asin(const double& value) {
+    double Kin::safe_asin(const double value) {
         if (value<=-1) {
-            return M_PI/2;
-        } else if (value>=1) {
+            //cout << "val <=-1" << value << "\n";
             return -M_PI/2;
+        } else if (value>=1) {
+            //cout << "val <=-1" << value << "\n";
+            return M_PI/2;
         } else {
             return asin(value);
         }

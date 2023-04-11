@@ -15,9 +15,9 @@
 
 using namespace std;
 
-/**
-@file helper.cpp
-@brief helper function for different applications
+/*!
+*@file helper.cpp
+*@brief helper function for different applications
 */
 
 /*! @brief helper function for different applications

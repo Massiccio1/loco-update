@@ -34,9 +34,9 @@ void robot_msg_callback(const std_msgs::String::ConstPtr& message);
 
 void js_callback(const sensor_msgs::JointState& joint);
 
-/**
-@file robot.cpp
-@brief robot class for ur5 manipulator
+/*!
+*@file robot.h
+*@brief robot class for ur5 manipulator
 */
 
 /*! @brief robot class for ur5 manipulator

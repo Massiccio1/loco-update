@@ -18,9 +18,9 @@ using namespace std;
   #define MODEL_PATH "~/ros_ws/src/robo/ros/robot_urdf/generated_urdf/ur5.urdf"
 #endif
 
-/**
-@file kin.cpp
-@brief kinematics class for the ur5 robot
+/*!
+*@file Kin.h
+*@brief kinematics class for the ur5 robot
 */
 
 /*! @brief kinematics class for the ur5 robot
@@ -214,7 +214,7 @@ class Kin {
 * @param value cos value
 * @return real value for asin, even with inputs outside of [-1,1]
 */
-    double safe_asin(const double& value);
+    double safe_asin(const double value);
     Eigen::MatrixXd geo2anJ(Eigen::MatrixXd J, Eigen::MatrixXd T0e_);
     void removeRow(Eigen::MatrixXd& matrix, unsigned int rowToRemove);
     int wrap(Eigen::Vector3d& v);

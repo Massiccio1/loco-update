@@ -13,6 +13,7 @@
 //#include "msg/BlockList.h"
 #include <sensor_msgs/JointState.h>
 #include "Eigen/Eigen/Dense"
+//#include "eigen3/Eigen/Dense"
 //#include <eigen3/Eigen/Eigen>
 #include <sstream>
 //#include "Helper.cpp"
