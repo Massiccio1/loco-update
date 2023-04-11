@@ -1,6 +1,7 @@
 var class_robot =
 [
     [ "Robot", "class_robot.html#a6a45d344675adaa14bd69ec78846ab55", null ],
+    [ "j_to_q", "class_robot.html#aad276a136acf286c4edadace34dcb099", null ],
     [ "move_to", "class_robot.html#a84ae13c01a86fa3b3c020de0ee59cbca", null ],
     [ "move_to_shoulder", "class_robot.html#a83e0c6af9460cd6aa16d4ff7e86a526b", null ],
     [ "print_f64j", "class_robot.html#afde6b6f9a6f357bb66930023e5b4c7f5", null ],

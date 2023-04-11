@@ -5,6 +5,5 @@
 <area shape="rect" id="node4" href="$class_kin.html#af75d397faf214d72adda456a1bb9084f" title="returns the position of the end effector" alt="" coords="187,107,297,133"/>
 <area shape="rect" id="node5" href="$class_kin.html#a992d4e39f8ff9556682a02c370dad160" title="returns current position and euler rotation for the loaded" alt="" coords="179,157,305,184"/>
 <area shape="rect" id="node6" href="$class_kin.html#aa74db6fac5aff0dd04e18d93ce7a8777" title="creates a joint path between 2 points in space" alt="" coords="205,208,279,235"/>
-<area shape="rect" id="node7" href="$class_helper.html#aa96fe6e318ec1f65fb03ec39c4d537a8" title="constrains angle to [&#45;180,180]" alt="" coords="353,183,548,209"/>
-<area shape="rect" id="node8" href="$class_helper.html#acf4f94818785ede725e4568f045f72ac" title="constrains angle to [&#45;360,360]" alt="" coords="353,233,548,260"/>
+<area shape="rect" id="node7" href="$class_helper.html#a8100ab8c6cf62d5d92704a2acb9efbe6" title="constrains angle to [0,360[" alt="" coords="353,208,524,235"/>
 </map>

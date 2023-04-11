@@ -221,6 +221,9 @@ add_custom_target(
 
 add_dependencies(${PROJECT_NAME}_node myCustomTarget)
 
+link_directories(${Eigen_INCLUDE_DIRS})
+
+
 target_link_libraries(
   ${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
@@ -229,6 +232,8 @@ target_link_libraries(
   ${CMAKE_CURRENT_SOURCE_DIR}/include/Kin.o
   ${CMAKE_CURRENT_SOURCE_DIR}/include/robot.o
   #${CMAKE_CURRENT_SOURCE_DIR}/include/obj.o
+  Eigen3::Eigen
+  ${Eigen_LIBRARIES}
 )
 
 

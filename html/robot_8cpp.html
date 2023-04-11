@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>test cpp robo: robot.cpp File Reference</title>
+<title>test cpp robo: test_cpp/src/robot.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,7 +82,6 @@ $(document).ready(function(){initNavTree('robot_8cpp.html',''); initResizable();
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">robot.cpp File Reference</div>  </div>
@@ -91,63 +90,47 @@ $(document).ready(function(){initNavTree('robot_8cpp.html',''); initResizable();
 
 <p>robot class for ur5 manipulator  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;ros/ros.h&quot;</code><br />
-<code>#include &quot;std_msgs/String.h&quot;</code><br />
-<code>#include &quot;std_msgs/Float64.h&quot;</code><br />
-<code>#include &lt;sensor_msgs/JointState.h&gt;</code><br />
-<code>#include &lt;std_msgs/Float64MultiArray.h&gt;</code><br />
-<code>#include &quot;Eigen/Eigen/Dense&quot;</code><br />
-<code>#include &lt;sstream&gt;</code><br />
-<code>#include &lt;iostream&gt;</code><br />
-<code>#include &lt;string&gt;</code><br />
-<code>#include &lt;thread&gt;</code><br />
-<code>#include &quot;<a class="el" href="_helper_8cpp.html">Helper.cpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_kin_8cpp.html">Kin.cpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;robot.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for robot.cpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="robot_8cpp__incl.png" border="0" usemap="#robot_8cpp" alt=""/></div>
-<map name="robot_8cpp" id="robot_8cpp">
-<area shape="rect" title="robot class for ur5 manipulator" alt="" coords="867,5,949,32"/>
-<area shape="rect" title=" " alt="" coords="251,80,330,107"/>
-<area shape="rect" title=" " alt="" coords="5,237,144,263"/>
-<area shape="rect" title=" " alt="" coords="405,80,555,107"/>
-<area shape="rect" title=" " alt="" coords="168,237,355,263"/>
-<area shape="rect" title=" " alt="" coords="630,80,845,107"/>
-<area shape="rect" title=" " alt="" coords="1495,237,1638,263"/>
-<area shape="rect" title=" " alt="" coords="379,237,453,263"/>
-<area shape="rect" title=" " alt="" coords="1749,237,1829,263"/>
-<area shape="rect" title=" " alt="" coords="477,237,536,263"/>
-<area shape="rect" title=" " alt="" coords="1139,80,1203,107"/>
-<area shape="rect" href="_helper_8cpp.html" title="helper function for different applications" alt="" coords="971,155,1063,181"/>
-<area shape="rect" href="_kin_8cpp.html" title="kinematics class for the ur5 robot" alt="" coords="1490,80,1561,107"/>
-<area shape="rect" title=" " alt="" coords="933,237,1008,263"/>
-<area shape="rect" title=" " alt="" coords="1032,237,1099,263"/>
-<area shape="rect" title=" " alt="" coords="1123,237,1186,263"/>
-<area shape="rect" title=" " alt="" coords="1398,237,1471,263"/>
-<area shape="rect" title=" " alt="" coords="1662,237,1725,263"/>
-<area shape="rect" title=" " alt="" coords="1211,229,1373,271"/>
-<area shape="rect" title=" " alt="" coords="560,229,723,271"/>
-<area shape="rect" title=" " alt="" coords="747,229,909,271"/>
-<area shape="rect" title=" " alt="" coords="1665,155,1727,181"/>
+<div class="center"><img src="robot_8cpp__incl.png" border="0" usemap="#test__cpp_2src_2robot_8cpp" alt=""/></div>
+<map name="test__cpp_2src_2robot_8cpp" id="test__cpp_2src_2robot_8cpp">
+<area shape="rect" title="robot class for ur5 manipulator" alt="" coords="1131,5,1297,32"/>
+<area shape="rect" href="robot_8h_source.html" title=" " alt="" coords="1180,80,1248,107"/>
+<area shape="rect" title=" " alt="" coords="5,162,84,189"/>
+<area shape="rect" title=" " alt="" coords="109,162,247,189"/>
+<area shape="rect" title=" " alt="" coords="271,162,421,189"/>
+<area shape="rect" title=" " alt="" coords="445,162,631,189"/>
+<area shape="rect" title=" " alt="" coords="656,162,871,189"/>
+<area shape="rect" title=" " alt="" coords="1151,319,1293,345"/>
+<area shape="rect" title=" " alt="" coords="946,155,1109,196"/>
+<area shape="rect" title=" " alt="" coords="1133,155,1295,196"/>
+<area shape="rect" title=" " alt="" coords="1319,155,1482,196"/>
+<area shape="rect" title=" " alt="" coords="1318,319,1393,345"/>
+<area shape="rect" title=" " alt="" coords="1777,319,1857,345"/>
+<area shape="rect" title=" " alt="" coords="1417,319,1475,345"/>
+<area shape="rect" title=" " alt="" coords="1658,162,1722,189"/>
+<area shape="rect" href="_helper_8h.html" title="helper.h function for different applications" alt="" coords="1607,244,1685,271"/>
+<area shape="rect" href="_kin_8h_source.html" title=" " alt="" coords="1797,162,1852,189"/>
+<area shape="rect" title=" " alt="" coords="1587,319,1662,345"/>
+<area shape="rect" title=" " alt="" coords="1686,319,1753,345"/>
+<area shape="rect" title=" " alt="" coords="1500,319,1563,345"/>
+<area shape="rect" title=" " alt="" coords="1881,319,1955,345"/>
+<area shape="rect" title=" " alt="" coords="1979,319,2041,345"/>
+<area shape="rect" title=" " alt="" coords="1956,244,2019,271"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="robot_8cpp__dep__incl.png" border="0" usemap="#robot_8cppdep" alt=""/></div>
-<map name="robot_8cppdep" id="robot_8cppdep">
-<area shape="rect" title="robot class for ur5 manipulator" alt="" coords="5,5,88,32"/>
-<area shape="rect" href="main_8cpp.html" title="main function for robot procedures" alt="" coords="5,80,88,107"/>
+<div class="center"><img src="robot_8cpp__dep__incl.png" border="0" usemap="#test__cpp_2src_2robot_8cppdep" alt=""/></div>
+<map name="test__cpp_2src_2robot_8cppdep" id="test__cpp_2src_2robot_8cppdep">
+<area shape="rect" title="robot class for ur5 manipulator" alt="" coords="5,5,171,32"/>
+<area shape="rect" href="main_8cpp.html" title="main function for robot procedures" alt="" coords="6,80,170,107"/>
 </map>
 </div>
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot.html">Robot</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">robot class for ur5 manipulator  <a href="class_robot.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ab1be1cea6e2c9af0a79e9a647f06b2a6"><td class="memItemLeft" align="right" valign="top"><a id="ab1be1cea6e2c9af0a79e9a647f06b2a6"></a>
@@ -164,7 +147,7 @@ reorders the joints values and saves them <br /></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="robot_8cpp.html">robot.cpp</a></li>
+    <li class="navelem"><a class="el" href="dir_0772f668bc97c142eb1db79759e76e18.html">test_cpp</a></li><li class="navelem"><a class="el" href="dir_ff325799a3d3d76089743d050bcdfab3.html">src</a></li><li class="navelem"><a class="el" href="robot_8cpp.html">robot.cpp</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

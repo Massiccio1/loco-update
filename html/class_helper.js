@@ -1,5 +1,7 @@
 var class_helper =
 [
+    [ "constrainAngle", "class_helper.html#a8100ab8c6cf62d5d92704a2acb9efbe6", null ],
+    [ "constrainAngle", "class_helper.html#a4a91ede6c969d6c7536fd304dec747b2", null ],
     [ "constrainAngle180", "class_helper.html#aa96fe6e318ec1f65fb03ec39c4d537a8", null ],
     [ "constrainAngle180", "class_helper.html#aa620286dee1299db068e4832db950446", null ],
     [ "constrainAngle720", "class_helper.html#acf4f94818785ede725e4568f045f72ac", null ],

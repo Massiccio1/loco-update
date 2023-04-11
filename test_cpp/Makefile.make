@@ -11,7 +11,7 @@ test:
 $(FROM_PATH)/include/%.o:../src/%.cpp
 	echo $(FROM_PATH)
 	echo $@: $1 :totale
-	g++ -c $< -o $@
+	g++ -c $< -o $@ -std=c++17
 #$(FROM_PATH)/include/Kin.o: $(FROM_PATH)/src/Kin.cpp
 .%.o: %.cpp
 	cd $(FROM_PATH)
@@ -21,7 +21,7 @@ $(FROM_PATH)/include/%.o:../src/%.cpp
 	echo $@: $1 :punto
 	echo "g++ -c src/$*.cpp -o include/$@"
 	pwd
-	g++ -c $(FROM_PATH)/$*.cpp -o $(FROM_PATH)/../include/$*.o
+	g++ -c $(FROM_PATH)/$*.cpp -o $(FROM_PATH)/../include/$*.o -std=c++17
 	rm -f .$*.o
 	touch .$*.o
 .robot.o: robot.cpp

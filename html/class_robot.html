@@ -90,6 +90,8 @@ $(document).ready(function(){initNavTree('class_robot.html',''); initResizable()
 
 <p>robot class for ur5 manipulator  
  <a href="class_robot.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="robot_8h_source.html">robot.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -105,7 +107,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a6ad3f6176097555a395d1cdb08d41c66"><td class="mdescLeft">&#160;</td><td class="mdescRight">publishes a joint configuration  <a href="class_robot.html#a6ad3f6176097555a395d1cdb08d41c66">More...</a><br /></td></tr>
 <tr class="separator:a6ad3f6176097555a395d1cdb08d41c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afad827990c0d664a10983e4f51b46847"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot.html#afad827990c0d664a10983e4f51b46847">publish_grip</a> (double gripper=0)</td></tr>
-<tr class="memdesc:afad827990c0d664a10983e4f51b46847"><td class="mdescLeft">&#160;</td><td class="mdescRight">publishes grip joints for simulation only  <a href="class_robot.html#afad827990c0d664a10983e4f51b46847">More...</a><br /></td></tr>
+<tr class="memdesc:afad827990c0d664a10983e4f51b46847"><td class="mdescLeft">&#160;</td><td class="mdescRight">publishes grip joints in simulation <br  />
+and publishes on /gripper the opening value  <a href="class_robot.html#afad827990c0d664a10983e4f51b46847">More...</a><br /></td></tr>
 <tr class="separator:afad827990c0d664a10983e4f51b46847"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8367853bdf982f4ce74d38bd7b5208e1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot.html#a8367853bdf982f4ce74d38bd7b5208e1">rotate</a> (double ang=0)</td></tr>
 <tr class="memdesc:a8367853bdf982f4ce74d38bd7b5208e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">rotates the end effector  <a href="class_robot.html#a8367853bdf982f4ce74d38bd7b5208e1">More...</a><br /></td></tr>
@@ -122,10 +125,40 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 calculates the path from the current position and <br  />
  the final one, publishes the joints for the manipulator  <a href="class_robot.html#a84ae13c01a86fa3b3c020de0ee59cbca">More...</a><br /></td></tr>
 <tr class="separator:a84ae13c01a86fa3b3c020de0ee59cbca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad276a136acf286c4edadace34dcb099"><td class="memItemLeft" align="right" valign="top">Eigen::Vector&lt; double, 6 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot.html#aad276a136acf286c4edadace34dcb099">j_to_q</a> (sensor_msgs::JointState j_tmp)</td></tr>
+<tr class="memdesc:aad276a136acf286c4edadace34dcb099"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts joint state message to Eigen vector of 6 joints  <a href="class_robot.html#aad276a136acf286c4edadace34dcb099">More...</a><br /></td></tr>
+<tr class="separator:aad276a136acf286c4edadace34dcb099"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>robot class for ur5 manipulator </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aad276a136acf286c4edadace34dcb099"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad276a136acf286c4edadace34dcb099">&#9670;&nbsp;</a></span>j_to_q()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Vector&lt; double, 6 &gt; Robot::j_to_q </td>
+          <td>(</td>
+          <td class="paramtype">sensor_msgs::JointState&#160;</td>
+          <td class="paramname"><em>j_tmp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>converts joint state message to Eigen vector of 6 joints </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">j_tmp</td><td>Joint state message from ros </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Eigen vector of angles for each of the 6 joints </dd></dl>
+
+</div>
+</div>
 <a id="a84ae13c01a86fa3b3c020de0ee59cbca"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a84ae13c01a86fa3b3c020de0ee59cbca">&#9670;&nbsp;</a></span>move_to()</h2>
 
@@ -169,7 +202,7 @@ calculates the path from the current position and <br  />
  the final one, publishes the joints for the manipulator </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_kin.html#aa74db6fac5aff0dd04e18d93ce7a8777" title="creates a joint path between 2 points in space">Kin::p2p()</a> </dd>
 <dd>
-<a class="el" href="robot_8cpp.html#ab1be1cea6e2c9af0a79e9a647f06b2a6" title="callback for ur5/joint_states  detects the number of joints, saves the eventual gripper values,...">js_callback(const sensor_msgs::JointState&amp; j)</a> </dd></dl>
+<a class="el" href="robot_8h.html#ab1be1cea6e2c9af0a79e9a647f06b2a6" title="callback for ur5/joint_states  detects the number of joints, saves the eventual gripper values,...">js_callback(const sensor_msgs::JointState&amp; j)</a> </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pr_f</td><td>position and rotation of the final position </td></tr>
@@ -179,21 +212,6 @@ calculates the path from the current position and <br  />
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_robot_a84ae13c01a86fa3b3c020de0ee59cbca_cgraph.png" border="0" usemap="#class_robot_a84ae13c01a86fa3b3c020de0ee59cbca_cgraph" alt=""/></div>
-<map name="class_robot_a84ae13c01a86fa3b3c020de0ee59cbca_cgraph" id="class_robot_a84ae13c01a86fa3b3c020de0ee59cbca_cgraph">
-<area shape="rect" title="moves the robot to a given position &#160;calculates the path from the current position and &#160;&#160;the final on..." alt="" coords="5,107,131,133"/>
-<area shape="rect" href="class_kin.html#aec6ac8ffafd4f63335e21fa088d962e1" title="computes forward kinematic and loads the inner varables of the class for future uses" alt="" coords="179,5,305,32"/>
-<area shape="rect" href="class_helper.html#a89480516cc72b2ed60cb0596c24aa316" title="calculates the distance between 2 positions in space" alt="" coords="193,56,291,83"/>
-<area shape="rect" href="class_kin.html#af75d397faf214d72adda456a1bb9084f" title="returns the position of the end effector" alt="" coords="187,107,297,133"/>
-<area shape="rect" href="class_kin.html#a992d4e39f8ff9556682a02c370dad160" title="returns current position and euler rotation for the loaded" alt="" coords="179,157,305,184"/>
-<area shape="rect" href="class_kin.html#aa74db6fac5aff0dd04e18d93ce7a8777" title="creates a joint path between 2 points in space" alt="" coords="205,208,279,235"/>
-<area shape="rect" href="class_helper.html#aa96fe6e318ec1f65fb03ec39c4d537a8" title="constrains angle to [&#45;180,180]" alt="" coords="353,183,548,209"/>
-<area shape="rect" href="class_helper.html#acf4f94818785ede725e4568f045f72ac" title="constrains angle to [&#45;360,360]" alt="" coords="353,233,548,260"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -238,17 +256,6 @@ Here is the call graph for this function:</div>
 <p>moves only the shoulder joint for the robot <br  />
  used to reduce the chance of collision of the robot arm </p>
 <dl class="section see"><dt>See also</dt><dd>float <a class="el" href="class_robot.html#a84ae13c01a86fa3b3c020de0ee59cbca" title="moves the robot to a given position  calculates the path from the current position and   the final on...">move_to</a>(Eigen::Vector &lt; double, 6 &gt; pr_f, int steps = 3000, float k_coeff=0.01, int verbose=false) </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_robot_a83e0c6af9460cd6aa16d4ff7e86a526b_cgraph.png" border="0" usemap="#class_robot_a83e0c6af9460cd6aa16d4ff7e86a526b_cgraph" alt=""/></div>
-<map name="class_robot_a83e0c6af9460cd6aa16d4ff7e86a526b_cgraph" id="class_robot_a83e0c6af9460cd6aa16d4ff7e86a526b_cgraph">
-<area shape="rect" title="moves only the shoulder joint for the robot &#160;&#160;used to reduce the chance of collision of the robot arm" alt="" coords="5,56,193,83"/>
-<area shape="rect" href="class_kin.html#aec6ac8ffafd4f63335e21fa088d962e1" title="computes forward kinematic and loads the inner varables of the class for future uses" alt="" coords="241,5,368,32"/>
-<area shape="rect" href="class_kin.html#a77551fd793139d26aee773c2663d9ab3" title="computes inverse kinematics" alt="" coords="241,56,368,83"/>
-<area shape="rect" href="class_kin.html#a992d4e39f8ff9556682a02c370dad160" title="returns current position and euler rotation for the loaded" alt="" coords="241,107,368,133"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -338,10 +345,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>publishes grip joints for simulation only </p>
+<p>publishes grip joints in simulation <br  />
+and publishes on /gripper the opening value </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">gripper</td><td>gripper joint value </td></tr>
+    <tr><td class="paramname">gripper</td><td>gripper joint value/opening size </td></tr>
   </table>
   </dd>
 </dl>
@@ -375,7 +383,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="robot_8cpp.html">robot.cpp</a></li>
+<li>test_cpp/src/<a class="el" href="robot_8h_source.html">robot.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

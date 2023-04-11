@@ -90,6 +90,8 @@ $(document).ready(function(){initNavTree('class_kin.html',''); initResizable(); 
 
 <p>kinematics class for the ur5 robot  
  <a href="class_kin.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_kin_8h_source.html">Kin.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -181,16 +183,6 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if everything worked, does not return a position, that must be accessed with <a class="el" href="class_kin.html#a992d4e39f8ff9556682a02c370dad160" title="returns current position and euler rotation for the loaded">get_pr_now()</a> </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_kin_aec6ac8ffafd4f63335e21fa088d962e1_icgraph.png" border="0" usemap="#class_kin_aec6ac8ffafd4f63335e21fa088d962e1_icgraph" alt=""/></div>
-<map name="class_kin_aec6ac8ffafd4f63335e21fa088d962e1_icgraph" id="class_kin_aec6ac8ffafd4f63335e21fa088d962e1_icgraph">
-<area shape="rect" title="computes forward kinematic and loads the inner varables of the class for future uses" alt="" coords="241,31,368,57"/>
-<area shape="rect" href="class_robot.html#a84ae13c01a86fa3b3c020de0ee59cbca" title="moves the robot to a given position &#160;calculates the path from the current position and &#160;&#160;the final on..." alt="" coords="37,5,162,32"/>
-<area shape="rect" href="class_robot.html#a83e0c6af9460cd6aa16d4ff7e86a526b" title="moves only the shoulder joint for the robot &#160;&#160;used to reduce the chance of collision of the robot arm" alt="" coords="5,56,193,83"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -220,15 +212,6 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>standard vector of joints positions </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_kin_a77551fd793139d26aee773c2663d9ab3_icgraph.png" border="0" usemap="#class_kin_a77551fd793139d26aee773c2663d9ab3_icgraph" alt=""/></div>
-<map name="class_kin_a77551fd793139d26aee773c2663d9ab3_icgraph" id="class_kin_a77551fd793139d26aee773c2663d9ab3_icgraph">
-<area shape="rect" title="computes inverse kinematics" alt="" coords="241,5,368,32"/>
-<area shape="rect" href="class_robot.html#a83e0c6af9460cd6aa16d4ff7e86a526b" title="moves only the shoulder joint for the robot &#160;&#160;used to reduce the chance of collision of the robot arm" alt="" coords="5,5,193,32"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -355,16 +338,6 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>index of the inverse kinematics configuration </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_kin_ab585d8cc2566972b027d8ad98461c464_cgraph.png" border="0" usemap="#class_kin_ab585d8cc2566972b027d8ad98461c464_cgraph" alt=""/></div>
-<map name="class_kin_ab585d8cc2566972b027d8ad98461c464_cgraph" id="class_kin_ab585d8cc2566972b027d8ad98461c464_cgraph">
-<area shape="rect" title="evaluates the pose of a given joint configuration" alt="" coords="5,31,147,57"/>
-<area shape="rect" href="class_helper.html#aa96fe6e318ec1f65fb03ec39c4d537a8" title="constrains angle to [&#45;180,180]" alt="" coords="195,5,389,32"/>
-<area shape="rect" href="class_helper.html#aa9318ee5d55c5da8518055f447234b4b" title="wrapps differences in angles" alt="" coords="210,56,374,83"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -385,15 +358,6 @@ Here is the call graph for this function:</div>
 
 <p>returns the position of the end effector </p>
 <dl class="section return"><dt>Returns</dt><dd>Eigen::Vector3d position in x,y,z </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_kin_af75d397faf214d72adda456a1bb9084f_icgraph.png" border="0" usemap="#class_kin_af75d397faf214d72adda456a1bb9084f_icgraph" alt=""/></div>
-<map name="class_kin_af75d397faf214d72adda456a1bb9084f_icgraph" id="class_kin_af75d397faf214d72adda456a1bb9084f_icgraph">
-<area shape="rect" title="returns the position of the end effector" alt="" coords="179,5,289,32"/>
-<area shape="rect" href="class_robot.html#a84ae13c01a86fa3b3c020de0ee59cbca" title="moves the robot to a given position &#160;calculates the path from the current position and &#160;&#160;the final on..." alt="" coords="5,5,131,32"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -416,16 +380,6 @@ Here is the caller graph for this function:</div>
 </p>
 <p>must be used after <a class="el" href="class_kin.html#aec6ac8ffafd4f63335e21fa088d962e1">compute_fc(Eigen::Vector &lt; double, 6 &gt; , bool)</a></p>
 <dl class="section return"><dt>Returns</dt><dd>Eigen::Vector &lt; double, 6 &gt; pr </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_kin_a992d4e39f8ff9556682a02c370dad160_icgraph.png" border="0" usemap="#class_kin_a992d4e39f8ff9556682a02c370dad160_icgraph" alt=""/></div>
-<map name="class_kin_a992d4e39f8ff9556682a02c370dad160_icgraph" id="class_kin_a992d4e39f8ff9556682a02c370dad160_icgraph">
-<area shape="rect" title="returns current position and euler rotation for the loaded" alt="" coords="241,31,368,57"/>
-<area shape="rect" href="class_robot.html#a84ae13c01a86fa3b3c020de0ee59cbca" title="moves the robot to a given position &#160;calculates the path from the current position and &#160;&#160;the final on..." alt="" coords="37,5,162,32"/>
-<area shape="rect" href="class_robot.html#a83e0c6af9460cd6aa16d4ff7e86a526b" title="moves only the shoulder joint for the robot &#160;&#160;used to reduce the chance of collision of the robot arm" alt="" coords="5,56,193,83"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -507,25 +461,6 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>standard vector of joint positions </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_kin_aa74db6fac5aff0dd04e18d93ce7a8777_cgraph.png" border="0" usemap="#class_kin_aa74db6fac5aff0dd04e18d93ce7a8777_cgraph" alt=""/></div>
-<map name="class_kin_aa74db6fac5aff0dd04e18d93ce7a8777_cgraph" id="class_kin_aa74db6fac5aff0dd04e18d93ce7a8777_cgraph">
-<area shape="rect" title="creates a joint path between 2 points in space" alt="" coords="5,31,80,57"/>
-<area shape="rect" href="class_helper.html#aa96fe6e318ec1f65fb03ec39c4d537a8" title="constrains angle to [&#45;180,180]" alt="" coords="128,5,323,32"/>
-<area shape="rect" href="class_helper.html#acf4f94818785ede725e4568f045f72ac" title="constrains angle to [&#45;360,360]" alt="" coords="128,56,323,83"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_kin_aa74db6fac5aff0dd04e18d93ce7a8777_icgraph.png" border="0" usemap="#class_kin_aa74db6fac5aff0dd04e18d93ce7a8777_icgraph" alt=""/></div>
-<map name="class_kin_aa74db6fac5aff0dd04e18d93ce7a8777_icgraph" id="class_kin_aa74db6fac5aff0dd04e18d93ce7a8777_icgraph">
-<area shape="rect" title="creates a joint path between 2 points in space" alt="" coords="179,5,253,32"/>
-<area shape="rect" href="class_robot.html#a84ae13c01a86fa3b3c020de0ee59cbca" title="moves the robot to a given position &#160;calculates the path from the current position and &#160;&#160;the final on..." alt="" coords="5,5,131,32"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -674,7 +609,7 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="_kin_8cpp.html">Kin.cpp</a></li>
+<li>test_cpp/src/<a class="el" href="_kin_8h_source.html">Kin.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
