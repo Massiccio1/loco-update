@@ -1,4 +1,0 @@
-<map id="Kin::compute_ik" name="Kin::compute_ik">
-<area shape="rect" id="node1" title="computes inverse kinematics" alt="" coords="241,5,368,32"/>
-<area shape="rect" id="node2" href="$class_robot.html#a83e0c6af9460cd6aa16d4ff7e86a526b" title="moves only the shoulder joint for the robot &#160;&#160;used to reduce the chance of collision of the robot arm" alt="" coords="5,5,193,32"/>
-</map>

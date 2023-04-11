@@ -1,7 +1,0 @@
-<map id="Robot::publish_grip" name="Robot::publish_grip">
-<area shape="rect" id="node1" title="publishes grip joints for simulation only" alt="" coords="357,56,504,83"/>
-<area shape="rect" id="node2" href="$main_8cpp.html#a5568ac7e2cf6c6b7cb0753d56ed607cb" title=" " alt="" coords="251,5,301,32"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#a1c74e98f2b582e43765f30a56f0205ee" title="starts the procedure onche a blocklist message has been provided" alt="" coords="108,56,195,83"/>
-<area shape="rect" id="node5" href="$main_8cpp.html#aab4903ec3ca87c3f850c77a66c6945aa" title=" " alt="" coords="243,107,309,133"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,56,60,83"/>
-</map>

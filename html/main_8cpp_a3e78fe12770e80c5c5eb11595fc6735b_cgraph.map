@@ -1,6 +1,0 @@
-<map id="call_robot" name="call_robot">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,92,32"/>
-<area shape="rect" id="node2" href="$class_robot.html#a61ea0357fc3262d28f0d6083566b3114" title="subscribes and starts callbacks subscribes to /ur5/joint_states and starts the callbash" alt="" coords="140,5,299,32"/>
-<area shape="rect" id="node3" href="$robot_8cpp.html#ab1be1cea6e2c9af0a79e9a647f06b2a6" title="callback for ur5/joint_states &#160;detects the number of joints, saves the eventual gripper values,..." alt="" coords="347,5,441,32"/>
-<area shape="rect" id="node4" href="$robot_8cpp.html#a4cab0c44f9d4d7aa879d74bde977a848" title=" " alt="" coords="489,5,545,32"/>
-</map>
