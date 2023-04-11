@@ -204,7 +204,7 @@ class Kin {
 * @return real value for acos, even with inputs outside of [-1,1]
 */
 
-    double safe_acos(const double& value);
+    double safe_acos(const double value);
 /*! @brief safe real asin for c++
 *
 * returns real value for asin, even with inputs outside of [-1,1]

@@ -913,7 +913,7 @@ using namespace std;
 * @return real value for acos, even with inputs outside of [-1,1]
 */
 
-    double Kin::safe_acos(const double& value) {
+    double Kin::safe_acos(const double value) {
         if (value<=-1) {
             return M_PI;
         } else if (value>=1) {
