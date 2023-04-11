@@ -91,7 +91,8 @@ using namespace std;
 
         int Helper::fill_pr_next(Eigen::Vector < double, 6 > & pr_f){
 
-            std::ifstream myfile ("src/loco-update/test_cpp/src/pr_next.txt");
+            //std::ifstream myfile ("src/loco-update/test_cpp/src/pr_next.txt");
+            std::ifstream myfile ("pr_next.txt");//root di ros_ws
 
             if(!myfile){
                 cout << "\nmanca pr_next.txt\n";
