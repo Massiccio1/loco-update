@@ -125,7 +125,7 @@ class Robot{
 * used to reduce the chance of collision of the robot arm
 * @see float move_to(Eigen::Vector < double, 6 > pr_f, int steps = 3000, float k_coeff=0.01, int verbose=false)
 */
-        float move_to_shoulder(Eigen::Vector < double, 6 > pr_f, int steps = 3000, float k_coeff=0.01, int verbose=false);
+        float move_to_shoulder(Eigen::Vector < double, 6 > pr_f, int steps = 3000, float k_coeff=0.01, bool verbose=false);
 
 /*! @brief moves the robot to a given position \n
 * calculates the path from the current position and \n 

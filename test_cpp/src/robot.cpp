@@ -206,13 +206,13 @@ using namespace std;
 * used to reduce the chance of collision of the robot arm
 * @see float move_to(Eigen::Vector < double, 6 > pr_f, int steps = 3000, float k_coeff=0.01, int verbose=false)
 */
-        float Robot::move_to_shoulder(Eigen::Vector < double, 6 > pr_f, int steps, float k_coeff, int verbose){
+        float Robot::move_to_shoulder(Eigen::Vector < double, 6 > pr_f, int steps, float k_coeff, bool verbose){
             Kin kin;
             Eigen::Vector < double, 6 > q_i = j_to_q(joint);//q di adesso
             Eigen::Vector < double, 6 > tmp = kin.compute_ik(pr_f)[Kin::ik_index];//q di dove voglio andare
             Eigen::Vector < double, 6 > q_f;
             q_f=q_i;//stessa posizione
-            q_f(0)=tmp(0);//ma con pan finale
+            q_f(0)=tmp(0);//ma con shoulder pan finale
             kin.compute_fc(q_f);
             Eigen::Vector < double, 6 > pr_pan=kin.get_pr_now();
             move_to(pr_pan,steps,k_coeff,verbose);
@@ -306,8 +306,6 @@ using namespace std;
                 loop_rate.sleep();
                 //sleep(0.001);
             }
-
-            
 
 
             //print_position();

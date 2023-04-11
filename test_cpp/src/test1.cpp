@@ -332,7 +332,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
 
         extra_h=helper.get_extra_h(bl.blocks[i_block].class_number);
         pr_f(2) =h_active+extra_h;
-        robot.move_to(pr_f,steps,f,false);//abbasso
+        robot.move_to(pr_f,steps,f,true);//abbasso
         //cin >> f;
         sleep(sleep_time*5);
 
@@ -341,25 +341,25 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         sleep(0.5);
 
         pr_f(2) =h_safe;
-        robot.move_to(pr_f,steps,f,false);//alzo
+        robot.move_to(pr_f,steps,f,true);//alzo
         //cin >> f;
         sleep(sleep_time);
 
         //cout << "\nevito clipping: ";
         //robot.move_to_shoulder(pr_f,3000,f,true);
-        robot.move_to(pr_safe,steps,f,false);//per evitare clipping
+        robot.move_to(pr_safe,steps,f,true);//per evitare clipping
         sleep(sleep_time);
         pr_f=helper.decode_final_pos(bl.blocks[i_block].class_number);
         pr_f(2) =h_safe;
 
         robot.move_to_shoulder(pr_f,steps,f,false);
         //cin >> f;
-        robot.move_to(pr_f,steps,f,false);//vado in base
+        robot.move_to(pr_f,steps,f,true);//vado in base
         //cin >> f;
         sleep(sleep_time);
 
         pr_f(2) =h_active;
-        robot.move_to(pr_f,steps,f,false);//abbasso in base
+        robot.move_to(pr_f,steps,f,true);//abbasso in base
         sleep(sleep_time);
 
         //cout << "\npubblico il gripper: ";
@@ -367,7 +367,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         sleep(sleep_time);
 
         pr_f(2) =h_safe;
-        robot.move_to(pr_f,steps,f,false);//alzo
+        robot.move_to(pr_f,steps,f,true);//alzo
         sleep(sleep_time*5);
 
         //robot.move_to_shoulder(pr_safe,3000,f,true);
