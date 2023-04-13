@@ -48,7 +48,7 @@ def receive_pointcloud(msg):
     v = 312
     for data in point_cloud2.read_points(msg, field_names=['x','y','z'], skip_nans=False, uvs=[(u, v)]):
         points_list.append([data[0], data[1], data[2]])
-    print("Data: ", points_list)
+    #print("Data: ", points_list)
 
 
 

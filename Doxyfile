@@ -58,7 +58,7 @@ PROJECT_LOGO           =
 # entered, it will be relative to the location where doxygen was started. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = .
+OUTPUT_DIRECTORY       = /home/massiccio/bidone_testcpp
 
 # If the CREATE_SUBDIRS tag is set to YES then doxygen will create 4096 sub-
 # directories (in 2 levels) under the output directory of each output format and
@@ -829,8 +829,8 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = tutti.py \
-                         test_cpp/src
+INPUT                  = /home/massiccio/bidone_testcpp \
+                         tutti.py
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -903,8 +903,7 @@ FILE_PATTERNS          = *.c \
                          *.vhdl \
                          *.ucf \
                          *.qsf \
-                         *.ice \
-                         *.h
+                         *.ice
 
 # The RECURSIVE tag can be used to specify whether or not subdirectories should
 # be searched for input files as well.
@@ -920,11 +919,7 @@ RECURSIVE              = YES
 # run.
 
 EXCLUDE                = html \
-                         my_test/__pycache__ \
-                         test_cpp/src/Eigen \
-                         test_cpp/src/Helper.cpp \
-                         test_cpp/src/Kin.cpp \
-                         test_cpp/src/robot.cpp
+                         my_test/__pycache__
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded

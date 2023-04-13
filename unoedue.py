@@ -38,7 +38,7 @@ from my_vision_messages.msg import BlockList
 # esegue yolo detect.py su immagine specificata nel path e da in output immagini trovate e ritagliate
 def process_image(image):
     #model = torch.hub.load("../../../yolov5/", 'custom', path="../../../yolov5/best.pt", source='local')
-    model = torch.hub.load("../../../yolov5/", 'custom', path="../../../yolov5/pesi yolo/GazebobestNoResizeGray.pt", source='local')
+    model = torch.hub.load("../../../yolov5/", 'custom', path="../../../yolov5/pesi_yolo/GazebobestNoResizeGray.pt", source='local')
 
     # resize image for yolo detection (from 1920x1080 to 640x360)
     image_resized = cv2.resize(image, (640, 360), interpolation=cv2.INTER_AREA)
