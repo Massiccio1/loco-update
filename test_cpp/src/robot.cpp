@@ -122,19 +122,18 @@ using namespace std;
             std_msgs::Float64MultiArray f64j;
             sensor_msgs::JointState joint_tmp;
             std_msgs::Float64 f64;
-
             f64.data=gripper;
             grip_pub.publish(f64);
 
             //f64j.data.empty();
-
+            /*
             for(int i=0; i<6;i++){
                 f64j.data.push_back(Robot::joint.position[i]);//pubblico la stessa posizione
             }
 
             //print_f64j(f64j);
 
-            //cout << "\nn_grip: " << Robot::n_grip << endl;
+            cout << "\nn_grip: " << Robot::n_grip << endl;
 
             for(int i=0; i < Robot::n_grip ; i++){ //pos [6] [7] [8]
 
@@ -148,10 +147,10 @@ using namespace std;
 
             cout << "\n";
 
-            //print_f64j(f64j);
+            print_f64j(f64j);
 
             js_pub.publish(f64j);
-
+            */
             return 0;
         }
 
@@ -254,12 +253,14 @@ using namespace std;
             pr_i(5) = kin.rotm2eul(kin.T0e)[2];//sovrascrivo con la posizione attuale
             */
             
+            if(verbose){
+                cout << "moving from: " << pr_i << endl << endl;
+                cout << "moving to: " << pr_f << endl << endl;
 
-            cout << "moving from: " << pr_i << endl << endl;
-            cout << "moving to: " << pr_f << endl << endl;
+                cout << "moving from q: " << q << endl << endl;
+                cout << "moving to q: " << pr_f << endl << endl;
+            }
 
-            cout << "moving from q: " << q << endl << endl;
-            cout << "moving to q: " << pr_f << endl << endl;
 
             //vector<Eigen::Vector < double, 6 >> path_theory = kin.fillpath(q,pr_f, steps);
             //vector<Eigen::Vector < double, 6 >> path = kin.da_a(path_theory,q,k,steps);
@@ -294,9 +295,6 @@ using namespace std;
         
                 //sleep(0.001);
                 //cout << path_i << ")\n" << std::flush;;
-
-                //Robot::print_position(Robot::joint);
-                //cin >> f;
                 publish(path[path_i]);
                 //path_i=steps;
                 //ros::sleep(0.2);
