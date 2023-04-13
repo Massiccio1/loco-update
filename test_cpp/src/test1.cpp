@@ -303,7 +303,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         cout << "\ngoing for block:\n" <<  bl.blocks[i_block] << endl << endl;
 
         robot.publish_grip(grip_open);//apro
-        sleep(sleep_time*5);
+        sleep(sleep_time*5);    
         robot.publish_grip(grip_closed);//chiudo
         sleep(sleep_time*5);
         robot.publish_grip(grip_open);//apro
