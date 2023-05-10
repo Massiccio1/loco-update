@@ -184,6 +184,7 @@ using namespace std;
     Eigen::Vector3d Helper::tavolo_to_robo(Eigen::Vector3d world){
         //camera x y depth
         Eigen::Vector3d robo;
+
         robo(0)=world(0)-0.5;//x tavolo
         robo(1)=-world(1)+0.35;         //y tavolo
         robo(2)=world(2);
@@ -350,7 +351,7 @@ using namespace std;
         int i=0;
         switch((int)cls){
             case 1:
-                extra(0)=-0.008;
+                extra(0)=0.02;
                 break;
             case 9:
 

@@ -243,7 +243,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
     double sleep_time=0.5;
 
     double h_safe = 0.65;
-    double h_active = 0.74;
+    double h_active = 0.70;
     Eigen::Vector < double, 6 > pr_safe;
     Eigen::Vector < double, 6 > q_safe;
     Eigen::Vector3d correction;
@@ -257,7 +257,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
     robot.move_to(pr_safe,steps,f,false);
     kin.compute_fc(robot.j_to_q(Robot::joint));//q di safe
     sleep(1);
-    robot.publish_grip(0);
+    //robot.publish_grip(0);
     cout << "starting\n";
 
     for(int i_block=0; i_block< bl.blocks.size(); i_block++){
@@ -300,7 +300,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         Eigen::Vector < double, 6 > pr_i;
         Eigen::Vector < double, 6 > pr_f;
 
-        float grip_closed = -0.8;
+        float grip_closed = -0.9;
         float grip_open = 0.8;
         float extra_h=0;
 
@@ -321,16 +321,16 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         tmp3d+=correction;
         tmp3d+=helper.get_extra_correction(bl.blocks[i_block].class_number);
         pr_f <<  tmp3d(0),tmp3d(1),h_safe,0,0,0;
-        //cout << "\nrotazione: " << bl.blocks[i_block].rot_angle*M_PI*2/360;
+        cout << "\nrotazione: " << bl.blocks[i_block].rot_angle*M_PI*2/360;
         pr_f(3)=bl.blocks[i_block].rot_angle*M_PI*2/360;//ruoto per ee
-        //cout << "\nvado al  pezzo: " << pr_f;
+        cout << "\nvado al  pezzo: " << pr_f;
 
         robot.move_to_shoulder(pr_f,steps,f,false);
         robot.move_to(pr_f,steps,f,false);//vado al pezzo 
         //robot.rotate(bl.blocks[i_block].rot_angle/360*M_PI);
         sleep(sleep_time);
 
-        //cout << "\npubblico il gripper: ";
+        cout << "\npubblico il gripper: ";
         robot.publish_grip(grip_open);
         sleep(sleep_time);
 
@@ -339,7 +339,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         robot.move_to(pr_f,steps,f,false);//abbasso
         sleep(sleep_time*5);
 
-        //cout << "\npubblico il gripper: ";
+        cout << "\npubblico il gripper: ";
         robot.publish_grip(grip_closed);
         sleep(0.5);
 
@@ -347,7 +347,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         robot.move_to(pr_f,steps,f,false);//alzo
         sleep(sleep_time);
 
-        //cout << "\nevito clipping: ";
+        cout << "\nevito clipping: ";
         //robot.move_to_shoulder(pr_f,3000,f,true);
         robot.move_to(pr_safe,steps,f,false);//per evitare clipping
         sleep(sleep_time);
@@ -362,7 +362,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         robot.move_to(pr_f,steps,f,false);//abbasso in base
         sleep(sleep_time);
 
-        //cout << "\npubblico il gripper: ";
+        cout << "\npubblico il gripper: ";
         robot.publish_grip(grip_open);
         sleep(sleep_time);
 
@@ -397,7 +397,7 @@ int testing(Robot robot){
     
     cout << "cambio 3\n";
     pr_f(3)=1;
-    robot.move_to(pr_f,1000,f,false);
+    robot.move_to(pr_f,10000,f,false);
     pr_f(3)=0;
     sleep(3);
 

@@ -406,20 +406,21 @@ using namespace std;
         Helper help;
 
         offset = help.constrainAngle(q_f) - help.constrainAngle(q_i);//offset f-i
-        offset = help.dist_constrain(offset);//wrapping per angoli > 180
-        /*
+        offset = help.constrainAngle180(offset);//wrapping per angoli > 180
+        
         cout << "\n\t(kin p2p) da joints: " << q_i << endl;
         cout << "\n\t(kin p2p) a  joints: " << q_f << endl;
         cout << "\n\t(kin p2p) offset base : " << help.constrainAngle(q_f) - help.constrainAngle(q_i) << endl;
-        //cout << "\n\t(kin p2p) offset dist : " << offset << endl;
+        cout << "\n\t(kin p2p) offset dist : " << offset << endl;
         cout << "\n\t(kin p2p) offset + qi : " << offset + q_i<< endl;
         cout << "\n\t(kin p2p) offset from real : " << offset_from_real << endl;
-        */
+        
 
         Eigen::Matrix4d M;
         std::vector<Eigen::Vector < double, 6 >> path;
         //double minT = 0;
         double maxT = ((double)steps)/1000;//step da 1ms
+        cout << "number of steps: " << steps;
         //path.push_back(q_i);
         Eigen::Vector < double, 6 > qkdot;
         Eigen::Vector < double, 6 > qk1;
