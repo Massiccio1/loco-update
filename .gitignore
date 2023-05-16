@@ -7,3 +7,11 @@ test_cpp/src/.Kin.o
 test_cpp/src/.Helper.o
 test_cpp/src/.robot.o
 html/*
+log/*
+raw/*
+depth
+depth.txt
+*.jpg
+raw_depth_data.txt
+tutti_lab*
+log.yaml
