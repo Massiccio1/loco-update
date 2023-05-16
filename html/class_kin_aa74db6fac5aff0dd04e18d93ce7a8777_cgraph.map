@@ -1,4 +1,0 @@
-<map id="Kin::p2p" name="Kin::p2p">
-<area shape="rect" id="node1" title="creates a joint path between 2 points in space" alt="" coords="5,5,80,32"/>
-<area shape="rect" id="node2" href="$class_helper.html#a8100ab8c6cf62d5d92704a2acb9efbe6" title="constrains angle to [0,360[" alt="" coords="128,5,299,32"/>
-</map>

@@ -36,13 +36,13 @@ void js_callback(const sensor_msgs::JointState& joint);
 
 /*!
 *@file robot.h
-*@brief robot class for ur5 manipulator
+*@brief robot header class for ur5 manipulator
 */
 
-/*! @brief robot class for ur5 manipulator
+/*! @brief robot class for the ur5 robot
+*
 *
 */
-
 
 
 class Robot{

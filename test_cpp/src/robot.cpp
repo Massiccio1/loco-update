@@ -6,7 +6,10 @@
 using namespace std;
 
 
-    
+/*!
+*@file robot.cpp
+*@brief robot class for ur5 manipulator
+*/
         Robot::Robot(){
             //vuoto
             int o=0;

@@ -736,7 +736,7 @@ def receive_pointcloud(msg):
             # Write bytes to file
             binary_file.write(msg.data)
             uuiui=0
-        tmp=b''
+        tmp=b
         """
         try:
             with open("depth", "rb") as f:

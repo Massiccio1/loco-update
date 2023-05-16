@@ -28,8 +28,8 @@ $(FROM_PATH)/include/%.o:../src/%.cpp
 	echo vado
 	echo ${ROS_PACKAGE_PATH}
 	echo ${CPATH}
-	g++ -c $(FROM_PATH)/robot.cpp -o $(FROM_PATH)/../include/robot.o -I/opt/ros/noetic/include -I/home/massiccio/ros_ws/install/include -std=c++17
-	#g++ -c $(FROM_PATH)/robot.cpp -o $(FROM_PATH)/../include/$*.o -I/opt/ros/noetic/include -I ${HOME}/ros_ws/install/include -std=c++17
+	#g++ -c $(FROM_PATH)/robot.cpp -o $(FROM_PATH)/../include/robot.o -I/opt/ros/noetic/include -I/home/massiccio/ros_ws/install/include -std=c++17
+	g++ -c $(FROM_PATH)/robot.cpp -o $(FROM_PATH)/../include/robot.o -I/opt/ros/noetic/include -I${HOME}/ros_ws/install/include -std=c++17
 	rm -f .robot.o
 	touch .robot.o
 	echo fatto robot.o

@@ -24,10 +24,12 @@ using namespace std;
 
 /*!
 *@file helper.h
-*@brief helper.h function for different applications
+*@brief helper class header for function for different applications
+*  @author Massimo Girardelli
 */
 
-/*! @brief helper.h function for different applications
+/*! @brief helper class for many applications
+*
 *
 */
 

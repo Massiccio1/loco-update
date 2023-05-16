@@ -20,7 +20,7 @@ using namespace std;
 
 /*!
 *@file Kin.h
-*@brief kinematics class for the ur5 robot
+*@brief kinematics header class for the ur5 robot
 */
 
 /*! @brief kinematics class for the ur5 robot

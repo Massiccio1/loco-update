@@ -13,11 +13,15 @@
 //#include "msg/BlockList.h"
 #include <sensor_msgs/JointState.h>
 #include "Eigen/Eigen/Dense"
+//#include "eigen3/Eigen/Dense"
 //#include <eigen3/Eigen/Eigen>
 #include <sstream>
-#include "Helper.cpp"
-#include "Kin.cpp"
-#include "robot.cpp"
+//#include "Helper.cpp"
+#include "Helper.h"
+//#include "Kin.cpp"
+#include "Kin.h"
+//#include "robot.cpp"    
+#include "robot.h"    
 //#include "../msg/Block.msg"
 //#include "../msg/Pointxyz.msg"
 //#include "../msg/BlockList.msg"
@@ -40,11 +44,9 @@
 #define SAFE_Z 0.65
 
 /** @file main.cpp
- *  @brief main function for robot procedures
+ *  @brief main file for robot procedure
  *
  *  @author Massimo Girardelli
- *  @author massimo Girardelli 2
- *  @bug No know bugs.
  */
 
 
@@ -183,21 +185,10 @@ int main(int argc, char ** argv) {
         //help.fill_pr_next(pr_f);
         if(bl_index != block_call_index){
             //se ho nuovi messaggi
-            bl_list.push_back(BlockList_msg);
-            cout << "pushing back new messages\n";
-        }
-        if(bl_list.size() > 3)//se è troppo grande tolgo il primo
-            bl_list.erase(bl_list.begin());
-        else
-            continue;//salta se
-
-        if(bl_list[0]==bl_list[1] && bl_list[0]==bl_list[2]){
             cout << "foud match...\n";
-            procedure(robot,bl_list[2]);
-        }else
-            procedure(robot,bl_list[2]);
-            cout << "messaggi diversi\n";
-        
+            procedure(robot,BlockList_msg);
+            bl_index=block_call_index;
+        }        
         //cout << BlockList_msg << endl;
         //cout << "moving to" << pr_f << endl;
         //cout << "joint j_to_q:" << robot.j_to_q(Robot::joint) << endl;
@@ -210,7 +201,7 @@ int main(int argc, char ** argv) {
 }
 
 
-/*! @brief starts the procedure onche a blocklist message has been provided \n 
+/*! @brief starts the procedure once a blocklist message has been provided \n 
 *
 * one run, has a few options to choose from: \n
 * 0 for a testign procedure \n
@@ -239,23 +230,23 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
     if(f==1)
         feed(robot);
 
-    double steps = 1500;
-    double sleep_time=0.5;
+    double steps = 4000;
+    double sleep_time=1;
 
-    double h_safe = 0.65;
-    double h_active = 0.70;
+    double h_safe = 0.6;
+    double h_active = 0.677;
     Eigen::Vector < double, 6 > pr_safe;
     Eigen::Vector < double, 6 > q_safe;
     Eigen::Vector3d correction;
 
     
-    pr_safe << 0, -0.35, 0.55, 0, 0, 0;
-    correction << 0.014, -0.004,0;
+    pr_safe << 0, -0.45, 0.55, 0, 0, 0;
+    correction << 0.00, +0.001,0;
     
 
     kin.eval_ik_index(robot.j_to_q(Robot::joint));
     robot.move_to(pr_safe,steps,f,false);
-    kin.compute_fc(robot.j_to_q(Robot::joint));//q di safe
+    //kin.compute_fc(robot.j_to_q(Robot::joint));//q di safe
     sleep(1);
     //robot.publish_grip(0);
     cout << "starting\n";
@@ -284,8 +275,8 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
 
     }
 
-    cout << "\ncin per stalling\n";
-    cin >> f;
+    //cout << "\ncin per stalling\n";
+    //cin >> f;
 
     
 
@@ -300,8 +291,8 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         Eigen::Vector < double, 6 > pr_i;
         Eigen::Vector < double, 6 > pr_f;
 
-        float grip_closed = -0.9;
-        float grip_open = 0.8;
+        float grip_closed = 47;
+        float grip_open = 140;
         float extra_h=0;
 
         kin.eval_ik_index(robot.j_to_q(Robot::joint));
@@ -309,12 +300,12 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
 
         cout << "\ngoing for block:\n" <<  bl.blocks[i_block] << endl << endl;
 
-        robot.publish_grip(grip_open);//apro
-        sleep(sleep_time);
-        robot.publish_grip(grip_closed);//chiudo
-        sleep(sleep_time);
-        robot.publish_grip(grip_open);//apro
-        sleep(sleep_time);
+        //robot.publish_grip(grip_open);//apro
+        //sleep(sleep_time*5);
+        //robot.publish_grip(grip_closed);//chiudo
+        //sleep(sleep_time*5);
+        //robot.publish_grip(grip_open);//apro
+        sleep(sleep_time*5);
         //xyz
         tmp3d << bl.blocks[i_block].world_point.x,   bl.blocks[i_block].world_point.y,    bl.blocks[i_block].world_point.z;
         tmp3d=helper.tavolo_to_robo(tmp3d);
@@ -322,56 +313,63 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
         tmp3d+=helper.get_extra_correction(bl.blocks[i_block].class_number);
         pr_f <<  tmp3d(0),tmp3d(1),h_safe,0,0,0;
         cout << "\nrotazione: " << bl.blocks[i_block].rot_angle*M_PI*2/360;
-        pr_f(3)=bl.blocks[i_block].rot_angle*M_PI*2/360;//ruoto per ee
+        //pr_f(3)=bl.blocks[i_block].rot_angle*M_PI*2/360;//ruoto per ee
         cout << "\nvado al  pezzo: " << pr_f;
+        //cin >> f;
 
         robot.move_to_shoulder(pr_f,steps,f,false);
-        robot.move_to(pr_f,steps,f,false);//vado al pezzo 
+        //cin >> f;
+        robot.move_to(pr_f,steps,f,false);//vado al pezzo
         //robot.rotate(bl.blocks[i_block].rot_angle/360*M_PI);
-        sleep(sleep_time);
+        //cin >> f;
+        sleep(sleep_time*3);
 
         cout << "\npubblico il gripper: ";
         robot.publish_grip(grip_open);
-        sleep(sleep_time);
+        sleep(sleep_time*5);
 
         extra_h=helper.get_extra_h(bl.blocks[i_block].class_number);
         pr_f(2) =h_active+extra_h;
         robot.move_to(pr_f,steps,f,false);//abbasso
+        //cin >> f;
         sleep(sleep_time*5);
 
         cout << "\npubblico il gripper: ";
         robot.publish_grip(grip_closed);
-        sleep(0.5);
+        sleep(sleep_time*5);
 
         pr_f(2) =h_safe;
         robot.move_to(pr_f,steps,f,false);//alzo
+        //cin >> f;
         sleep(sleep_time);
 
         cout << "\nevito clipping: ";
-        //robot.move_to_shoulder(pr_f,3000,f,true);
+        robot.move_to_shoulder(pr_f,steps,f,true);
         robot.move_to(pr_safe,steps,f,false);//per evitare clipping
         sleep(sleep_time);
         pr_f=helper.decode_final_pos(bl.blocks[i_block].class_number);
         pr_f(2) =h_safe;
 
         robot.move_to_shoulder(pr_f,steps,f,false);
+        //cin >> f;
         robot.move_to(pr_f,steps,f,false);//vado in base
+        //cin >> f;
         sleep(sleep_time);
 
         pr_f(2) =h_active;
         robot.move_to(pr_f,steps,f,false);//abbasso in base
-        sleep(sleep_time);
+        sleep(sleep_time*3);
 
         cout << "\npubblico il gripper: ";
         robot.publish_grip(grip_open);
-        sleep(sleep_time);
+        sleep(sleep_time*5);
 
         pr_f(2) =h_safe;
         robot.move_to(pr_f,steps,f,false);//alzo
-        sleep(sleep_time*5);
+        sleep(sleep_time);
 
         //robot.move_to_shoulder(pr_safe,3000,f,true);
-        robot.move_to(pr_safe,steps,f,false);
+        //robot.move_to(pr_safe,steps,f,false);
         cout << "\nfinito: " << i_block << endl;
         //cout << "pausa... cin per continuare";
         //cin >> f;
@@ -379,16 +377,18 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
     }
 
     cout << "\nfinito tutto\n";
+    cout << "\n------------------------------------------------------------\ninizio... waiting for vision\n" ;
+
     return 0;
 
 }
 
 int testing(Robot robot){
     cout << "\ntesting....\napro il gripper\n";
-    robot.publish_grip(0.6);
+    //robot.publish_grip(0.6);
     sleep(3);
     cout << "\nchiudo\n";
-    robot.publish_grip(-0.1);
+    //robot.publish_grip(-0.1);
     sleep(3);
     int f=0;
 
@@ -401,30 +401,32 @@ int testing(Robot robot){
     pr_f(3)=0;
     sleep(3);
 
-    /*
+    
     cout << "\nsafe\n";
     
-    robot.move_to(pr_f,1000,f,false);
+    robot.move_to(pr_f,10000,f,false);
     sleep(3);
 
     
 
     cout << "cambio 4\n";
     pr_f(4)=1;
-    robot.move_to(pr_f,1000,f,false);
+    robot.move_to(pr_f,10000,f,false);
     pr_f(4)=0;
     sleep(3);
 
     cout << "cambio 5\n";
     pr_f(5)=1;
-    robot.move_to(pr_f,1000,f,false);
+    robot.move_to(pr_f,10000,f,false);
     pr_f(5)=0;
     sleep(3);
 
     cout << "\nafe\n";
-    robot.move_to(pr_f,1000,0,false);
+    robot.move_to(pr_f,10000,0,false);
     sleep(3);
-    */
+    
+
+   return 0;
 }
 
 int feed(Robot robot){
@@ -441,11 +443,10 @@ int feed(Robot robot){
         }else if(f==1){
             Eigen::Vector < double, 6 > pr_f;
             helper.fill_pr_next(pr_f);
-            robot.move_to(pr_f,1000,0,false);
+            robot.move_to(pr_f,12000,0,true);
         }else
             break;//esci dal while
     }
 
     return f;
 }
-
