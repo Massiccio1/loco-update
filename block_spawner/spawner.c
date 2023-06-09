@@ -14,7 +14,7 @@ int main()
     srand(time(NULL));
     
     int n_blocks = randomInt(2, 5);
-    n_blocks=4;
+    n_blocks=3;
 
     write_at_line(n_blocks, 24);
 	
@@ -63,6 +63,7 @@ int write_at_line(int n_block, int line_number)
           r=randomInt(-1,1)*M_PI_2;
           p=randomInt(-1,1)*M_PI_2;
           r=0;
+          p=0;
           //p=0;
           float ya = randomFloat(0.01, 3.14);
           

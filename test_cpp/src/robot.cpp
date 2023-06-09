@@ -130,8 +130,8 @@ using namespace std;
             f64.data=gripper;
             grip_pub.publish(f64);
 
-            //f64j.data.empty();
-            /*
+            f64j.data.empty();
+            
             for(int i=0; i<6;i++){
                 f64j.data.push_back(Robot::joint.position[i]);//pubblico la stessa posizione
             }
@@ -155,7 +155,7 @@ using namespace std;
             print_f64j(f64j);
 
             js_pub.publish(f64j);
-            */
+            
             return 0;
         }
 

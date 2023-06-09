@@ -163,7 +163,13 @@ def process_image(image):
         # print circle on image centre
         with_center_image = cv2.circle(image, (real_coord_x, real_coord_y), radius=1, color=(255, 255, 255),
                                        thickness=5)
-
+        # with_center_image = cv2.circle(with_center_image, (int(x1), int(y1)), radius=1,
+        #                                color=(255, 180, 120),
+        #                                thickness=7)
+        # with_center_image = cv2.circle(with_center_image, (int(x2), int(y2)), radius=1,
+        #                                color=(255, 180, 120),
+        #                                thickness=7)
+        cv2.imwrite("final.jpg", with_center_image)
         # return to original image sizes (find real coordinates of found centre)
 
         print("-----------------------------------")
@@ -187,7 +193,7 @@ def process_image(image):
             [np.squeeze(np.asarray(pointW))[0], np.squeeze(np.asarray(pointW))[1], np.squeeze(np.asarray(pointW))[2]])
         #robo[0] = robo[0] - 0.5
         #robo[1] = 0.35 - robo[1]
-        print("Data robot coord: ", robo)
+        #print("Data robot coord: ", robo)
         print("-----------------------------------")
 
         block = Block()
@@ -214,6 +220,8 @@ def process_image(image):
     res_pub.publish(block_list.blocks)
 
     print("finito")
+
+    exit()
 
 
 # crea bounding box rettangolare NON ruotata attorno a contorno del blocco (usa canny per trovare edges) e trova

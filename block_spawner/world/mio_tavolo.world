@@ -23,27 +23,21 @@
 
 
     <include>
-     <name>block3high</name>
-     <uri>model://block3high</uri>
-     <pose>0.50429 0.33069 0.89000 0.00000 -1.57080 1.55623</pose>
-    </include>
-
-    <include>
-     <name>block3high</name>
-     <uri>model://block3high</uri>
-     <pose>0.56604 0.61688 0.89000 0.00000 -1.57080 1.19242</pose>
-    </include>
-
-    <include>
-     <name>block0high</name>
-     <uri>model://block0high</uri>
-     <pose>0.15382 0.59777 0.89000 0.00000 0.00000 0.54635</pose>
+     <name>block5high</name>
+     <uri>model://block5high</uri>
+     <pose>0.25 0.25 0.89000 0.00000 0.00000 0.0</pose>
     </include>
 
     <include>
      <name>block9high</name>
      <uri>model://block9high</uri>
-     <pose>0.37494 0.64812 0.89000 0.00000 1.57080 2.69081</pose>
+     <pose>0.40 0.40 0.89000 0.00000 0.00000 0.0</pose>
+    </include>
+
+    <include>
+     <name>block10high</name>
+     <uri>model://block10high</uri>
+     <pose>0.50 0.50 0.89000 1.570796326 0.00000 0.0</pose>
     </include>
 
     <gui>

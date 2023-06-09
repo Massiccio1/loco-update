@@ -23,11 +23,11 @@ robot_params['myrobot'] ={'dt': 0.001,
 robot_params['ur5'] ={'dt': 0.001,
                        'kp': np.array([300, 300, 300,30,30,1]),
                        'kd':  np.array([20,20,20,5, 5,0.5]),
-                       'q_0':  np.array([ -3.9646275679217737,-1.2290803057006379, 2.1221440474139612,-2.3161527119078578, 1.6137233972549438, 1.4759714603424072]), #limits([0,pi],   [0, -pi], [-pi/2,pi/2],)
+                       'q_0':  np.array([ 2.316,-1.2290803057006379, 2.1221440474139612,-2.3161527119078578, 1.6137233972549438, 1.4759714603424072]), #limits([0,pi],   [0, -pi], [-pi/2,pi/2],)
                        'joint_names': ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint', 'wrist_1_joint', 'wrist_2_joint', 'wrist_3_joint'],
                        'ee_frame': 'tool0',
                        'control_mode': 'point', # 'trajectory','point'
-                       'real_robot': True,
+                       'real_robot': False,
                        'control_type': 'position', # 'position', 'torque'
                        'gripper_sim': True, # False: the gripper is treated as a Rigid Body, True: you can move the finger joints
                        'soft_gripper': False, # False: 3 finger rigid gripper, True: 2 finger soft gripper
