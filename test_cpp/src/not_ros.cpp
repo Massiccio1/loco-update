@@ -1,22 +1,18 @@
 
 // #include "Eigen/Dense"
-#include "Helper.h"
 #include "Kin.h"
 #include <iostream>
+#include <time.h>
 
 using namespace std;
 
 using namespace std;
 
 int main(){
-    Helper h;
+
+
     Kin k;
-    for (float i=-5; i<5; i+=0.1){
-        cout << "i: " << i << "\tsafe acos: " << k.safe_acos(i) << endl;
-    }
-    cout << "-----------------------------------";
-    for (float i=-5; i<5; i+=0.1){
-        cout << "i: " << i << "\tsafe asin: " << k.safe_asin(i) << endl;
-    }
+    printf("returned from test: %d",k.test());
+
     return 0;
 }

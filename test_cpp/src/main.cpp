@@ -218,7 +218,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
     Kin kin;
 
     system("clear");
-
+    kin.eval_ik_index(robot.j_to_q(Robot::joint));  
     cout << "procedure for:\n" << bl;
     cout << "\n-----------------------------------------\n";
     cout << "press a button to start (0 to test, 1 to set manual positions, 2 to start)" << endl;
@@ -244,7 +244,7 @@ int procedure(Robot robot, my_vision_messages::BlockList bl){
     correction << 0.00, +0.001,0;
     
 
-    kin.eval_ik_index(robot.j_to_q(Robot::joint));
+    
     robot.move_to(pr_safe,steps,f,false);
     //kin.compute_fc(robot.j_to_q(Robot::joint));//q di safe
     sleep(1);
