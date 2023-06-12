@@ -373,7 +373,7 @@ using namespace std;
         switch((int)cls){
             case 2:
             case 7:
-                extra=0.03;
+                //extra=0.03;
                 break;
             default:
                 break;

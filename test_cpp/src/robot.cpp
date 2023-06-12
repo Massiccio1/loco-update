@@ -243,6 +243,26 @@ using namespace std;
             Eigen::Vector < double, 6 > pr_i;//stato attuale
             //Eigen::Vector < double, 6 > pr_f;
 
+            if(pr_f(1)>0.15){//y
+                cout << "####################################\n";
+                cout << "final position too close to te bench wall\n";
+                cout << "####################################\n";
+                cerr << "####################################\n";
+                cout << "final position too close to te bench wall\n";
+                cerr << "####################################\n";
+                exit(11);
+            }
+
+            if(pr_f(2)>0.76){//z
+                cout << "####################################\n";
+                cout << "final position too close to te bench floor\n";
+                cout << "####################################\n";
+                cerr << "####################################\n";
+                cout << "final position too close to te bench floor\n";
+                cerr << "####################################\n";
+                exit(12);
+            }
+
             //help.fill_pr_i_f(pr_i,pr_f);//prendo il punto finale
             Eigen::Vector < double, 6 > q = j_to_q(j_now);//punto iniziale
             //q = help.constrainAngle180(q);//180-180
@@ -284,10 +304,10 @@ using namespace std;
             myfile.close();
             */
             
-            myfile.open ("path.txt");
-            for (Eigen::Vector < double, 6 > i: path)
-                    myfile << i(0)<< "," <<i(1)<< "," <<i(2)<< "," <<i(3)<< "," <<i(4)<< "," <<i(5)<< "\n";
-            myfile.close();
+            // myfile.open ("path.txt");
+            // for (Eigen::Vector < double, 6 > i: path)
+            //         myfile << i(0)<< "," <<i(1)<< "," <<i(2)<< "," <<i(3)<< "," <<i(4)<< "," <<i(5)<< "\n";
+            // myfile.close();
             
             //cout << "\npath dim: "<< path.size()<<"\n";
 
