@@ -30,7 +30,7 @@
 
 <!-- Presentation -->
 ## Presentation
-You can find a complete report [here](https://www.ti.com/tool/MSP432WARE#downloads) and the [vision](https://robotics-documentation.netlify.app) and [kinematics](https://kinematics-documentation.netlify.app/files.html) documentations.
+You can find a complete report [here](https://github.com/Massiccio1/loco-update/blob/master/report.pdf) and the [vision](https://robotics-documentation.netlify.app) and [kinematics](https://kinematics-documentation.netlify.app/files.html) documentations.
 
 Here are some videos with the tasks that the robot is able to solve:
 
@@ -113,12 +113,4 @@ Massimo Girardelli - 209644
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-
-[contributors-shield]: https://img.shields.io/github/contributors/damianobertolini/msp432_IR_Controller.svg?style=for-the-badge
-[c]: https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white
-[c-url]: https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html
 
