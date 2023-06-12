@@ -221,7 +221,7 @@ def process_image(image):
 
     print("finito")
 
-    exit()
+    #exit()
 
 
 # crea bounding box rettangolare NON ruotata attorno a contorno del blocco (usa canny per trovare edges) e trova
