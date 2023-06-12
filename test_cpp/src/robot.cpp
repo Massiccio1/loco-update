@@ -257,7 +257,25 @@ using namespace std;
             pr_i(4) = kin.rotm2eul(kin.T0e)[1];
             pr_i(5) = kin.rotm2eul(kin.T0e)[2];//sovrascrivo con la posizione attuale
             */
-            
+            if(pr_f(1)>0.15){//y
+                cout << "####################################\n";
+                cout << "final position too close to te bench wall\n";
+                cout << "####################################\n";
+                cerr << "####################################\n";
+                cout << "final position too close to te bench wall\n";
+                cerr << "####################################\n";
+                exit(11);
+            }
+
+            if(pr_f(2)>0.76){//z
+                cout << "####################################\n";
+                cout << "final position too close to te bench floor\n";
+                cout << "####################################\n";
+                cerr << "####################################\n";
+                cout << "final position too close to te bench floor\n";
+                cerr << "####################################\n";
+                exit(12);
+            }
 
             cout << "moving from: " << pr_i << endl << endl;
             cout << "moving to: " << pr_f << endl << endl;
@@ -284,10 +302,10 @@ using namespace std;
             myfile.close();
             */
             
-            myfile.open ("path.txt");
-            for (Eigen::Vector < double, 6 > i: path)
-                    myfile << i(0)<< "," <<i(1)<< "," <<i(2)<< "," <<i(3)<< "," <<i(4)<< "," <<i(5)<< "\n";
-            myfile.close();
+            // myfile.open ("path.txt");
+            // for (Eigen::Vector < double, 6 > i: path)
+            //         myfile << i(0)<< "," <<i(1)<< "," <<i(2)<< "," <<i(3)<< "," <<i(4)<< "," <<i(5)<< "\n";
+            // myfile.close();
             
             //cout << "\npath dim: "<< path.size()<<"\n";
 

@@ -273,7 +273,7 @@ def process_image(image):
     res_pub.publish(block_list.blocks)
 
     print("finito")
-    exit(0)
+    #exit(0)
 
 
 # crea bounding box rettangolare NON ruotata attorno a contorno del blocco (usa canny per trovare edges) e trova

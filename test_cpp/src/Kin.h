@@ -216,6 +216,7 @@ class Kin {
 */
     double safe_asin(const double value);
     Eigen::MatrixXd geo2anJ(Eigen::MatrixXd J, Eigen::MatrixXd T0e_);
+    double test();
     void removeRow(Eigen::MatrixXd& matrix, unsigned int rowToRemove);
     int wrap(Eigen::Vector3d& v);
 

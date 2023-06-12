@@ -991,6 +991,30 @@ using namespace std;
         
     }
 
+    double Kin::test(){
+        Helper h;
+        Eigen::Vector < double, 6 > pr_safe;
+        Eigen::Vector < double, 6 > pr_i;
+        Eigen::Vector < double, 6 > pr_f;
+        Eigen::Vector < double, 6 > q;
+        Eigen::Vector < double, 6 > q_safe;
+        int steps = 10000;
+
+        clock_t t;
+        t = clock();
+
+        pr_safe << 0, -0.45, 0.55, 0, 0, 0;
+        pr_f << 0.3, -0.25, 0675, 0, 0, 0;
+        pr_i = pr_safe;
+        q = compute_ik(pr_i)[0];
+        vector<Eigen::Vector < double, 6 >> path = p2p(pr_i,pr_f,q,steps);
+        t = clock() - t;
+        double time_taken = ((double)t)/CLOCKS_PER_SEC; // calculate the elapsed time
+        printf("The program took %f seconds to execute\n", time_taken);
+
+        return t;
+    }
+
     void Kin::removeRow(Eigen::MatrixXd& matrix, unsigned int rowToRemove){
         unsigned int numRows = matrix.rows()-1;
         unsigned int numCols = matrix.cols();
