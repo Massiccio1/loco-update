@@ -23,7 +23,6 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "Fondamenti di robotica", "index.html", [
-    [ "Bug List", "bug.html", null ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],

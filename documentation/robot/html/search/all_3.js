@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['eul2rotxyz_9',['eul2rotXYZ',['../class_kin.html#a9172ba2eca837573d887f7f81c43affb',1,'Kin']]],
-  ['eul2rotzyx_10',['eul2rotZYX',['../class_kin.html#aae0ed2ab0afb0a6eabb7af207744cc8a',1,'Kin']]],
-  ['eval_5fik_5findex_11',['eval_ik_index',['../class_kin.html#ab585d8cc2566972b027d8ad98461c464',1,'Kin']]]
+  ['fill_5fpr_5fnext_11',['fill_pr_next',['../class_helper.html#a49d922f1a905aa775c56a707c5ab6609',1,'Helper']]]
 ];

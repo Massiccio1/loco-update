@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['safe_5facos_39',['safe_acos',['../class_kin.html#aaffede30747a10ee2e37f5e637c7bf1f',1,'Kin']]],
-  ['safe_5fasin_40',['safe_asin',['../class_kin.html#a3100f89918b51e33f58de0d3c1a2c34e',1,'Kin']]],
-  ['start_5fcallback_41',['start_callback',['../class_robot.html#a61ea0357fc3262d28f0d6083566b3114',1,'Robot']]]
+  ['tavolo_5fto_5frobo_41',['tavolo_to_robo',['../class_helper.html#ad875bccb862fc047776e8a28d0f03ae0',1,'Helper']]]
 ];

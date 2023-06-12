@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['p2p_27',['p2p',['../class_kin.html#ad9037b3d067ec8ca5aae8c53c65db86b',1,'Kin']]],
-  ['pr_5fto_5fp_28',['pr_to_p',['../class_kin.html#a98b9cab755916ef411b8325a40e86389',1,'Kin']]],
-  ['pr_5fto_5fr_29',['pr_to_r',['../class_kin.html#a27bb22380126706a2057d9e9d56d9f5c',1,'Kin']]],
-  ['print_5ff64j_30',['print_f64j',['../class_robot.html#afde6b6f9a6f357bb66930023e5b4c7f5',1,'Robot']]],
-  ['procedure_31',['procedure',['../main_8cpp.html#a1c74e98f2b582e43765f30a56f0205ee',1,'main.cpp']]],
-  ['publish_32',['publish',['../class_robot.html#a6ad3f6176097555a395d1cdb08d41c66',1,'Robot']]],
-  ['publish_5fgrip_33',['publish_grip',['../class_robot.html#afad827990c0d664a10983e4f51b46847',1,'Robot']]]
+  ['robot_33',['Robot',['../class_robot.html',1,'Robot'],['../class_robot.html#a6a45d344675adaa14bd69ec78846ab55',1,'Robot::Robot()']]],
+  ['robot_2ecpp_34',['robot.cpp',['../robot_8cpp.html',1,'']]],
+  ['robot_2eh_35',['robot.h',['../robot_8h.html',1,'']]],
+  ['rotate_36',['rotate',['../class_robot.html#a8367853bdf982f4ce74d38bd7b5208e1',1,'Robot']]],
+  ['rotm2eul_37',['rotm2eul',['../class_kin.html#a866f73aeef9d1d135568a580ba01fcff',1,'Kin']]]
 ];

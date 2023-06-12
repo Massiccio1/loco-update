@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['j_5fto_5fq_19',['j_to_q',['../class_robot.html#aad276a136acf286c4edadace34dcb099',1,'Robot']]],
-  ['js_5fcallback_20',['js_callback',['../robot_8cpp.html#ab1be1cea6e2c9af0a79e9a647f06b2a6',1,'js_callback(const sensor_msgs::JointState &amp;j):&#160;robot.cpp'],['../robot_8h.html#ab1be1cea6e2c9af0a79e9a647f06b2a6',1,'js_callback(const sensor_msgs::JointState &amp;j):&#160;robot.cpp']]]
+  ['kin_20',['Kin',['../class_kin.html',1,'Kin'],['../class_kin.html#a3d1db49726c6092b3220966fcc884544',1,'Kin::Kin()']]],
+  ['kin_2ecpp_21',['Kin.cpp',['../_kin_8cpp.html',1,'']]],
+  ['kin_2eh_22',['Kin.h',['../_kin_8h.html',1,'']]]
 ];

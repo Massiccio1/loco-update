@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['robot_34',['Robot',['../class_robot.html',1,'Robot'],['../class_robot.html#a6a45d344675adaa14bd69ec78846ab55',1,'Robot::Robot()']]],
-  ['robot_2ecpp_35',['robot.cpp',['../robot_8cpp.html',1,'']]],
-  ['robot_2eh_36',['robot.h',['../robot_8h.html',1,'']]],
-  ['rotate_37',['rotate',['../class_robot.html#a8367853bdf982f4ce74d38bd7b5208e1',1,'Robot']]],
-  ['rotm2eul_38',['rotm2eul',['../class_kin.html#a866f73aeef9d1d135568a580ba01fcff',1,'Kin']]]
+  ['safe_5facos_38',['safe_acos',['../class_kin.html#aaffede30747a10ee2e37f5e637c7bf1f',1,'Kin']]],
+  ['safe_5fasin_39',['safe_asin',['../class_kin.html#a3100f89918b51e33f58de0d3c1a2c34e',1,'Kin']]],
+  ['start_5fcallback_40',['start_callback',['../class_robot.html#a61ea0357fc3262d28f0d6083566b3114',1,'Robot']]]
 ];

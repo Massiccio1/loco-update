@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['helper_16',['Helper',['../class_helper.html',1,'Helper'],['../class_helper.html#a59924530b7cfbc3d32134a1cf5de2a56',1,'Helper::Helper()']]],
-  ['helper_2ecpp_17',['Helper.cpp',['../_helper_8cpp.html',1,'']]],
-  ['helper_2eh_18',['Helper.h',['../_helper_8h.html',1,'']]]
+  ['j_5fto_5fq_18',['j_to_q',['../class_robot.html#aad276a136acf286c4edadace34dcb099',1,'Robot']]],
+  ['js_5fcallback_19',['js_callback',['../robot_8cpp.html#ab1be1cea6e2c9af0a79e9a647f06b2a6',1,'js_callback(const sensor_msgs::JointState &amp;j):&#160;robot.cpp'],['../robot_8h.html#ab1be1cea6e2c9af0a79e9a647f06b2a6',1,'js_callback(const sensor_msgs::JointState &amp;j):&#160;robot.cpp']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['get_5fee_5fp_13',['get_ee_p',['../class_kin.html#af75d397faf214d72adda456a1bb9084f',1,'Kin']]],
-  ['get_5fpr_5fnow_14',['get_pr_now',['../class_kin.html#a992d4e39f8ff9556682a02c370dad160',1,'Kin']]],
-  ['get_5ft0e_15',['get_T0e',['../class_kin.html#ab70b58c3a0dba737289b3d5c57075483',1,'Kin']]]
+  ['helper_15',['Helper',['../class_helper.html',1,'Helper'],['../class_helper.html#a59924530b7cfbc3d32134a1cf5de2a56',1,'Helper::Helper()']]],
+  ['helper_2ecpp_16',['Helper.cpp',['../_helper_8cpp.html',1,'']]],
+  ['helper_2eh_17',['Helper.h',['../_helper_8h.html',1,'']]]
 ];
